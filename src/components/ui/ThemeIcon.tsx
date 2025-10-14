@@ -1,57 +1,79 @@
 import React from 'react';
-import { useTheme } from '../../contexts/ThemeContext';
 
 interface ThemeIconProps {
   src: string;
   alt: string;
-  className?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  variant?: 'default' | 'primary' | 'secondary' | 'white' | 'gray';
+  className?: string;
+  // Legacy props for backward compatibility
+  color?: 'primary' | 'secondary' | 'tertiary' | 'inverse';
   themeAware?: boolean;
-  color?: 'primary' | 'secondary' | 'tertiary' | 'inverse' | 'accent' | 'success' | 'warning' | 'error';
 }
 
 const sizeClasses = {
-  xs: 'w-3 h-3',  // 12px - matches --icon-size-xs
-  sm: 'w-4 h-4',  // 16px - matches --icon-size-sm  
-  md: 'w-5 h-5',  // 20px - matches --icon-size-md
-  lg: 'w-6 h-6',  // 24px - matches --icon-size-lg
-  xl: 'w-8 h-8'   // 32px - matches --icon-size-xl
+  xs: 'size-3',
+  sm: 'size-4',
+  md: 'size-5',
+  lg: 'size-6',
+  xl: 'size-8'
 };
 
-const colorClasses = {
-  primary: 'text-text-primary',
-  secondary: 'text-text-secondary',
-  tertiary: 'text-text-tertiary',
-  inverse: 'text-text-inverse',
-  accent: 'text-accent-blue',
-  success: 'text-status-success',
-  warning: 'text-status-warning',
-  error: 'text-status-error'
+const variantClasses = {
+  default: 'icon-theme-aware',
+  primary: 'icon-theme-primary',
+  secondary: 'icon-theme-secondary',
+  white: 'icon-white',
+  gray: 'icon-gray'
 };
 
-export default function ThemeIcon({ 
+export const ThemeIcon: React.FC<ThemeIconProps> = ({ 
   src, 
   alt, 
-  className = '', 
-  size = 'md',
-  themeAware = true,
-  color
-}: ThemeIconProps) {
-  const { theme } = useTheme();
-  
-  const baseClasses = sizeClasses[size];
-  const colorClass = color ? colorClasses[color] : '';
-  const themeClasses = themeAware && !color
-    ? theme === 'dark' 
-      ? 'filter brightness-0 invert' // Makes icons white in dark mode
-      : '' 
-    : '';
-  
+  size = 'sm', 
+  variant = 'default',
+  className = '',
+  color,
+  themeAware = true
+}) => {
+  // Handle legacy color prop
+  let finalVariant = variant;
+  if (color) {
+    switch (color) {
+      case 'primary':
+        finalVariant = 'primary';
+        break;
+      case 'secondary':
+        finalVariant = 'secondary';
+        break;
+      case 'tertiary':
+        finalVariant = 'default';
+        break;
+      case 'inverse':
+        finalVariant = 'white';
+        break;
+      default:
+        finalVariant = 'default';
+    }
+  }
+
+  // Handle themeAware prop
+  const iconVariant = themeAware ? finalVariant : 'default';
+
+  const classes = [
+    sizeClasses[size],
+    variantClasses[iconVariant],
+    className
+  ].filter(Boolean).join(' ');
+
   return (
     <img 
-      src={src} 
       alt={alt} 
-      className={`${baseClasses} ${colorClass} ${themeClasses} ${className}`}
+      className={classes}
+      src={src}
+      style={{ display: 'block', maxWidth: 'none' }}
     />
   );
-}
+};
+
+export default ThemeIcon;

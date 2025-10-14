@@ -5,7 +5,7 @@ export const COMPLETE_ASSET_MAP = {
   '0e57698f12072b290e200c386b094e0ea7b62ad7': 'document-files-icon',
   '0f0383cf06f4eb1085b119a44e1d85a57f62ffa0': 'settings-gear-icon',
   '0f305d7c690d1ed22808c9571d291cac65c5e293': 'building-floors-icon',
-  '0f44f729311136017322fe20df2f07dfb5735258': 'dollar-sign-icon',
+  '0f44f729311136017322fe20df2f07dfb5735258': 'dollar-icon',
   '11f96e76dd9dca9d96501be5c44f84e047b9ca4e': 'removed-duplicate',
   '1557f15dd8768cde1da210af1cde384a6179fb4e': 'edit-document-icon',
   '18dd999ea0b749301ca03dd6bb239ec6357ca2bf': 'removed-duplicate',
@@ -17,7 +17,7 @@ export const COMPLETE_ASSET_MAP = {
   '24bb5ae20925b3678d31a812f0d709e8f8919b7e': 'removed-duplicate',
   '2a3349ee682fb9d0a55952bafbec5214541c0c56': 'download-arrow-down-icon',
   '2a57308041b3d6f98dfd9c06504690d8a2358f17': 'users-group-icon',
-  '2c08c65ba84d97c660b9cc885af5ca09d53cdea9': 'removed-duplicate',
+  '2c08c65ba84d97c660b9cc885af5ca09d53cdea9': 'dropdown-arrow-down-icon',
   '2eae641664e82db2d3d03733066ec49c66f25dbf': 'removed-duplicate',
   '30ca31f42edc86fbd200d6c6af5214fb28adca7e': 'phone-icon',
   '31bcd2bd8a20f979bbaf0dd99cf7a04a8abd86f3': 'history-clock-icon',
@@ -42,7 +42,12 @@ export const COMPLETE_ASSET_MAP = {
   '51c27893cb973205053616aaf50fa89da50ae2a3': 'removed-duplicate',
   '52319417a31bbfed779edb880cba1406e3cb2a88': 'edit-pencil-icon',
   '54c7b8211a203137315d2431d93e367da5008886': 'search-magnifying-glass-icon',
-  '570562bdab185d048f5ac2c0767b4b5fb79062af': 'chevron-up-icon',
+  '570562bdab185d048f5ac2c0767b4b5fb79062af': 'dropdown-arrow-up-icon',
+  'bdfb842fd34b514bce485e4a545244e6ae290405': 'trending-up-streamline-tabler-icon',
+  '9a171b904bc46c731edcc6a15a75bfe2e219bf4b': 'ai-efficiency-icon',
+  'fe5a72c4408f71da9a19c440c52f26ca37946de0': 'star-filled-icon',
+  '2b53e7c4e32d556b446b6896541b4a59f7a8bc99': 'user-icon',
+  '8a1073638f124eedfb8a4f405b46a168b05acfa4': 'date-icon',
   '57bb129d1b855322faa4ab5bb6aaecf60e37f883': 'removed-duplicate',
   '5c4f6b4cccdb72886608a601add71c4cde32717d': 'user-hexagon-icon',
   '5d5c2949b263b20567a63f78f8cf256f3598ab4b': 'message-chat-icon',
@@ -67,9 +72,8 @@ export const COMPLETE_ASSET_MAP = {
   '8344e35610431d20fc9e40f204a1b49616468eb9': 'removed-duplicate',
   '850367b3d5bcc6795460767cc6f8c3748e42d0c6': 'assets-box-icon',
   '85ec93cf71a85c65ec3d63eb25c9abc046602a62': 'removed-duplicate',
-  '878cd835ab10ca42796d3d46ca1955b32ffb2ff2': 'building-property-icon',
+  '878cd835ab10ca42796d3d46ca1955b32ffb2ff2': 'properties-icon',
   '883cd501fc86c09a6ac9236f472c914dc97e72de': 'search-icon',
-  '8a1073638f124eedfb8a4f405b46a168b05acfa4': 'removed-duplicate',
   '8c23599e1d7e92e55418a1e1ffbdd778ec937473': 'removed-duplicate',
   '8cfd46bf59d529e6e44fb9ad3c9767b4f65473ac': 'removed-duplicate',
   '8d0956d262164339b550eadca78b246c8aca00bf': 'alert-warning-icon',
@@ -102,14 +106,14 @@ export const COMPLETE_ASSET_MAP = {
   'arrow-right-icon': 'chevron-down-icon',
   'b2d67f85fb907015f4ab9ee4b411d10f7461a7a4': 'removed-duplicate',
   'b567f2190e9f78f6cb6b711dfe6fc87447d934e6': 'removed-duplicate',
-  'bd7230e7a66d09f8f2922c1dbe464bf845edafdb': 'maintenance-wrench-icon',
+  'bd7230e7a66d09f8f2922c1dbe464bf845edafdb': 'maintenance-icon',
   'bd7230e7a66d09f8f2922dbe464bf845edafdb': 'removed-duplicate',
   'c220baab89768666b4122a112a33f29db04a4fe2': 'removed-duplicate',
   'c508e0e9e06502acafd54f2124771cfa94ecbcc6': 'dollar-rent-icon',
   'c5897153a63e051430d72b0e62512742a6db262d': 'moon-theme-icon',
   'c706f706fccdae9abd37a430e18f0fb60e67b6d9': 'removed-duplicate',
   'cafb969d4fdf481cdae5f8fdc86f52969cc49fbe': 'removed-duplicate',
-  'calendar-icon': 'dollar-sign-icon',
+  'calendar-icon': 'calendar-icon',
   'cancel-button-icon': 'x-close-icon',
   'cc24a71c59a219cb16e2a6d4768ba782e09e46c3': 'removed-duplicate',
   'checkmark-icon': 'checkmark-check-icon',
@@ -206,11 +210,13 @@ export const COMPLETE_ASSET_MAP = {
   'settings-icon': 'globe-world-icon',
   'settings-nav-icon': 'clock-time-icon',
   'show-password-icon': 'eye-view-icon',
+  'star-filled-icon': 'star-filled-icon',
   'tenants-icon': 'users-group-icon',
   'tenants-nav-icon': 'users-group-icon',
-  'theme-switch-icon': 'moon-theme-icon',
+  'theme-switch-icon': 'theme-switch-icon',
   'units-icon': 'building-property-icon',
   'upload-icon': 'upload-icon',
+  'user-icon': 'user-icon',
   'view-details-icon': 'eye-view-icon',
 } as const;
 
@@ -220,8 +226,19 @@ export const getAssetName = (hash: string): string => {
 };
 
 // Helper function to get asset path with descriptive name
-export const getAssetPath = (hash: string): string => {
-  return `/assets/${hash}.svg`;
+export const getAssetPath = (identifier: string): string => {
+  // If it's a hash (40 characters), look it up in the mapping
+  if (identifier.length === 40 && /^[a-f0-9]+$/.test(identifier)) {
+    const mappedAsset = COMPLETE_ASSET_MAP[identifier as keyof typeof COMPLETE_ASSET_MAP];
+    if (mappedAsset) {
+      return `/assets/${mappedAsset}.svg`;
+    }
+    // Fallback to hash if not found in mapping
+    return `/assets/${identifier}.svg`;
+  }
+  
+  // If it's a descriptive name, use it directly
+  return `/assets/${identifier}.svg`;
 };
 
 // Asset usage statistics

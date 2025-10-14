@@ -1,6 +1,7 @@
 // Component Library Exports
 export { Icon } from './Icon';
 export { default as ThemeIcon } from './ThemeIcon';
+export { default as SearchInput } from './SearchInput';
 export { default as InputField } from './InputField';
 export { default as PrimaryButton } from './PrimaryButton';
 export { default as LinkButton } from './LinkButton';

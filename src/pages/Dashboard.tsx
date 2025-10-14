@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getAssetPath } from '../utils/completeAssetMapping';
+import ThemeIcon from '../components/ui/ThemeIcon';
+import Header from '../components/layout/Header';
+import LeftNavigation from '../components/layout/LeftNavigation';
 
 // Asset constants with descriptive names - using complete asset mapping
 const loginLogoIcon = getAssetPath('login-logo-icon');           // Header logo
@@ -30,121 +33,49 @@ const rentCollectionCardIcon = getAssetPath('0f44f729311136017322fe20df2f07dfb57
 const maintenanceCardIcon = getAssetPath('bd7230e7a66d09f8f2922c1dbe464bf845edafdb');   // maintenance-wrench-icon
 const leasesCardIcon = getAssetPath('6d3c0204ac37f038cd091108592cad5b0022f2e9');           // leases-document-icon
 const aiEfficiencyCardIcon = getAssetPath('financial-icon');         // chart-graph-icon (using descriptive name)
-const trendingUpIcon = getAssetPath('570562bdab185d048f5ac2c0767b4b5fb79062af');                // chevron-up-icon
+const trendingUpIcon = getAssetPath('bdfb842fd34b514bce485e4a545244e6ae290405');                // trending-up-streamline-tabler-icon
 
 export default function Dashboard() {
+  const [searchValue, setSearchValue] = useState('');
+  const [isNavigationExpanded, setIsNavigationExpanded] = useState(false);
+
+  const handleSearch = (query: string) => {
+    console.log('Dashboard search:', query);
+    // Implement search functionality here
+  };
+
+  const handleLogoClick = () => {
+    setIsNavigationExpanded(!isNavigationExpanded);
+  };
+
   return (
     <div className="bg-static-white content-stretch flex items-center justify-center relative h-screen w-screen" data-name="Dashboard" data-node-id="225:5071">
       <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0" data-name="Container" data-node-id="225:5072">
         <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col items-start relative size-full">
           {/* Header */}
-          <div className="bg-paper-paper-elevation-1 border-b border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center relative size-full h-18 relative shrink-0 w-full" data-name="Header" data-node-id="225:5073">
-            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex h-18 items-center relative w-full">
-              <div className="border-r border-overlays-black-20 border-solid box-border content-stretch flex flex-col h-18 items-center justify-center pl-4 pr-5 py-4 relative shrink-0 w-16" data-name="Container" data-node-id="I225:5073;189:15783">
-                <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-8 h-8" data-name="Container" data-node-id="I225:5073;189:15784">
-                  <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5073;189:15785">
-                    <img alt="" className="block max-w-none size-full" src={loginLogoIcon} />
-                  </div>
-                </div>
-              </div>
-              <div className="basis-0 box-border content-stretch flex grow h-full items-center justify-between min-h-px min-w-px px-6 py-2 relative shrink-0" data-name="Container" data-node-id="I225:5073;189:15793">
-                <div className="box-border content-stretch flex gap-2 h-9 items-center px-3 py-3 relative shrink-0 w-full max-w-sm" data-name="Container" data-node-id="I225:5073;189:15794">
-                  <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5073;189:15795">
-                    <img alt="" className="block max-w-none size-full" src={searchIcon} />
-                  </div>
-                  <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-text-secondary text-small text-nowrap tracking-normal whitespace-pre" data-node-id="I225:5073;189:15798">
-                    Search properties, tenants, tickets...
-                  </p>
-                </div>
-                <div className="content-stretch flex gap-4 items-center relative shrink-0" data-name="Container" data-node-id="I225:5073;189:15799">
-                  <div className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-8 h-8" data-name="Button" data-node-id="I225:5073;189:15800">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5073;189:15801">
-                      <img alt="" className="block max-w-none size-full" src={notificationIcon} />
-                    </div>
-                    <div className="absolute bg-error-500 left-4 rounded-lg w-5 h-5 -top-1" data-name="Badge" data-node-id="I225:5073;189:15804">
-                      <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-1 items-center justify-center overflow-clip relative rounded-inherit w-5 h-5">
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-label-small text-nowrap text-static-white whitespace-pre" data-node-id="I225:5073;189:15805">
-                          3
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-8 h-8" data-name="Button" data-node-id="I225:5073;189:15806">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5073;189:15807">
-                      <img alt="" className="block max-w-none size-full" src={settingsIcon} />
-                    </div>
-                  </div>
-                  <button className="box-border content-stretch cursor-pointer flex items-center justify-center overflow-visible p-0 relative rounded-lg shrink-0 w-8 h-8" data-name="Theme Switch Mode" data-node-id="I225:5073;256:4134">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Moon--Streamline-Tabler" data-node-id="I225:5073;256:4134;255:6041">
-                      <img alt="" className="block max-w-none size-full" src={themeSwitchIcon} />
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Header 
+            searchPlaceholder="Search properties, tenants, tickets..."
+            notificationCount={3}
+            showThemeToggle={true}
+            logoGradient="brand-aurora"
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+            onSearch={handleSearch}
+            onLogoClick={handleLogoClick}
+          />
 
           {/* Main Content */}
           <div className="basis-0 grow min-h-px min-w-px relative shrink-0 w-full" data-name="Main Content" data-node-id="225:5074">
             <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex items-start relative size-full">
               {/* Left Navigation */}
-              <div className="bg-paper-paper-elevation-1 border-r border-overlays-white-inverse-10 box-border content-stretch flex flex-col h-full items-start relative shrink-0 w-16" data-name="Left Navigation" data-node-id="225:5075">
-                <div className="basis-0 box-border content-stretch flex flex-col gap-2 grow items-center min-h-px min-w-px pb-0 pt-4 px-4 relative shrink-0 w-16" data-name="Navigation" data-node-id="I225:5075;189:15625">
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-overlays-primary-20 gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 to-overlays-info-20 w-full" data-name="Button" data-node-id="I225:5075;189:15626">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15627">
-                      <img alt="" className="block max-w-none size-full" src={dashboardNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15632">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15633">
-                      <img alt="" className="block max-w-none size-full" src={propertiesNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15641">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15642">
-                      <img alt="" className="block max-w-none size-full" src={tenantsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15647">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15648">
-                      <img alt="" className="block max-w-none size-full" src={maintenanceNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15651">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15652">
-                      <img alt="" className="block max-w-none size-full" src={reportsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15654">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15655">
-                      <img alt="" className="block max-w-none size-full" src={analyticsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15673">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15674">
-                      <img alt="" className="block max-w-none size-full" src={settingsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-transparent box-border content-stretch flex gap-2 h-8 items-center justify-center px-3 py-0 relative rounded-xl shrink-0 w-full" data-name="Button" data-node-id="I225:5075;189:15669">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="I225:5075;189:15670">
-                      <img alt="" className="block max-w-none size-full" src={helpNavIcon} />
-                    </div>
-                  </div>
-                </div>
-                <div className="box-border content-stretch flex flex-col h-16 items-center pb-px pl-4 pr-5 pt-4 relative shrink-0 w-16" data-name="Container" data-node-id="I225:5075;189:15677">
-                  <div className="content-stretch flex gap-2 items-center relative rounded-full shrink-0" data-name="Button" data-node-id="I225:5075;189:15678">
-                    <div className="content-stretch flex items-start overflow-clip relative rounded-full shrink-0 w-8 h-8" data-name="Primitive.span" data-node-id="I225:5075;189:15679">
-                      <div className="basis-0 bg-gradient-aqua-2 grow h-8 min-h-px min-w-px relative rounded-full shrink-0" data-name="Text" data-node-id="I225:5075;189:15680">
-                        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex h-8 items-center justify-center relative w-full">
-                          <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-static-white tracking-normal whitespace-pre" data-node-id="I225:5075;189:15681">
-                            JD
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <LeftNavigation 
+                activeItem="dashboard"
+                expanded={isNavigationExpanded}
+                userName="Jhon Deo"
+                userInitials="JD"
+                userGradient="aqua-2"
+                onItemClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
+              />
 
               {/* Dashboard Content */}
               <div className="basis-0 box-border content-stretch flex flex-col gap-8 grow h-full items-start min-h-px min-w-px overflow-x-clip overflow-y-auto pb-18 pt-8 px-18 relative shrink-0" data-name="NewDashboardScreen" data-node-id="225:5076">
@@ -160,15 +91,11 @@ export default function Dashboard() {
                   </div>
                   <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Container" data-node-id="225:5081">
                     <button className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="225:5089">
-                      <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="225:5090">
-                        <img alt="" className="block max-w-none size-full" src={addPropertyActionIcon} />
-                      </div>
+                      <ThemeIcon src={addPropertyActionIcon} alt="Add property action" size="sm" variant="default" />
                       <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-small text-nowrap whitespace-pre" data-node-id="225:5093">
                         Quick Action
                       </p>
-                      <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="289:20140">
-                        <img alt="" className="block max-w-none size-full" src={dropdownArrowIcon} />
-                      </div>
+                      <ThemeIcon src={dropdownArrowIcon} alt="Dropdown arrow" size="sm" variant="default" />
                     </button>
                   </div>
                 </div>
@@ -347,29 +274,21 @@ export default function Dashboard() {
                 {/* Top Performing Properties Section */}
                 <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 174" data-node-id="288:19169">
                   <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Frame 176" data-node-id="288:19170">
-                    <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19171">
-                      <img alt="" className="block max-w-none size-full" src={propertiesNavIcon} />
-                    </div>
+                    <ThemeIcon src={propertiesNavIcon} alt="Properties nav" size="sm" variant="default" />
                     <p className="font-sans font-semibold leading-base not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19179">
                       Top Performing Properties
                     </p>
                   </div>
                   <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Frame 245" data-node-id="288:19877">
                     <button className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="288:19869">
-                      <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19870">
-                        <img alt="" className="block max-w-none size-full" src={calendarIcon} />
-                      </div>
+                      <ThemeIcon src={calendarIcon} alt="Calendar" size="sm" variant="default" />
                       <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-small text-nowrap whitespace-pre" data-node-id="288:19875">
                         Last 3 months
                       </p>
-                      <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19878">
-                        <img alt="" className="block max-w-none size-full" src={dropdownArrowIcon} />
-                      </div>
+                      <ThemeIcon src={dropdownArrowIcon} alt="Dropdown arrow" size="sm" variant="default" />
                     </button>
                     <button className="bg-gradient-brand-aurora box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="288:19180">
-                      <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19181">
-                        <img alt="" className="block max-w-none size-full" src={addPropertyButtonIcon} />
-                      </div>
+                      <ThemeIcon src={addPropertyButtonIcon} alt="Add property button" size="sm" variant="default" />
                       <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="288:19184">
                         Add Property
                       </p>
@@ -411,16 +330,12 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:19261">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19262">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
+                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
                       </button>
                     </div>
                     <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:19266">
                       <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:19913">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19914">
-                          <img alt="" className="block max-w-none size-full" src={dollarIcon} />
-                        </div>
+                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
                         <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19917">
                           Revenue
                         </p>
@@ -484,16 +399,12 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:19951">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19952">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
+                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
                       </button>
                     </div>
                     <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:19956">
                       <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:19959">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:19960">
-                          <img alt="" className="block max-w-none size-full" src={dollarIcon} />
-                        </div>
+                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
                         <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19963">
                           Revenue
                         </p>
@@ -557,16 +468,12 @@ export default function Dashboard() {
                         </div>
                       </div>
                       <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:20030">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:20031">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
+                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
                       </button>
                     </div>
                     <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:20035">
                       <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:20038">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Icon" data-node-id="288:20039">
-                          <img alt="" className="block max-w-none size-full" src={dollarIcon} />
-                        </div>
+                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
                         <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:20042">
                           Revenue
                         </p>

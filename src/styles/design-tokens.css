@@ -530,18 +530,18 @@
   --spacing-6-tablet: 24px;
   --spacing-7-tablet: 28px;
   --spacing-8-tablet: 32px;
-  --spacing-9-tablet: 30px;
-  --spacing-10-tablet: 32px;
-  --spacing-11-tablet: 36px;
-  --spacing-12-tablet: 40px;
-  --spacing-13-tablet: 44px;
-  --spacing-14-tablet: 48px;
-  --spacing-15-tablet: 52px;
-  --spacing-16-tablet: 48px;
-  --spacing-17-tablet: 52px;
-  --spacing-18-tablet: 56px;
-  --spacing-19-tablet: 60px;
-  --spacing-20-tablet: 64px;
+  --spacing-9-tablet: 36px;
+  --spacing-10-tablet: 40px;
+  --spacing-11-tablet: 44px;
+  --spacing-12-tablet: 48px;
+  --spacing-13-tablet: 52px;
+  --spacing-14-tablet: 56px;
+  --spacing-15-tablet: 60px;
+  --spacing-16-tablet: 64px;
+  --spacing-17-tablet: 68px;
+  --spacing-18-tablet: 72px;
+  --spacing-19-tablet: 76px;
+  --spacing-20-tablet: 80px;
 
   /* Mobile Spacing */
   --spacing-0-mobile: 0px;
@@ -553,18 +553,18 @@
   --spacing-6-mobile: 24px;
   --spacing-7-mobile: 28px;
   --spacing-8-mobile: 32px;
-  --spacing-9-mobile: 20px;
-  --spacing-10-mobile: 20px;
-  --spacing-11-mobile: 24px;
-  --spacing-12-mobile: 24px;
-  --spacing-13-mobile: 28px;
-  --spacing-14-mobile: 32px;
-  --spacing-15-mobile: 32px;
-  --spacing-16-mobile: 32px;
-  --spacing-17-mobile: 32px;
-  --spacing-18-mobile: 32px;
-  --spacing-19-mobile: 32px;
-  --spacing-20-mobile: 40px;
+  --spacing-9-mobile: 36px;
+  --spacing-10-mobile: 40px;
+  --spacing-11-mobile: 44px;
+  --spacing-12-mobile: 48px;
+  --spacing-13-mobile: 52px;
+  --spacing-14-mobile: 56px;
+  --spacing-15-mobile: 60px;
+  --spacing-16-mobile: 64px;
+  --spacing-17-mobile: 68px;
+  --spacing-18-mobile: 72px;
+  --spacing-19-mobile: 76px;
+  --spacing-20-mobile: 80px;
 
   /* ===== RESPONSIVE RADIUS TOKENS ===== */
   /* Desktop Radius */
@@ -590,22 +590,22 @@
   /* Tablet Radius */
   --radius-sm-tablet: 2px;
   --radius-md-tablet: 4px;
-  --radius-lg-tablet: 4px;
-  --radius-xl-tablet: 8px;
+  --radius-lg-tablet: 8px;
+  --radius-xl-tablet: 12px;
   --radius-none-tablet: 0px;
   --radius-full-tablet: 9999px;
-  --radius-xxl-tablet: 12px;
-  --radius-xxxl-tablet: 20px;
+  --radius-xxl-tablet: 16px;
+  --radius-xxxl-tablet: 24px;
 
   /* Mobile Radius */
   --radius-sm-mobile: 2px;
   --radius-md-mobile: 4px;
-  --radius-lg-mobile: 4px;
-  --radius-xl-mobile: 8px;
+  --radius-lg-mobile: 8px;
+  --radius-xl-mobile: 12px;
   --radius-none-mobile: 0px;
   --radius-full-mobile: 9999px;
-  --radius-xxl-mobile: 12px;
-  --radius-xxxl-mobile: 18px;
+  --radius-xxl-mobile: 16px;
+  --radius-xxxl-mobile: 24px;
 
   /* ===== RESPONSIVE ELEVATION TOKENS ===== */
   /* Desktop Elevation */
@@ -616,21 +616,21 @@
 
   /* Laptop Elevation */
   --elevation-0-laptop: none;
-  --elevation-1-laptop: 0 1px 2px rgba(0,0,0,0.045);
-  --elevation-2-laptop: 0 2px 4px rgba(0,0,0,0.055);
-  --elevation-3-laptop: 0 3px 6px rgba(0,0,0,0.07);
+  --elevation-1-laptop: 0 1px 2px rgba(0,0,0,0.05);
+  --elevation-2-laptop: 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-3-laptop: 0 4px 8px rgba(0,0,0,0.08);
 
   /* Tablet Elevation */
   --elevation-0-tablet: none;
-  --elevation-1-tablet: 0 1px 1px rgba(0,0,0,0.04);
-  --elevation-2-tablet: 0 2px 3px rgba(0,0,0,0.05);
-  --elevation-3-tablet: 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-1-tablet: 0 1px 2px rgba(0,0,0,0.05);
+  --elevation-2-tablet: 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-3-tablet: 0 4px 8px rgba(0,0,0,0.08);
 
   /* Mobile Elevation */
   --elevation-0-mobile: none;
-  --elevation-1-mobile: 0 1px 1px rgba(0,0,0,0.03);
-  --elevation-2-mobile: 0 1px 2px rgba(0,0,0,0.04);
-  --elevation-3-mobile: 0 2px 3px rgba(0,0,0,0.05);
+  --elevation-1-mobile: 0 1px 2px rgba(0,0,0,0.05);
+  --elevation-2-mobile: 0 2px 4px rgba(0,0,0,0.06);
+  --elevation-3-mobile: 0 4px 8px rgba(0,0,0,0.08);
 
   /* ===== RESPONSIVE TYPOGRAPHY TOKENS ===== */
   /* Desktop Font Sizes */
@@ -653,42 +653,42 @@
   --font-size-52-desktop: 52px;
 
   /* Laptop Font Sizes */
-  --font-size-10-laptop: 9px;
-  --font-size-12-laptop: 11px;
-  --font-size-14-laptop: 13px;
-  --font-size-16-laptop: 15px;
-  --font-size-18-laptop: 17px;
-  --font-size-20-laptop: 18px;
-  --font-size-22-laptop: 20px;
-  --font-size-24-laptop: 22px;
-  --font-size-26-laptop: 24px;
-  --font-size-28-laptop: 26px;
-  --font-size-30-laptop: 28px;
-  --font-size-32-laptop: 29px;
-  --font-size-36-laptop: 33px;
-  --font-size-40-laptop: 37px;
-  --font-size-44-laptop: 40px;
-  --font-size-48-laptop: 44px;
-  --font-size-52-laptop: 48px;
+  --font-size-10-laptop: 10px;
+  --font-size-12-laptop: 12px;
+  --font-size-14-laptop: 14px;
+  --font-size-16-laptop: 16px;
+  --font-size-18-laptop: 18px;
+  --font-size-20-laptop: 20px;
+  --font-size-22-laptop: 22px;
+  --font-size-24-laptop: 24px;
+  --font-size-26-laptop: 26px;
+  --font-size-28-laptop: 28px;
+  --font-size-30-laptop: 30px;
+  --font-size-32-laptop: 32px;
+  --font-size-36-laptop: 36px;
+  --font-size-40-laptop: 40px;
+  --font-size-44-laptop: 44px;
+  --font-size-48-laptop: 48px;
+  --font-size-52-laptop: 52px;
 
   /* Tablet Font Sizes */
-  --font-size-10-tablet: 8px;
-  --font-size-12-tablet: 9px;
-  --font-size-14-tablet: 10px;
-  --font-size-16-tablet: 12px;
-  --font-size-18-tablet: 14px;
-  --font-size-20-tablet: 15px;
-  --font-size-22-tablet: 16px;
-  --font-size-24-tablet: 18px;
-  --font-size-26-tablet: 20px;
-  --font-size-28-tablet: 21px;
-  --font-size-30-tablet: 22px;
-  --font-size-32-tablet: 24px;
-  --font-size-36-tablet: 27px;
-  --font-size-40-tablet: 30px;
-  --font-size-44-tablet: 33px;
-  --font-size-48-tablet: 36px;
-  --font-size-52-tablet: 39px;
+  --font-size-10-tablet: 10px;
+  --font-size-12-tablet: 12px;
+  --font-size-14-tablet: 14px;
+  --font-size-16-tablet: 16px;
+  --font-size-18-tablet: 18px;
+  --font-size-20-tablet: 20px;
+  --font-size-22-tablet: 22px;
+  --font-size-24-tablet: 24px;
+  --font-size-26-tablet: 26px;
+  --font-size-28-tablet: 28px;
+  --font-size-30-tablet: 30px;
+  --font-size-32-tablet: 32px;
+  --font-size-36-tablet: 36px;
+  --font-size-40-tablet: 40px;
+  --font-size-44-tablet: 44px;
+  --font-size-48-tablet: 48px;
+  --font-size-52-tablet: 52px;
 
   /* Mobile Font Sizes */
   --font-size-10-mobile: 10px;
@@ -795,9 +795,9 @@
 
   /* ===== RESPONSIVE TOUCH TARGET TOKENS ===== */
   --touch-target-button-desktop: 48px;
-  --touch-target-button-laptop: 44px;
-  --touch-target-button-tablet: 44px;
-  --touch-target-button-mobile: 40px;
+  --touch-target-button-laptop: 48px;
+  --touch-target-button-tablet: 48px;
+  --touch-target-button-mobile: 48px;
 
   /* ===== RESPONSIVE LAYOUT TOKENS ===== */
   /* Desktop Layout */
@@ -809,7 +809,7 @@
   --grid-gap-desktop: 24px;
 
   /* Laptop Layout */
-  --container-max-width-laptop: 1024px;
+  --container-max-width-laptop: 1200px;
   --container-fill-laptop: fill;
   --container-gutter-laptop: 24px;
   --container-min-width-laptop: 227.1999969482422px;
@@ -817,20 +817,20 @@
   --grid-gap-laptop: 24px;
 
   /* Tablet Layout */
-  --container-max-width-tablet: 768px;
-  --container-fill-tablet: 256px;
-  --container-gutter-tablet: 16px;
+  --container-max-width-tablet: 1200px;
+  --container-fill-tablet: fill;
+  --container-gutter-tablet: 24px;
   --container-min-width-tablet: 227.1999969482422px;
-  --grid-columns-tablet: 8;
-  --grid-gap-tablet: 16px;
+  --grid-columns-tablet: 12;
+  --grid-gap-tablet: 24px;
 
   /* Mobile Layout */
-  --container-max-width-mobile: 100%;
-  --container-fill-mobile: 256px;
-  --container-gutter-mobile: 16px;
+  --container-max-width-mobile: 1200px;
+  --container-fill-mobile: fill;
+  --container-gutter-mobile: 24px;
   --container-min-width-mobile: 227.1999969482422px;
-  --grid-columns-mobile: 4;
-  --grid-gap-mobile: 16px;
+  --grid-columns-mobile: 12;
+  --grid-gap-mobile: 24px;
 
   /* ===== BREAKPOINT TOKENS ===== */
   --breakpoint-mobile: 320px;

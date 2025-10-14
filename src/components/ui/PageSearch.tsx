@@ -1,0 +1,135 @@
+import React, { useState } from 'react';
+import { getAssetPath } from '../../utils/completeAssetMapping';
+import ThemeIcon from './ThemeIcon';
+
+// Asset constants
+const searchIcon = getAssetPath('search-icon');
+const filterIcon = getAssetPath('filter-icon');
+const gridViewIcon = getAssetPath('grid-view-icon');
+const listViewIcon = getAssetPath('list-view-icon');
+const dropdownArrowIcon = getAssetPath('dropdown-arrow-down-icon');
+
+interface PageSearchProps {
+  variant?: 'grid' | 'list' | 'mobile';
+  title?: string;
+  subtitle?: string;
+  placeholder?: string;
+  onSearch?: (query: string) => void;
+  onFilter?: (filter: string) => void;
+  onViewChange?: (view: 'grid' | 'list') => void;
+}
+
+export default function PageSearch({
+  variant = 'grid',
+  title = 'Properties & Units',
+  subtitle = 'Manage your property portfolio with detailed unit tracking',
+  placeholder = 'Search properties...',
+  onSearch,
+  onFilter,
+  onViewChange
+}: PageSearchProps) {
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('All Properties');
+  const [currentView, setCurrentView] = useState<'grid' | 'list'>(variant === 'mobile' ? 'grid' : variant);
+
+  const handleSearch = (query: string) => {
+    setSearchValue(query);
+    onSearch?.(query);
+  };
+
+  const handleFilterChange = (filter: string) => {
+    setSelectedFilter(filter);
+    onFilter?.(filter);
+  };
+
+  const handleViewChange = (view: 'grid' | 'list') => {
+    setCurrentView(view);
+    onViewChange?.(view);
+  };
+
+  // Mobile variant - simplified search bar
+  if (variant === 'mobile') {
+    return (
+      <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-xl shrink-0 w-full shadow-card-small" data-name="Mobile Search Bar">
+        {/* Search Input - Full Width */}
+        <div className="flex-1 relative" data-name="Search Container">
+          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-3 py-2 relative">
+            <ThemeIcon src={searchIcon} alt="Search" size="sm" variant="default" />
+            <input
+              type="text"
+              placeholder={placeholder}
+              value={searchValue}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-small text-nowrap whitespace-pre bg-transparent border-none outline-none flex-1"
+              data-name="Search Input"
+            />
+          </div>
+        </div>
+
+        {/* Filter Button - Compact */}
+        <div className="relative shrink-0 ml-2" data-name="Filter Container">
+          <button 
+            className="bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-1 h-9 items-center pl-2 pr-2 py-0 relative rounded-lg shrink-0 cursor-pointer hover:bg-paper-paper-elevation-2 transition-colors duration-200" 
+            onClick={() => handleFilterChange('All Properties')} 
+            data-name="Filter Button"
+          >
+            <ThemeIcon src={filterIcon} alt="Filter" size="sm" variant="default" />
+            <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="sm" variant="default" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop variant - full search bar with view toggle
+  return (
+    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-4 relative rounded-xxl shrink-0 w-full shadow-card-large" data-name="Search Filter Bar">
+      {/* Search Input */}
+      <div className="h-9 relative shrink-0" data-name="Search Container">
+        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 h-9 items-center px-3 py-2.5 relative">
+          <ThemeIcon src={searchIcon} alt="Search" size="sm" variant="default" />
+          <input
+            type="text"
+            placeholder={placeholder}
+            value={searchValue}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-small text-nowrap whitespace-pre bg-transparent border-none outline-none w-full"
+            data-name="Search Input"
+          />
+        </div>
+      </div>
+
+      {/* Filter and View Controls */}
+      <div className="relative shrink-0" data-name="Filter Container">
+        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-4 items-center relative">
+          {/* Filter Dropdown */}
+          <div className="bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 h-9 items-center pl-3 pr-3 py-0 relative rounded-lg shrink-0 cursor-pointer hover:bg-paper-paper-elevation-2 transition-colors duration-200" onClick={() => handleFilterChange('All Properties')} data-name="Filter Dropdown">
+            <ThemeIcon src={filterIcon} alt="Filter" size="sm" variant="default" />
+            <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-small text-nowrap whitespace-pre" data-name="Filter Label">
+              {selectedFilter}
+            </p>
+            <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="sm" variant="default" />
+          </div>
+          
+          {/* View Toggle Buttons */}
+          <div className="content-stretch flex gap-2 items-start relative shrink-0" data-name="View Toggle">
+            <button 
+              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'grid' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              data-name="Grid View Button"
+              onClick={() => handleViewChange('grid')}
+            >
+              <ThemeIcon src={gridViewIcon} alt="Grid View" size="sm" variant={currentView === 'grid' ? 'white' : 'default'} />
+            </button>
+            <button 
+              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'list' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              data-name="List View Button"
+              onClick={() => handleViewChange('list')}
+            >
+              <ThemeIcon src={listViewIcon} alt="List View" size="sm" variant={currentView === 'list' ? 'white' : 'default'} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

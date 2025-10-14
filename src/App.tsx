@@ -26,6 +26,7 @@ import TenantOptions from './pages/TenantOptions';
 import TenantManagementList from './pages/TenantManagementList';
 import ViewTenantLeaseDetails from './pages/ViewTenantLeaseDetails';
 import ViewTenantRentHistory from './pages/ViewTenantRentHistory';
+import ComponentsLibrary from './pages/ComponentsLibrary';
 import './App.css';
 import './styles/styles.css';
 
@@ -43,6 +44,11 @@ function Home() {
         
         {/* Navigation */}
         <div className="mb-6 sm:mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-6xl mx-auto">
+          {/* Components Library - First Button */}
+          <Link to="/components-library" className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center shadow-lg">
+            🎨 Components Library
+          </Link>
+          
           {/* Core Pages */}
           <Link to="/login" className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors text-center">
             Login Screen
@@ -177,6 +183,7 @@ function App() {
                   <Route path="/tenant-management-list" element={<TenantManagementList />} />
                   <Route path="/view-tenant-lease-details" element={<ViewTenantLeaseDetails />} />
                   <Route path="/view-tenant-rent-history" element={<ViewTenantRentHistory />} />
+                  <Route path="/components-library" element={<ComponentsLibrary />} />
             </Routes>
       </Router>
     </ThemeProvider>

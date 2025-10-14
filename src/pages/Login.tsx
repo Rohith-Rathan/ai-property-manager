@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import ThemeIcon from '../components/ui/ThemeIcon';
 
 export default function Login() {
   const { theme, toggleTheme } = useTheme();
@@ -34,9 +35,7 @@ export default function Login() {
           <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col gap-4 items-start min-w-inherit p-4 sm:p-6 lg:p-8 relative w-full">
             <div className="content-stretch flex flex-col gap-6 items-center relative shrink-0 w-full" data-name="CardHeader" data-node-id="189:9755">
               <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-16 h-16" data-name="LoginScreen" data-node-id="189:9756">
-                <div className="relative shrink-0 w-icon-lg h-icon-lg" data-name="Icon" data-node-id="189:9757">
-                  <img alt="" className="block max-w-none size-full" src={imgIcon} />
-                </div>
+                <ThemeIcon src={imgIcon} alt="Logo" size="lg" variant="default" />
               </div>
               <div className="content-stretch flex flex-col gap-1 items-center not-italic relative shrink-0 text-center text-nowrap w-full whitespace-pre" data-name="LoginScreen" data-node-id="189:9765">
                 <p className="font-['Inter:Medium',_sans-serif] font-medium leading-h4 relative shrink-0 text-text-primary text-h4" data-node-id="189:9766">
@@ -57,9 +56,7 @@ export default function Login() {
                   </div>
                   <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center p-3 relative rounded-lg shrink-0 w-full" data-name="Container" data-node-id="189:9773">
                     <div className="content-stretch flex gap-2 items-center relative shrink-0" data-node-id="240:5751">
-                      <div className="relative shrink-0 w-icon-sm h-icon-sm" data-name="Icon" data-node-id="189:9774">
-                        <img alt="" className="block max-w-none size-full" src={imgIcon1} />
-                      </div>
+                      <ThemeIcon src={imgIcon1} alt="Email" size="sm" variant="secondary" />
                       <input
                         type="email"
                         placeholder="Enter your email"
@@ -78,9 +75,7 @@ export default function Login() {
                   </div>
                   <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-lg shrink-0 w-full" data-name="Container" data-node-id="189:9781">
                     <div className="content-stretch flex gap-2 items-center relative shrink-0" data-node-id="189:9782">
-                      <div className="relative shrink-0 w-icon-sm h-icon-sm" data-name="Icon" data-node-id="189:9783">
-                        <img alt="" className="block max-w-none size-full" src={imgIcon2} />
-                      </div>
+                      <ThemeIcon src={imgIcon2} alt="Password" size="sm" variant="secondary" />
                       <input
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter your password"
@@ -96,9 +91,7 @@ export default function Login() {
                       data-name="Button" 
                       data-node-id="189:9787"
                     >
-                      <div className="relative shrink-0 w-icon-sm h-icon-sm" data-name="eye" data-node-id="690:5111">
-                        <img alt="" className="block max-w-none size-full" src={showPassword ? imgEyeOff : imgEye} />
-                      </div>
+                      <ThemeIcon src={showPassword ? imgEyeOff : imgEye} alt="Toggle Password" size="sm" variant="secondary" />
                     </button>
                   </div>
                 </div>
@@ -161,9 +154,7 @@ export default function Login() {
                     data-node-id="766:9012"
                     onClick={() => alert('Google login clicked')}
                   >
-                    <div className="relative shrink-0 w-icon-sm h-icon-sm" data-name="LoginScreen" data-node-id="766:9018">
-                      <img alt="" className="block max-w-none size-full dark:invert" src={imgLoginScreen} />
-                    </div>
+                    <ThemeIcon src={imgLoginScreen} alt="Google Login" size="sm" variant="default" />
                     <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-center text-nowrap whitespace-pre" data-node-id="766:9016">
                       Google
                     </p>
@@ -174,9 +165,7 @@ export default function Login() {
                     data-node-id="766:9024"
                     onClick={() => alert('Microsoft login clicked')}
                   >
-                    <div className="relative shrink-0 w-icon-sm h-icon-sm" data-name="LoginScreen" data-node-id="766:9031">
-                      <img alt="" className="block max-w-none size-full dark:invert" src={imgLoginScreen1} />
-                    </div>
+                    <ThemeIcon src={imgLoginScreen1} alt="Microsoft Login" size="sm" variant="default" />
                     <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-center text-nowrap whitespace-pre" data-node-id="766:9030">
                       Microsoft
                     </p>

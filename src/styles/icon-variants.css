@@ -6,6 +6,40 @@
   /* Default styling - no changes */
 }
 
+/* Theme-aware icon styles */
+.icon-theme-aware {
+  /* Icons that should use text-primary color */
+  filter: brightness(0) saturate(100%) invert(6%) sepia(6%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+  /* Light theme: text-primary (#101828) */
+}
+
+.dark .icon-theme-aware {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Dark theme: text-primary (#FFFFFF) */
+}
+
+.icon-theme-primary {
+  /* Icons that should use text-secondary color */
+  filter: brightness(0) saturate(100%) invert(29%) sepia(6%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+  /* Light theme: text-secondary (#4A5565) */
+}
+
+.dark .icon-theme-primary {
+  filter: brightness(0) saturate(100%) invert(82%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Dark theme: text-secondary (#D1D5DC) */
+}
+
+.icon-theme-secondary {
+  /* Icons that should use text-tertiary color */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+  /* Light theme: text-tertiary (#6A7282) */
+}
+
+.dark .icon-theme-secondary {
+  filter: brightness(0) saturate(100%) invert(60%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Dark theme: text-tertiary (#99A1AF) */
+}
+
 /* Color Variants */
 .icon-gray {
   filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
@@ -84,21 +118,7 @@
   height: 24px;
 }
 
-/* Hover Effects */
-.icon-hover:hover {
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.icon-hover-gray:hover {
-  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%) opacity(0.8);
-  transition: opacity 0.2s ease;
-}
-
-.icon-hover-white:hover {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%) opacity(0.8);
-  transition: opacity 0.2s ease;
-}
+/* Hover Effects - Removed */
 
 /* Usage Examples:
    <img src="/assets/dollar-sign-master.svg" className="icon-gray" />

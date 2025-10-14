@@ -8,6 +8,9 @@
 /* Import Responsive Tokens */
 @import './styles/responsive-tokens.css';
 
+/* Import Icon Variants */
+@import './styles/icon-variants.css';
+
 /* All design system variables are now imported from design-tokens.css */
 
 body {

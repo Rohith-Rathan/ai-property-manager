@@ -23,19 +23,19 @@ module.exports = {
         'gray-800': 'var(--color-gray-800)',
         'gray-900': 'var(--color-gray-900)',
 
-        // Text Colors
-        'text-primary': 'var(--color-text-primary)',
-        'text-secondary': 'var(--color-text-secondary)',
-        'text-tertiary': 'var(--color-text-tertiary)',
-        'text-inverse': 'var(--color-text-inverse)',
-        'text-disabled': 'var(--color-text-disabled)',
-        'text-accent': 'var(--color-text-accent)',
-        'text-error': 'var(--color-text-error)',
-        'text-muted': 'var(--color-text-muted)',
+        // Text Colors (Fixed - removed text- prefix to avoid double prefix)
+        'primary': 'var(--color-text-primary)',
+        'secondary': 'var(--color-text-secondary)',
+        'tertiary': 'var(--color-text-tertiary)',
+        'inverse': 'var(--color-text-inverse)',
+        'disabled': 'var(--color-text-disabled)',
+        'accent': 'var(--color-text-accent)',
+        'error': 'var(--color-text-error)',
+        'muted': 'var(--color-text-muted)',
 
-        // Static Colors (moved to root level for proper class generation)
-        'static-white': 'var(--color-text-static-white)',
-        'static-black': 'var(--color-text-static-black)',
+        // Static Colors (Fixed - removed text- prefix to avoid double prefix)
+        'static-white': 'var(--color-static-white)',
+        'static-black': 'var(--color-static-black)',
 
         // Navy Colors
         'navy-1': 'var(--color-navy-1)',
@@ -142,9 +142,7 @@ module.exports = {
         'border-success': 'var(--color-border-success)',
         'border-warning': 'var(--color-border-warning)',
 
-        // Static Colors
-        'static-white': 'var(--color-static-white)',
-        'static-black': 'var(--color-static-black)',
+        // Static Colors (Duplicate removed - already defined above)
 
         // ===== OVERLAY COLORS =====
         // White Overlays

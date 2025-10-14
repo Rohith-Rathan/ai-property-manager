@@ -1,0 +1,267 @@
+/* Responsive Design System Tokens */
+/* This file handles responsive behavior using CSS custom properties and media queries */
+
+/* ===== BASE (DESKTOP) VALUES ===== */
+/* These are the default values used in Tailwind config */
+
+/* ===== RESPONSIVE SPACING ===== */
+/* Mobile First Approach - Override with larger breakpoints */
+
+/* Mobile (320px+) - Use mobile tokens */
+@media (min-width: 320px) {
+  :root {
+    --spacing-0: var(--spacing-0-mobile);
+    --spacing-1: var(--spacing-1-mobile);
+    --spacing-2: var(--spacing-2-mobile);
+    --spacing-3: var(--spacing-3-mobile);
+    --spacing-4: var(--spacing-4-mobile);
+    --spacing-5: var(--spacing-5-mobile);
+    --spacing-6: var(--spacing-6-mobile);
+    --spacing-7: var(--spacing-7-mobile);
+    --spacing-8: var(--spacing-8-mobile);
+    --spacing-9: var(--spacing-9-mobile);
+    --spacing-10: var(--spacing-10-mobile);
+    --spacing-11: var(--spacing-11-mobile);
+    --spacing-12: var(--spacing-12-mobile);
+    --spacing-13: var(--spacing-13-mobile);
+    --spacing-14: var(--spacing-14-mobile);
+    --spacing-15: var(--spacing-15-mobile);
+    --spacing-16: var(--spacing-16-mobile);
+    --spacing-17: var(--spacing-17-mobile);
+    --spacing-18: var(--spacing-18-mobile);
+    --spacing-19: var(--spacing-19-mobile);
+    --spacing-20: var(--spacing-20-mobile);
+  }
+}
+
+/* Tablet (768px+) - Use tablet tokens */
+@media (min-width: 768px) {
+  :root {
+    --spacing-0: var(--spacing-0-tablet);
+    --spacing-1: var(--spacing-1-tablet);
+    --spacing-2: var(--spacing-2-tablet);
+    --spacing-3: var(--spacing-3-tablet);
+    --spacing-4: var(--spacing-4-tablet);
+    --spacing-5: var(--spacing-5-tablet);
+    --spacing-6: var(--spacing-6-tablet);
+    --spacing-7: var(--spacing-7-tablet);
+    --spacing-8: var(--spacing-8-tablet);
+    --spacing-9: var(--spacing-9-tablet);
+    --spacing-10: var(--spacing-10-tablet);
+    --spacing-11: var(--spacing-11-tablet);
+    --spacing-12: var(--spacing-12-tablet);
+    --spacing-13: var(--spacing-13-tablet);
+    --spacing-14: var(--spacing-14-tablet);
+    --spacing-15: var(--spacing-15-tablet);
+    --spacing-16: var(--spacing-16-tablet);
+    --spacing-17: var(--spacing-17-tablet);
+    --spacing-18: var(--spacing-18-tablet);
+    --spacing-19: var(--spacing-19-tablet);
+    --spacing-20: var(--spacing-20-tablet);
+  }
+}
+
+/* Laptop (1024px+) - Use laptop tokens */
+@media (min-width: 1024px) {
+  :root {
+    --spacing-0: var(--spacing-0-laptop);
+    --spacing-1: var(--spacing-1-laptop);
+    --spacing-2: var(--spacing-2-laptop);
+    --spacing-3: var(--spacing-3-laptop);
+    --spacing-4: var(--spacing-4-laptop);
+    --spacing-5: var(--spacing-5-laptop);
+    --spacing-6: var(--spacing-6-laptop);
+    --spacing-7: var(--spacing-7-laptop);
+    --spacing-8: var(--spacing-8-laptop);
+    --spacing-9: var(--spacing-9-laptop);
+    --spacing-10: var(--spacing-10-laptop);
+    --spacing-11: var(--spacing-11-laptop);
+    --spacing-12: var(--spacing-12-laptop);
+    --spacing-13: var(--spacing-13-laptop);
+    --spacing-14: var(--spacing-14-laptop);
+    --spacing-15: var(--spacing-15-laptop);
+    --spacing-16: var(--spacing-16-laptop);
+    --spacing-17: var(--spacing-17-laptop);
+    --spacing-18: var(--spacing-18-laptop);
+    --spacing-19: var(--spacing-19-laptop);
+    --spacing-20: var(--spacing-20-laptop);
+  }
+}
+
+/* Desktop (1440px+) - Use desktop tokens */
+@media (min-width: 1440px) {
+  :root {
+    --spacing-0: var(--spacing-0-desktop);
+    --spacing-1: var(--spacing-1-desktop);
+    --spacing-2: var(--spacing-2-desktop);
+    --spacing-3: var(--spacing-3-desktop);
+    --spacing-4: var(--spacing-4-desktop);
+    --spacing-5: var(--spacing-5-desktop);
+    --spacing-6: var(--spacing-6-desktop);
+    --spacing-7: var(--spacing-7-desktop);
+    --spacing-8: var(--spacing-8-desktop);
+    --spacing-9: var(--spacing-9-desktop);
+    --spacing-10: var(--spacing-10-desktop);
+    --spacing-11: var(--spacing-11-desktop);
+    --spacing-12: var(--spacing-12-desktop);
+    --spacing-13: var(--spacing-13-desktop);
+    --spacing-14: var(--spacing-14-desktop);
+    --spacing-15: var(--spacing-15-desktop);
+    --spacing-16: var(--spacing-16-desktop);
+    --spacing-17: var(--spacing-17-desktop);
+    --spacing-18: var(--spacing-18-desktop);
+    --spacing-19: var(--spacing-19-desktop);
+    --spacing-20: var(--spacing-20-desktop);
+  }
+}
+
+/* ===== RESPONSIVE BORDER RADIUS ===== */
+/* Mobile (320px+) */
+@media (min-width: 320px) {
+  :root {
+    --radius-sm: var(--radius-sm-mobile);
+    --radius-md: var(--radius-md-mobile);
+    --radius-lg: var(--radius-lg-mobile);
+    --radius-xl: var(--radius-xl-mobile);
+    --radius-none: var(--radius-none-mobile);
+    --radius-full: var(--radius-full-mobile);
+    --radius-xxl: var(--radius-xxl-mobile);
+    --radius-xxxl: var(--radius-xxxl-mobile);
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --radius-sm: var(--radius-sm-tablet);
+    --radius-md: var(--radius-md-tablet);
+    --radius-lg: var(--radius-lg-tablet);
+    --radius-xl: var(--radius-xl-tablet);
+    --radius-none: var(--radius-none-tablet);
+    --radius-full: var(--radius-full-tablet);
+    --radius-xxl: var(--radius-xxl-tablet);
+    --radius-xxxl: var(--radius-xxxl-tablet);
+  }
+}
+
+/* Laptop (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --radius-sm: var(--radius-sm-laptop);
+    --radius-md: var(--radius-md-laptop);
+    --radius-lg: var(--radius-lg-laptop);
+    --radius-xl: var(--radius-xl-laptop);
+    --radius-none: var(--radius-none-laptop);
+    --radius-full: var(--radius-full-laptop);
+    --radius-xxl: var(--radius-xxl-laptop);
+    --radius-xxxl: var(--radius-xxxl-laptop);
+  }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+  :root {
+    --radius-sm: var(--radius-sm-desktop);
+    --radius-md: var(--radius-md-desktop);
+    --radius-lg: var(--radius-lg-desktop);
+    --radius-xl: var(--radius-xl-desktop);
+    --radius-none: var(--radius-none-desktop);
+    --radius-full: var(--radius-full-desktop);
+    --radius-xxl: var(--radius-xxl-desktop);
+    --radius-xxxl: var(--radius-xxxl-desktop);
+  }
+}
+
+/* ===== RESPONSIVE ICON SIZES ===== */
+/* Mobile (320px+) */
+@media (min-width: 320px) {
+  :root {
+    --icon-size-xs: var(--icon-size-xs-mobile);
+    --icon-size-sm: var(--icon-size-sm-mobile);
+    --icon-size-md: var(--icon-size-md-mobile);
+    --icon-size-lg: var(--icon-size-lg-mobile);
+    --icon-size-xl: var(--icon-size-xl-mobile);
+    --touch-target-button: var(--touch-target-button-mobile);
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --icon-size-xs: var(--icon-size-xs-tablet);
+    --icon-size-sm: var(--icon-size-sm-tablet);
+    --icon-size-md: var(--icon-size-md-tablet);
+    --icon-size-lg: var(--icon-size-lg-tablet);
+    --icon-size-xl: var(--icon-size-xl-tablet);
+    --touch-target-button: var(--touch-target-button-tablet);
+  }
+}
+
+/* Laptop (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --icon-size-xs: var(--icon-size-xs-laptop);
+    --icon-size-sm: var(--icon-size-sm-laptop);
+    --icon-size-md: var(--icon-size-md-laptop);
+    --icon-size-lg: var(--icon-size-lg-laptop);
+    --icon-size-xl: var(--icon-size-xl-laptop);
+    --touch-target-button: var(--touch-target-button-laptop);
+  }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+  :root {
+    --icon-size-xs: var(--icon-size-xs-desktop);
+    --icon-size-sm: var(--icon-size-sm-desktop);
+    --icon-size-md: var(--icon-size-md-desktop);
+    --icon-size-lg: var(--icon-size-lg-desktop);
+    --icon-size-xl: var(--icon-size-xl-desktop);
+    --touch-target-button: var(--touch-target-button-desktop);
+  }
+}
+
+/* ===== RESPONSIVE LAYOUT ===== */
+/* Mobile (320px+) */
+@media (min-width: 320px) {
+  :root {
+    --container-max-width: var(--container-max-width-mobile);
+    --container-min-width: var(--container-min-width-mobile);
+    --container-gutter: var(--container-gutter-mobile);
+    --grid-columns: var(--grid-columns-mobile);
+    --grid-gap: var(--grid-gap-mobile);
+  }
+}
+
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --container-max-width: var(--container-max-width-tablet);
+    --container-min-width: var(--container-min-width-tablet);
+    --container-gutter: var(--container-gutter-tablet);
+    --grid-columns: var(--grid-columns-tablet);
+    --grid-gap: var(--grid-gap-tablet);
+  }
+}
+
+/* Laptop (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --container-max-width: var(--container-max-width-laptop);
+    --container-min-width: var(--container-min-width-laptop);
+    --container-gutter: var(--container-gutter-laptop);
+    --grid-columns: var(--grid-columns-laptop);
+    --grid-gap: var(--grid-gap-laptop);
+  }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+  :root {
+    --container-max-width: var(--container-max-width-desktop);
+    --container-min-width: var(--container-min-width-desktop);
+    --container-gutter: var(--container-gutter-desktop);
+    --grid-columns: var(--grid-columns-desktop);
+    --grid-gap: var(--grid-gap-desktop);
+  }
+}

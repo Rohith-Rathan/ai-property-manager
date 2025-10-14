@@ -1,0 +1,179 @@
+/* AI Property Manager Styles - Exact JSON Replication */
+
+/* ===== TEXT STYLES ===== */
+.text-small {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0%;
+}
+
+.text-large {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0%;
+}
+
+.text-base {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.text-subtitle {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+.text-h4 {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0%;
+}
+
+.text-h3 {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  letter-spacing: 0%;
+}
+
+.text-h2 {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0%;
+}
+
+.text-h1 {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 52px;
+  letter-spacing: 0%;
+}
+
+.text-display {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 60px;
+  letter-spacing: 0%;
+}
+
+.text-label-xsmall {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0%;
+}
+
+.text-label-small {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0%;
+}
+
+.text-label-medium {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0%;
+}
+
+.text-input-placeholder {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0%;
+}
+
+.text-input-value {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.text-button-primary {
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+
+.text-button-secondary {
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0%;
+}
+
+/* ===== EFFECT STYLES ===== */
+.effect-subtle {
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+.effect-card-small {
+  box-shadow: 0px 8px 25px 0px rgba(102, 126, 234, 0.4);
+}
+
+.effect-card-large {
+  box-shadow: 0px 15px 35px 0px rgba(102, 126, 234, 0.2);
+}
+
+.effect-card-large-right {
+  box-shadow: 15px 0px 35px 0px rgba(102, 126, 234, 0.2);
+}
+
+.effect-floating-deep {
+  box-shadow: 0px 24px 48px 0px rgba(16, 24, 40, 0.14);
+}
+
+.effect-focus {
+  box-shadow: 0px 0px 6px 0px rgba(43, 127, 255, 0.2);
+}
+
+.effect-neon-pink-glow {
+  box-shadow: 0px 8px 20px 0px rgba(255, 0, 255, 0.3);
+}
+
+.effect-neon-cyan-glow {
+  box-shadow: 0px 8px 20px 0px rgba(0, 255, 255, 0.3);
+}
+
+.effect-neon-green-glow {
+  box-shadow: 0px 6px 18px 0px rgba(0, 255, 157, 0.35);
+}
+
+.effect-brand-purple-glow {
+  box-shadow: 0px 10px 30px 0px rgba(124, 134, 255, 0.4);
+}
+
+.effect-brand-blue-glow {
+  box-shadow: 0px 10px 30px 0px rgba(43, 127, 255, 0.4);
+}
+
+.effect-inset-soft-shadow {
+  box-shadow: 0px 2px 6px 0px rgba(106, 114, 130, 0.15);
+}
+
+/* ===== GRID STYLES ===== */
+/* Note: gridStyles array is empty in the JSON, so no grid styles are defined */

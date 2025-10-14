@@ -1,3 +1,12 @@
+/* Design System - Clean Tailwind Config Approach */
+:root {
+  /* Only essential CSS variables for gradients */
+  --gradient-brand-aurora: linear-gradient(135deg, #7c86ff, #2b7fff);
+  --gradient-ai-violet-1: linear-gradient(135deg, #7c86ff, #667eea);
+}
+
+
+
 .App {
   text-align: center;
 }

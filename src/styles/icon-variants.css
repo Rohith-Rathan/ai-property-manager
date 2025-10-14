@@ -1,0 +1,107 @@
+/* Icon Variants CSS - Color and Style Variations */
+/* Apply these classes to master icon files for different visual variants */
+
+/* Base icon styles */
+.icon-default {
+  /* Default styling - no changes */
+}
+
+/* Color Variants */
+.icon-gray {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+  /* Converts to #6A7282 (gray) */
+}
+
+.icon-gray-50 {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%) opacity(0.5);
+  /* Converts to #6A7282 with 50% opacity */
+}
+
+.icon-black {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  /* Converts to #000000 (black) */
+}
+
+.icon-white {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  /* Converts to #FFFFFF (white) */
+}
+
+.icon-red {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(94%) saturate(7151%) hue-rotate(358deg) brightness(98%) contrast(118%);
+  /* Converts to #FB2C36 (red) */
+}
+
+/* Special Variants */
+.icon-document-edit {
+  /* For edit icons that show document + pencil */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+}
+
+.icon-pencil {
+  /* For simple pencil icons */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+}
+
+.icon-diamond {
+  /* For checkmark in diamond shape */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+}
+
+.icon-simple {
+  /* For simple checkmark */
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.icon-with-star {
+  /* For message icons with star */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+}
+
+.icon-hexagon {
+  /* For alert icons in hexagon */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%);
+}
+
+/* Size Variants (if needed) */
+.icon-small {
+  width: 12px;
+  height: 12px;
+}
+
+.icon-medium {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-large {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-xl {
+  width: 24px;
+  height: 24px;
+}
+
+/* Hover Effects */
+.icon-hover:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.icon-hover-gray:hover {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(8%) saturate(747%) hue-rotate(169deg) brightness(95%) contrast(88%) opacity(0.8);
+  transition: opacity 0.2s ease;
+}
+
+.icon-hover-white:hover {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%) opacity(0.8);
+  transition: opacity 0.2s ease;
+}
+
+/* Usage Examples:
+   <img src="/assets/dollar-sign-master.svg" className="icon-gray" />
+   <img src="/assets/edit-pencil-master.svg" className="icon-black icon-hover" />
+   <img src="/assets/building-master.svg" className="icon-white icon-large" />
+*/

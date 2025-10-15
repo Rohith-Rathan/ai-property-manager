@@ -107,56 +107,66 @@ export default function Dashboard() {
                 </div>
 
                 {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-full" data-name="Stats Cards Grid">
+                <div className="flex gap-4 sm:gap-6 w-full overflow-x-auto" data-name="Stats Cards Grid">
                   {/* Vacancy Card */}
-                  <StatCard
-                    title="3/10 Vacant Units"
-                    subtitle="Vacancy"
-                    value="3/10 Vacant Units"
-                    icon={vacancyCardIcon}
-                    gradient="info-flow"
-                    badge={{ text: "70% Occupancy", color: "primary", trend: "up" }}
-                  />
+                  <div className="min-w-0 flex-1">
+                    <StatCard
+                      title="3/10 Vacant Units"
+                      subtitle="Vacancy"
+                      value="3/10 Vacant Units"
+                      icon={vacancyCardIcon}
+                      gradient="info-flow"
+                      badge={{ text: "70% Occupancy", color: "primary", trend: "up" }}
+                    />
+                  </div>
 
                   {/* Rent Collection Card */}
-                  <StatCard
-                    title="$7,050 / $14,000"
-                    subtitle="Rent Collection"
-                    value="$7,050 / $14,000"
-                    icon={rentCollectionCardIcon}
-                    gradient="ai-violet-2"
-                    badge={{ text: "50% Pending", color: "error", trend: "down" }}
-                  />
+                  <div className="min-w-0 flex-1">
+                    <StatCard
+                      title="$7,050 / $14,000"
+                      subtitle="Rent Collection"
+                      value="$7,050 / $14,000"
+                      icon={rentCollectionCardIcon}
+                      gradient="ai-violet-2"
+                      badge={{ text: "50% Pending", color: "error", trend: "down" }}
+                    />
+                  </div>
 
                   {/* Maintenance Card */}
-                  <StatCard
-                    title="2/5 Open Tickets"
-                    subtitle="Maintenance"
-                    value="2/5 Open Tickets"
-                    icon={maintenanceCardIcon}
-                    gradient="brand-aurora"
-                    badge={{ text: "3 Completed", color: "success", trend: "up" }}
-                  />
+                  <div className="min-w-0 flex-1">
+                    <StatCard
+                      title="2/5 Open Tickets"
+                      subtitle="Maintenance"
+                      value="2/5 Open Tickets"
+                      icon={maintenanceCardIcon}
+                      gradient="brand-aurora"
+                      badge={{ text: "3 Completed", color: "success", trend: "up" }}
+                    />
+                  </div>
 
                   {/* Leases Card */}
-                  <StatCard
-                    title="In next 2 months"
-                    subtitle="Leases"
-                    value="In next 2 months"
-                    icon={leasesCardIcon}
-                    gradient="magenta-pop"
-                    badge={{ text: "2 Expiring Soon", color: "warning", trend: "up" }}
-                  />
+                  <div className="min-w-0 flex-1">
+                    <StatCard
+                      title="In next 2 months"
+                      subtitle="Leases"
+                      value="In next 2 months"
+                      icon={leasesCardIcon}
+                      gradient="magenta-pop"
+                      badge={{ text: "2 Expiring Soon", color: "warning", trend: "up" }}
+                    />
+                  </div>
 
                   {/* AI Efficiency Card */}
-                  <StatCard
-                    title="500 hours saved month"
-                    subtitle="AI Efficiency"
-                    value="500 hours saved month"
-                    icon={aiEfficiencyCardIcon}
-                    gradient="emerald-glow"
-                    badge={{ text: "+12.5%", color: "info", trend: "up" }}
-                  />
+                  <div className="min-w-0 flex-1">
+                    <StatCard
+                      title="500 hours saved month"
+                      subtitle="AI Efficiency"
+                      value="500 hours saved month"
+                      icon={aiEfficiencyCardIcon}
+                      gradient="emerald-glow"
+                      badge={{ text: "+12.5%", color: "info", trend: "up" }}
+                    />
+                  </div>
                 </div>
 
                 {/* Top Performing Properties Section */}

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { getAssetPath } from '../utils/completeAssetMapping';
-import ThemeIcon from '../components/ui/ThemeIcon';
 import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
+import StatCard from '../components/cards/StatCard';
+import PropertyCard from '../components/ui/PropertyCard';
+import Button from '../components/ui/Button';
 import ProgressBar from '../components/ui/ProgressBar';
+import ThemeIcon from '../components/ui/ThemeIcon';
 
 // Asset constants with descriptive names - using complete asset mapping
 const loginLogoIcon = getAssetPath('login-logo-icon');           // Header logo
@@ -91,185 +94,69 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Container" data-node-id="225:5081">
-                    <button className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="225:5089">
-                      <ThemeIcon src={addPropertyActionIcon} alt="Add property action" size="sm" variant="default" />
-                      <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-small text-nowrap whitespace-pre" data-node-id="225:5093">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      icon={addPropertyActionIcon}
+                      iconPosition="left"
+                      onClick={() => console.log('Quick action clicked')}
+                    >
                         Quick Action
-                      </p>
-                      <ThemeIcon src={dropdownArrowIcon} alt="Dropdown arrow" size="sm" variant="default" />
-                    </button>
+                    </Button>
                   </div>
                 </div>
 
                 {/* Stats Cards */}
-                <div className="content-stretch flex gap-6 items-start relative shrink-0 w-full" data-name="Frame 178" data-node-id="225:5599">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 w-full" data-name="Stats Cards Grid">
                   {/* Vacancy Card */}
-                  <div className="bg-[rgba(255,255,255,0.95)] border border-[rgba(10,18,32,0.05)] border-solid box-border content-stretch flex flex-col gap-[16px] items-start p-[24px] relative rounded-[24px] shrink-0 w-[227.1999969482422px] h-[238px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)]" data-name="Card" data-node-id="225:5600">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="225:5601">
-                      <div className="bg-gradient-to-l box-border content-stretch flex from-[#00d3f2] items-center justify-center relative rounded-[16px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)] shrink-0 size-[48px] to-[#2b7fff]" data-name="Container" data-node-id="225:5602">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="225:5603">
-                          <img alt="" className="block max-w-none size-full" src={vacancyCardIcon} />
-                        </div>
-                      </div>
-                      <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[24px]" data-name="Button" data-node-id="225:5611">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="225:5612">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Frame 173" data-node-id="225:5616">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[32px] relative shrink-0 text-[#101828] text-[24px] w-full" data-node-id="225:5617">
-                        3/10 Vacant Units
-                      </p>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal h-[22px] leading-[16px] relative shrink-0 text-[#6a7282] text-[14px] w-full" data-node-id="225:5618">
-                        Vacancy
-                      </p>
-                    </div>
-                    <div className="bg-[rgba(97,95,255,0.2)] box-border content-stretch flex gap-[4px] items-center px-[8px] py-[4px] relative rounded-[9999px] shrink-0" data-name="Text" data-node-id="225:5619">
-                      <div className="flex items-center justify-center relative shrink-0">
-                        <div className="flex-none rotate-[180deg]">
-                          <div className="relative size-[16px]" data-name="Trending-Up--Streamline-Tabler" data-node-id="225:5620">
-                            <img alt="" className="block max-w-none size-full" src={trendingUpIcon} />
-                          </div>
-                        </div>
-                      </div>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#1f1eb3] text-[12px] text-nowrap whitespace-pre" data-node-id="225:5623">
-                        70% Occupancy
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    title="3/10 Vacant Units"
+                    subtitle="Vacancy"
+                    value="3/10 Vacant Units"
+                    icon={vacancyCardIcon}
+                    gradient="info-flow"
+                    badge={{ text: "70% Occupancy", color: "primary", trend: "up" }}
+                  />
 
                   {/* Rent Collection Card */}
-                  <div className="bg-[rgba(255,255,255,0.95)] border border-[rgba(10,18,32,0.05)] border-solid box-border content-stretch flex flex-col gap-[16px] items-start p-[24px] relative rounded-[24px] shrink-0 w-[227.1999969482422px] h-[238px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)]" data-name="Card" data-node-id="225:5624">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="225:5625">
-                      <div className="bg-gradient-to-r box-border content-stretch flex from-[#ad46ff] items-center justify-center relative rounded-[16px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)] shrink-0 size-[48px] to-[#c27aff]" data-name="Container" data-node-id="225:5626">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="225:5627">
-                          <img alt="" className="block max-w-none size-full" src={rentCollectionCardIcon} />
-                        </div>
-                      </div>
-                      <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[24px]" data-name="Button" data-node-id="225:5630">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="225:5631">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Frame 173" data-node-id="225:5635">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[32px] relative shrink-0 text-[#101828] text-[24px] w-full" data-node-id="225:5636">
-                        $7,050 / $14,000
-                      </p>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal h-[22px] leading-[16px] relative shrink-0 text-[#6a7282] text-[14px] w-full" data-node-id="225:5637">
-                        Rent Collection
-                      </p>
-                    </div>
-                    <div className="bg-[rgba(251,44,54,0.2)] box-border content-stretch flex gap-[4px] items-center px-[8px] py-[4px] relative rounded-[9999px] shrink-0" data-name="Text" data-node-id="225:5638">
-                      <div className="flex items-center justify-center relative shrink-0">
-                        <div className="flex-none rotate-[180deg]">
-                          <div className="relative size-[16px]" data-name="Trending-Up--Streamline-Tabler" data-node-id="225:5639">
-                            <img alt="" className="block max-w-none size-full" src={trendingUpIcon} />
-                          </div>
-                        </div>
-                      </div>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#921016] text-[12px] text-nowrap whitespace-pre" data-node-id="225:5642">
-                        50% Pending
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    title="$7,050 / $14,000"
+                    subtitle="Rent Collection"
+                    value="$7,050 / $14,000"
+                    icon={rentCollectionCardIcon}
+                    gradient="ai-violet-2"
+                    badge={{ text: "50% Pending", color: "error", trend: "down" }}
+                  />
 
                   {/* Maintenance Card */}
-                  <div className="bg-[rgba(255,255,255,0.95)] border border-[rgba(10,18,32,0.05)] border-solid box-border content-stretch flex flex-col gap-[16px] items-start p-[24px] relative rounded-[24px] shrink-0 w-[227.1999969482422px] h-[238px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)]" data-name="Card" data-node-id="225:5643">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="225:5644">
-                      <div className="bg-gradient-to-r box-border content-stretch flex from-[#2b7fff] items-center justify-center relative rounded-[16px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)] shrink-0 size-[48px] to-[#7c86ff]" data-name="Container" data-node-id="225:5645">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="225:5646">
-                          <img alt="" className="block max-w-none size-full" src={maintenanceCardIcon} />
-                        </div>
-                      </div>
-                      <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[24px]" data-name="Button" data-node-id="225:5648">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="225:5649">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Frame 173" data-node-id="225:5653">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[32px] relative shrink-0 text-[#101828] text-[24px] w-full" data-node-id="225:5654">
-                        2/5 Open Tickets
-                      </p>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal h-[22px] leading-[16px] relative shrink-0 text-[#6a7282] text-[14px] w-full" data-node-id="225:5655">
-                        Maintenance
-                      </p>
-                    </div>
-                    <div className="bg-[rgba(0,201,80,0.2)] box-border content-stretch flex gap-[4px] items-center px-[8px] py-[4px] relative rounded-[9999px] shrink-0" data-name="Text" data-node-id="225:5656">
-                      <div className="relative shrink-0 size-[16px]" data-name="Trending-Up--Streamline-Tabler" data-node-id="225:5657">
-                        <img alt="" className="block max-w-none size-full" src={trendingUpIcon} />
-                      </div>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#006631] text-[12px] text-nowrap whitespace-pre" data-node-id="225:5660">
-                        3 Completed
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    title="2/5 Open Tickets"
+                    subtitle="Maintenance"
+                    value="2/5 Open Tickets"
+                    icon={maintenanceCardIcon}
+                    gradient="brand-aurora"
+                    badge={{ text: "3 Completed", color: "success", trend: "up" }}
+                  />
 
                   {/* Leases Card */}
-                  <div className="bg-[rgba(255,255,255,0.95)] border border-[rgba(10,18,32,0.05)] border-solid box-border content-stretch flex flex-col gap-[16px] items-start p-[24px] relative rounded-[24px] shrink-0 w-[227.19998168945312px] h-[238px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)]" data-name="Card" data-node-id="225:5661">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="225:5662">
-                      <div className="bg-gradient-to-r box-border content-stretch flex from-[#e60076] items-center justify-center relative rounded-[16px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)] shrink-0 size-[48px] to-[#ff9a9e]" data-name="Container" data-node-id="225:5663">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="225:5664">
-                          <img alt="" className="block max-w-none size-full" src={leasesCardIcon} />
-                        </div>
-                      </div>
-                      <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[24px]" data-name="Button" data-node-id="225:5670">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="225:5671">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Frame 173" data-node-id="225:5675">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[32px] relative shrink-0 text-[#101828] text-[24px] w-full" data-node-id="225:5676">
-                        In next 2 months
-                      </p>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal h-[22px] leading-[16px] relative shrink-0 text-[#6a7282] text-[14px] w-full" data-node-id="225:5677">
-                        Leases
-                      </p>
-                    </div>
-                    <div className="bg-[rgba(240,177,0,0.2)] box-border content-stretch flex gap-[4px] items-center px-[8px] py-[4px] relative rounded-[9999px] shrink-0" data-name="Text" data-node-id="225:5678">
-                      <div className="relative shrink-0 size-[16px]" data-name="Trending-Up--Streamline-Tabler" data-node-id="225:5679">
-                        <img alt="" className="block max-w-none size-full" src={trendingUpIcon} />
-                      </div>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#996800] text-[12px] text-nowrap whitespace-pre" data-node-id="225:5682">
-                        2 Expiring Soon
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    title="In next 2 months"
+                    subtitle="Leases"
+                    value="In next 2 months"
+                    icon={leasesCardIcon}
+                    gradient="magenta-pop"
+                    badge={{ text: "2 Expiring Soon", color: "warning", trend: "up" }}
+                  />
 
                   {/* AI Efficiency Card */}
-                  <div className="bg-[rgba(255,255,255,0.95)] border border-[rgba(10,18,32,0.05)] border-solid box-border content-stretch flex flex-col gap-[16px] items-start p-[24px] relative rounded-[24px] shrink-0 w-[227.19998168945312px] h-[238px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)]" data-name="Card" data-node-id="225:5683">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="225:5684">
-                      <div className="bg-gradient-to-r box-border content-stretch flex from-[#008236] items-center justify-center relative rounded-[16px] shadow-[0px_8px_25px_0px_rgba(102,126,234,0.4)] shrink-0 size-[48px] to-[#05df72]" data-name="Container" data-node-id="225:5685">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="225:5686">
-                          <img alt="" className="block max-w-none size-full" src={aiEfficiencyCardIcon} />
-                        </div>
-                      </div>
-                      <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[24px]" data-name="Button" data-node-id="225:5693">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="225:5694">
-                          <img alt="" className="block max-w-none size-full" src={propertyActionsIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Frame 173" data-node-id="225:5698">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[32px] relative shrink-0 text-[#101828] text-[24px] w-full whitespace-pre-wrap" data-node-id="225:5699">
-                        500 hours saved month
-                      </p>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal h-[22px] leading-[16px] relative shrink-0 text-[#6a7282] text-[14px] w-full" data-node-id="225:5700">
-                        AI Efficiency
-                      </p>
-                    </div>
-                    <div className="bg-[rgba(0,211,242,0.2)] box-border content-stretch flex gap-[4px] items-center px-[8px] py-[4px] relative rounded-[9999px] shrink-0" data-name="Text" data-node-id="225:5701">
-                      <div className="relative shrink-0 size-[16px]" data-name="Trending-Up--Streamline-Tabler" data-node-id="225:5702">
-                        <img alt="" className="block max-w-none size-full" src={trendingUpIcon} />
-                      </div>
-                      <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#0076ad] text-[12px] text-nowrap whitespace-pre" data-node-id="225:5705">
-                        +12.5%
-                      </p>
-                    </div>
-                  </div>
+                  <StatCard
+                    title="500 hours saved month"
+                    subtitle="AI Efficiency"
+                    value="500 hours saved month"
+                    icon={aiEfficiencyCardIcon}
+                    gradient="emerald-glow"
+                    badge={{ text: "+12.5%", color: "info", trend: "up" }}
+                  />
                 </div>
 
                 {/* Top Performing Properties Section */}
@@ -281,19 +168,24 @@ export default function Dashboard() {
                     </p>
                   </div>
                   <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Frame 245" data-node-id="288:19877">
-                    <button className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="288:19869">
-                      <ThemeIcon src={calendarIcon} alt="Calendar" size="sm" variant="default" />
-                      <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-small text-nowrap whitespace-pre" data-node-id="288:19875">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      icon={calendarIcon}
+                      iconPosition="left"
+                      onClick={() => console.log('Time filter clicked')}
+                    >
                         Last 3 months
-                      </p>
-                      <ThemeIcon src={dropdownArrowIcon} alt="Dropdown arrow" size="sm" variant="default" />
-                    </button>
-                    <button className="bg-gradient-brand-aurora box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer" data-name="Button" data-node-id="288:19180">
-                      <ThemeIcon src={addPropertyButtonIcon} alt="Add property button" size="sm" variant="default" />
-                      <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="288:19184">
+                    </Button>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      icon={addPropertyButtonIcon}
+                      iconPosition="left"
+                      onClick={() => console.log('Add property clicked')}
+                    >
                         Add Property
-                      </p>
-                    </button>
+                    </Button>
                   </div>
                 </div>
 

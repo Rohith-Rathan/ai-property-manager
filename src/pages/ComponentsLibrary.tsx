@@ -370,6 +370,7 @@ export default function ComponentsLibrary() {
               value="$7,050 / $14,000"
               subtitle="50% received (MTD)"
               icon="/assets/dollar-icon.svg"
+              gradient="info-flow"
               variant="complex"
               actionButton={{
                 text: "View Collection Report",
@@ -471,6 +472,7 @@ export default function ComponentsLibrary() {
               value="$12,450"
               subtitle="This month"
               icon="/assets/dollar-icon.svg"
+              gradient="brand-aurora"
               variant="complex"
               actionButton={{
                 text: "View Details",

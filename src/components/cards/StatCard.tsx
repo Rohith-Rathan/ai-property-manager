@@ -103,7 +103,7 @@ export default function StatCard({
   // Render different variants
   if (variant === 'simple') {
     return (
-      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex gap-4 items-center p-6 relative rounded-xxl size-full shadow-card-small" data-name="Simple Stat Card">
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border flex gap-4 items-center p-4 sm:p-6 relative rounded-xxl w-full h-auto shadow-card-small" data-name="Simple Stat Card">
         {icon && (
           <div className={`${getIconBackgroundClass(gradient)} content-stretch flex items-center justify-center relative rounded-xxl shrink-0 size-10`} data-name="Icon Container">
             <div className="relative shrink-0 size-5" data-name="Icon">
@@ -120,11 +120,11 @@ export default function StatCard({
             </div>
           </div>
         )}
-        <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-46" data-name="Summary Card Content">
+        <div className="flex flex-col items-start not-italic relative flex-1 min-w-0" data-name="Summary Card Content">
           <p className="font-normal leading-4 relative shrink-0 text-tertiary text-sm w-full" data-name="Title">
             {title}
           </p>
-          <p className={`font-bold leading-8 relative shrink-0 text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
+          <p className={`font-bold leading-6 sm:leading-8 relative shrink-0 text-xl sm:text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
             {value}
           </p>
         </div>
@@ -134,14 +134,14 @@ export default function StatCard({
 
   if (variant === 'complex') {
     return (
-      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl size-full shadow-card-small" data-name="Complex Stat Card">
-        <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full" data-name="Content Container">
-          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-name="Header">
-            <p className="font-medium leading-5 not-italic relative shrink-0 text-primary text-sm tracking-[-0.15px] w-29" data-name="Title">
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border flex flex-col gap-4 items-start p-4 sm:p-6 relative rounded-xxl w-full h-auto shadow-card-small" data-name="Complex Stat Card">
+        <div className="flex flex-col gap-4 items-start relative w-full" data-name="Content Container">
+          <div className="flex items-start justify-between relative w-full" data-name="Header">
+            <p className="font-medium leading-5 not-italic relative flex-1 min-w-0 text-primary text-sm tracking-[-0.15px] pr-2" data-name="Title">
               {title}
             </p>
             {icon && (
-              <div className="bg-overlays-info-20 content-stretch flex items-center justify-center relative rounded-xl shrink-0 size-10" data-name="Icon Container">
+              <div className={`${getIconBackgroundClass(gradient)} content-stretch flex items-center justify-center relative rounded-xl shrink-0 size-10`} data-name="Icon Container">
                 <div className="relative shrink-0 size-5" data-name="Icon">
                   <img 
                     alt="" 
@@ -157,23 +157,25 @@ export default function StatCard({
               </div>
             )}
           </div>
-          <div className="content-stretch flex flex-col gap-1 items-start justify-center not-italic relative shrink-0 w-full" data-name="Value Section">
-            <p className={`font-bold leading-8 min-w-full relative shrink-0 text-2xl tracking-[0.07px] w-min ${getValueColorClass(valueColor)}`} data-name="Value">
+          <div className="flex flex-col gap-1 items-start justify-center not-italic relative w-full" data-name="Value Section">
+            <p className={`font-bold leading-6 sm:leading-8 relative text-xl sm:text-2xl tracking-[0.07px] w-full ${getValueColorClass(valueColor)}`} data-name="Value">
               {value}
             </p>
             {subtitle && (
-              <p className="font-normal leading-normal relative shrink-0 text-tertiary text-xs text-nowrap whitespace-pre" data-name="Subtitle">
+              <p className="font-normal leading-normal relative text-tertiary text-xs break-words" data-name="Subtitle">
                 {subtitle}
               </p>
             )}
           </div>
         </div>
         {actionButton && (
-          <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 w-full" data-name="Action Button">
-            <p className="basis-0 font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-primary text-sm text-center tracking-[-0.15px]" data-name="Button Text">
-              {actionButton.text}
-            </p>
-          </div>
+          <button 
+            onClick={actionButton.onClick}
+            className="border border-overlays-white-inverse-10 bg-white-5 hover:bg-surface-secondary text-primary font-medium text-sm px-4 py-2 rounded-lg w-full transition-colors"
+            data-name="Action Button"
+          >
+            {actionButton.text}
+          </button>
         )}
       </div>
     );
@@ -181,12 +183,12 @@ export default function StatCard({
 
   if (variant === 'minimal') {
     return (
-      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex gap-4 items-center p-6 relative rounded-xxl size-full shadow-card-small" data-name="Minimal Stat Card">
-        <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-46" data-name="Summary Card Content">
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border flex gap-4 items-center p-4 sm:p-6 relative rounded-xxl w-full h-auto shadow-card-small" data-name="Minimal Stat Card">
+        <div className="flex flex-col items-start not-italic relative flex-1 min-w-0" data-name="Summary Card Content">
           <p className="font-normal leading-4 relative shrink-0 text-tertiary text-sm w-full" data-name="Title">
             {title}
           </p>
-          <p className={`font-bold leading-8 relative shrink-0 text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
+          <p className={`font-bold leading-6 sm:leading-8 relative shrink-0 text-xl sm:text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
             {value}
           </p>
         </div>
@@ -196,9 +198,9 @@ export default function StatCard({
 
   // Default variant (original design)
   return (
-    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-full max-w-56 sm:w-56 md:w-64 lg:w-72 h-auto min-h-48 sm:h-60 shadow-card-small" data-name="Stat Card">
+    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border flex flex-col gap-4 items-start p-4 sm:p-6 relative rounded-xxl w-full h-auto shadow-card-small" data-name="Stat Card">
       {/* Header with Icon and Actions */}
-      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Card Header">
+      <div className="flex items-center justify-between relative w-full" data-name="Card Header">
         {icon && (
           <div className={`${getGradientClass(gradient)} box-border content-stretch flex items-center justify-center relative rounded-xxl shadow-brand-purple-glow shrink-0 w-12 h-12`} data-name="Icon Container">
             <img 
@@ -221,12 +223,12 @@ export default function StatCard({
       </div>
 
       {/* Content */}
-      <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Card Content">
-        <p className={`font-sans font-medium leading-h4 relative shrink-0 text-h4 w-full ${getValueColorClass(valueColor)}`} data-name="Value">
+      <div className="flex flex-col items-start not-italic relative w-full" data-name="Card Content">
+        <p className={`font-sans font-medium leading-6 sm:leading-h4 relative text-lg sm:text-h4 w-full ${getValueColorClass(valueColor)}`} data-name="Value">
           {value}
         </p>
         {subtitle && (
-          <p className="font-sans font-normal leading-small relative shrink-0 text-tertiary text-small w-full" data-name="Subtitle">
+          <p className="font-sans font-normal leading-small relative text-tertiary text-small w-full" data-name="Subtitle">
             {subtitle}
           </p>
         )}

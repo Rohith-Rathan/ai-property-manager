@@ -3,6 +3,7 @@ import { getAssetPath } from '../utils/completeAssetMapping';
 import ThemeIcon from '../components/ui/ThemeIcon';
 import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
+import ProgressBar from '../components/ui/ProgressBar';
 
 // Asset constants with descriptive names - using complete asset mapping
 const loginLogoIcon = getAssetPath('login-logo-icon');           // Header logo
@@ -344,27 +345,13 @@ export default function Dashboard() {
                         $24,580
                       </p>
                     </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:19290">
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:19291">
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19292">
-                          Occupancy
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-success-500 text-label-small" data-node-id="288:19293">
-                          92%
-                        </p>
-                      </div>
-                      <div className="bg-gradient-to-r content-stretch flex from-overlays-primary-20 h-2 items-start relative rounded-full shrink-0 to-overlays-info-20 w-full" data-name="Primitive.div" data-node-id="288:19294">
-                        <div className="absolute bg-gradient-to-b from-accent-purple h-2 left-0 to-accent-blue top-0 w-[92%]" data-name="Container" data-node-id="288:19295" />
-                      </div>
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:19296">
-                        <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:19297">
-                          22 of 24 units occupied
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-success-500 text-label-small" data-node-id="288:19298">
-                          92%
-                        </p>
-                      </div>
-                    </div>
+                    <ProgressBar
+                      variant="occupancy"
+                      percentage={92}
+                      label="Occupancy"
+                      value="92%"
+                      subtitle="22 of 24 units occupied"
+                    />
                   </div>
 
                   {/* Property Card 2 */}
@@ -413,27 +400,13 @@ export default function Dashboard() {
                         $18,240
                       </p>
                     </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:19965">
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:19966">
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19967">
-                          Occupancy
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-warning-500 text-label-small" data-node-id="288:19968">
-                          80%
-                        </p>
-                      </div>
-                      <div className="bg-gradient-to-r content-stretch flex from-overlays-primary-20 h-2 items-start relative rounded-full shrink-0 to-overlays-info-20 w-full" data-name="Primitive.div" data-node-id="288:19969">
-                        <div className="absolute bg-gradient-to-b from-accent-purple h-2 left-0 to-accent-blue top-0 w-[80%]" data-name="Container" data-node-id="288:19970" />
-                      </div>
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:19971">
-                        <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:19972">
-                          22 of 24 units occupied
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-warning-500 text-label-small" data-node-id="288:19973">
-                          80%
-                        </p>
-                      </div>
-                    </div>
+                    <ProgressBar
+                      variant="occupancy"
+                      percentage={80}
+                      label="Occupancy"
+                      value="80%"
+                      subtitle="22 of 24 units occupied"
+                    />
                   </div>
 
                   {/* Property Card 3 */}
@@ -482,27 +455,13 @@ export default function Dashboard() {
                         $16,720
                       </p>
                     </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:20044">
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:20045">
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:20046">
-                          Occupancy
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-error-500 text-label-small" data-node-id="288:20047">
-                          76%
-                        </p>
-                      </div>
-                      <div className="bg-gradient-to-r content-stretch flex from-overlays-primary-20 h-2 items-start relative rounded-full shrink-0 to-overlays-info-20 w-full" data-name="Primitive.div" data-node-id="288:20048">
-                        <div className="absolute bg-gradient-to-b from-accent-purple h-2 left-0 to-accent-blue top-0 w-[76%]" data-name="Container" data-node-id="288:20049" />
-                      </div>
-                      <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="288:20050">
-                        <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:20051">
-                          22 of 24 units occupied
-                        </p>
-                        <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-error-500 text-label-small" data-node-id="288:20052">
-                          76%
-                        </p>
-                      </div>
-                    </div>
+                    <ProgressBar
+                      variant="occupancy"
+                      percentage={76}
+                      label="Occupancy"
+                      value="76%"
+                      subtitle="22 of 24 units occupied"
+                    />
                   </div>
                 </div>
               </div>

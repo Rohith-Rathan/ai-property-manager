@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from '../ui/ThemeIcon';
+import ProgressBar from '../ui/ProgressBar';
 
 // Asset constants
 const propertyActionsIcon = getAssetPath('property-actions-icon');
@@ -48,21 +49,6 @@ export default function PropertyCard({
     }
   };
 
-  const getOccupancyColorClass = (color: string) => {
-    switch (color) {
-      case 'error': return 'text-error-500';
-      case 'warning': return 'text-warning-500';
-      default: return 'text-success-500';
-    }
-  };
-
-  const getOccupancyBgClass = (color: string) => {
-    switch (color) {
-      case 'error': return 'bg-error-500';
-      case 'warning': return 'bg-warning-500';
-      default: return 'bg-success-500';
-    }
-  };
 
   return (
     <div className="bg-static-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-96 h-90 shadow-card-small" data-name="Property Card">
@@ -129,27 +115,13 @@ export default function PropertyCard({
         </div>
 
         {/* Occupancy Section */}
-        <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="Occupancy Section">
-          <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Occupancy Header">
-            <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-label-small" data-name="Occupancy Label">
-              Occupancy
-            </p>
-            <p className={`font-sans font-bold leading-small not-italic relative shrink-0 text-label-small ${getOccupancyColorClass(occupancy.color)}`} data-name="Occupancy Percentage">
-              {occupancy.percentage}%
-            </p>
-          </div>
-          <div className={`${getOccupancyBgClass(occupancy.color)} content-stretch flex h-2 items-start relative rounded-full shrink-0 w-full`} data-name="Occupancy Bar">
-            <div className={`${getOccupancyBgClass(occupancy.color)} h-2 relative rounded-full shrink-0`} style={{ width: `${occupancy.percentage}%` }} data-name="Occupancy Fill" />
-          </div>
-          <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Occupancy Footer">
-            <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-label-small" data-name="Occupancy Description">
-              {occupancy.description}
-            </p>
-            <p className={`font-sans font-bold leading-small not-italic relative shrink-0 text-label-small ${getOccupancyColorClass(occupancy.color)}`} data-name="Occupancy Percentage Footer">
-              {occupancy.percentage}%
-            </p>
-          </div>
-        </div>
+        <ProgressBar
+          variant="occupancy"
+          percentage={occupancy.percentage}
+          label="Occupancy"
+          value={`${occupancy.percentage}%`}
+          subtitle={occupancy.description}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from '../ui/ThemeIcon';
+import ProgressBar from '../ui/ProgressBar';
 
 // Asset constants
 const starFilledIcon = getAssetPath('star-filled-icon');
@@ -31,21 +32,6 @@ export default function DashboardPropertyCard({
   occupancy,
   showActions = true
 }: DashboardPropertyCardProps) {
-  const getOccupancyColorClass = (color: string) => {
-    switch (color) {
-      case 'error': return 'text-error-500';
-      case 'warning': return 'text-warning-500';
-      default: return 'text-success-500';
-    }
-  };
-
-  const getOccupancyGradientClass = (color: string) => {
-    switch (color) {
-      case 'error': return 'from-accent-red to-accent-orange';
-      case 'warning': return 'from-accent-yellow to-accent-orange';
-      default: return 'from-accent-purple to-accent-blue';
-    }
-  };
 
   return (
     <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl shrink-0 w-96 h-66 shadow-card-small" data-name="Dashboard Property Card">
@@ -109,27 +95,13 @@ export default function DashboardPropertyCard({
         </div>
 
         {/* Occupancy Section */}
-        <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="Occupancy Section">
-          <div className="content-stretch flex font-sans font-normal items-center justify-between leading-normal not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre" data-name="Occupancy Header">
-            <p className="relative shrink-0" data-name="Occupancy Label">
-              Occupancy
-            </p>
-            <p className="relative shrink-0" data-name="Occupancy Percentage">
-              {occupancy.percentage}%
-            </p>
-          </div>
-          <div className="bg-gradient-to-r box-border content-stretch flex flex-col from-[rgba(124,134,255,0.2)] h-2 items-start overflow-clip py-0 relative rounded-full shrink-0 to-[rgba(43,127,255,0.2)] w-full" data-name="Occupancy Bar Background">
-            <div className="absolute bg-gradient-to-b from-[#7c86ff] h-2 left-0 to-[#2b7fff] top-0" style={{ width: `${occupancy.percentage}%` }} data-name="Occupancy Fill" />
-          </div>
-          <div className="content-stretch flex font-sans font-normal items-center justify-between not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre" data-name="Occupancy Footer">
-            <p className="leading-normal relative shrink-0" data-name="Occupancy Description">
-              {occupancy.description}
-            </p>
-            <p className="leading-base opacity-0 relative shrink-0 tracking-tight" data-name="Occupancy Percentage Footer">
-              {occupancy.percentage}%
-            </p>
-          </div>
-        </div>
+        <ProgressBar
+          variant="occupancy"
+          percentage={occupancy.percentage}
+          label="Occupancy"
+          value={`${occupancy.percentage}%`}
+          subtitle={occupancy.description}
+        />
       </div>
     </div>
   );

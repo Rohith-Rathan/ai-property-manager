@@ -218,6 +218,12 @@ export const COMPLETE_ASSET_MAP = {
   'upload-icon': 'upload-icon',
   'user-icon': 'user-icon',
   'view-details-icon': 'eye-view-icon',
+  'download-icon': 'download-icon',
+  'edit-icon': 'edit-icon',
+  'document-icon': 'document-icon',
+  '9699f89e2634301c749350e57739d76aca9fa04d': 'envelope-email-icon',
+  '498e262ab2dbc300a43b7fda916b58f88d6eead5': 'phone-icon',
+  'fdfdceca98cfd520a588137d6a2887f6da7734d1': 'three-dots-more-options-icon',
 } as const;
 
 // Helper function to get descriptive name from hash

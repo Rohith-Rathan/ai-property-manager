@@ -598,6 +598,7 @@ module.exports = {
         'gradient-magenta-candy': 'var(--gradient-magenta-candy)',
         'gradient-cyber-neon': 'var(--gradient-cyber-neon)',
         'gradient-brand-aurora': 'var(--gradient-brand-aurora)',
+        'gradient-brand-aurora-20': 'var(--gradient-brand-aurora-20)',
         'gradient-background-base': 'var(--gradient-background-base)',
       },
 

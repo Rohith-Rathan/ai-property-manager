@@ -1,8 +1,12 @@
 import React from 'react';
+import ThemeIcon from './ThemeIcon';
 
 interface PageHeaderProps {
+  variant?: 'default' | 'property';
   title: string;
   subtitle?: string;
+  address?: string;
+  onBack?: () => void;
   primaryAction?: {
     label: string;
     onClick: () => void;
@@ -16,21 +20,90 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader({
+  variant = 'default',
   title,
   subtitle,
+  address,
+  onBack,
   primaryAction,
   secondaryAction
 }: PageHeaderProps) {
   
+  if (variant === 'property') {
+    return (
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-center flex flex-wrap gap-4 items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
+        <div className="basis-0 content-stretch flex gap-4 grow items-center min-h-px min-w-80 relative shrink-0">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="relative shrink-0 w-4 h-4 hover:opacity-70 transition-opacity duration-200"
+            >
+              <ThemeIcon src="/assets/previous-arrow-icon.svg" alt="Back" size="sm" variant="default" />
+            </button>
+          )}
+          <div className="basis-0 grow min-h-px min-w-px relative shrink-0">
+            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col gap-1 items-start relative w-full">
+              <p className="font-sans font-bold leading-h3 not-italic relative shrink-0 text-primary text-h3 w-full">
+                {title}
+              </p>
+              {address && (
+                <div className="content-stretch flex gap-1 items-center relative shrink-0 w-full">
+                  <div className="relative shrink-0 w-4 h-4">
+                    <ThemeIcon src="/assets/location-icon.svg" alt="Location" size="sm" variant="default" />
+                  </div>
+                  <p className="basis-0 font-sans font-normal grow leading-base min-h-px min-w-px not-italic relative shrink-0 text-base text-tertiary">
+                    {address}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="content-center flex flex-wrap gap-2 items-center relative shrink-0">
+          {secondaryAction && (
+            <button
+              onClick={secondaryAction.onClick}
+              className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 hover:bg-gray-50 transition-colors duration-200"
+            >
+              {secondaryAction.icon && (
+                <div className="relative shrink-0 w-4 h-4">
+                  <ThemeIcon src={secondaryAction.icon} alt={secondaryAction.label} size="sm" variant="default" />
+                </div>
+              )}
+              <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
+                {secondaryAction.label}
+              </p>
+            </button>
+          )}
+          {primaryAction && (
+            <button
+              onClick={primaryAction.onClick}
+              className="bg-gradient-brand-aurora box-border content-stretch cursor-pointer flex gap-2 items-center justify-center overflow-visible px-4 py-2 relative rounded-lg shrink-0 hover:opacity-90 transition-opacity duration-200"
+            >
+              {primaryAction.icon && (
+                <div className="relative shrink-0 w-4 h-4">
+                  <ThemeIcon src={primaryAction.icon} alt={primaryAction.label} size="sm" variant="white" />
+                </div>
+              )}
+              <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-white whitespace-pre">
+                {primaryAction.label}
+              </p>
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="content-center flex flex-wrap gap-[16px] items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="242:8215">
-      <div className="relative shrink-0" data-name="Container" data-node-id="242:8216">
-        <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex flex-col items-start not-italic relative">
-          <p className="font-['Inter:Bold',_sans-serif] font-bold h-[36px] leading-[38px] relative shrink-0 text-[#101828] text-[30px] w-[492.75px]" data-node-id="242:8217">
+    <div className="content-center flex flex-wrap gap-4 items-center justify-between relative shrink-0 w-full">
+      <div className="relative shrink-0">
+        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col items-start not-italic relative">
+          <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3">
             {title}
           </p>
           {subtitle && (
-            <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[24px] relative shrink-0 text-[16px] text-gray-500 text-nowrap whitespace-pre" data-node-id="242:8218">
+            <p className="font-sans font-normal leading-base relative shrink-0 text-base text-tertiary text-nowrap whitespace-pre">
               {subtitle}
             </p>
           )}
@@ -41,32 +114,38 @@ export default function PageHeader({
           <div className="relative shrink-0" data-node-id="242:14186">
             <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-center flex flex-wrap gap-[8px] items-center relative">
               
-              {/* Secondary Action Button - EXACT FIGMA STRUCTURE */}
+              {/* Secondary Action Button */}
               {secondaryAction && (
-                <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center justify-center opacity-0 px-[16px] py-[8px] relative rounded-[8px] shrink-0" data-name="Button" data-node-id="242:14187">
+                <button
+                  onClick={secondaryAction.onClick}
+                  className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 hover:bg-gray-50 transition-colors duration-200"
+                >
                   {secondaryAction.icon && (
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:14188">
-                      <img alt="" className="block max-w-none size-full" src={secondaryAction.icon} />
+                    <div className="relative shrink-0 w-4 h-4">
+                      <ThemeIcon src={secondaryAction.icon} alt={secondaryAction.label} size="sm" variant="default" />
                     </div>
                   )}
-                  <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[22px] not-italic relative shrink-0 text-[#101828] text-[14px] text-center text-nowrap whitespace-pre" data-node-id="242:14191">
+                  <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
                     {secondaryAction.label}
                   </p>
-                </div>
+                </button>
               )}
 
-              {/* Primary Action Button - EXACT FIGMA STRUCTURE */}
+              {/* Primary Action Button */}
               {primaryAction && (
-                <div className="bg-gradient-to-b box-border content-stretch flex from-[#7c86ff] gap-[8px] items-center justify-center px-[16px] py-[8px] relative rounded-[10px] shrink-0 to-[#2b7fff]" data-name="Button" data-node-id="242:14192">
+                <button
+                  onClick={primaryAction.onClick}
+                  className="bg-gradient-brand-aurora box-border content-stretch cursor-pointer flex gap-2 items-center justify-center overflow-visible px-4 py-2 relative rounded-lg shrink-0 hover:opacity-90 transition-opacity duration-200"
+                >
                   {primaryAction.icon && (
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:14193">
-                      <img alt="" className="block max-w-none size-full" src={primaryAction.icon} />
+                    <div className="relative shrink-0 w-4 h-4">
+                      <ThemeIcon src={primaryAction.icon} alt={primaryAction.label} size="sm" variant="white" />
                     </div>
                   )}
-                  <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[22px] not-italic relative shrink-0 text-[14px] text-nowrap text-white whitespace-pre" data-node-id="242:14196">
+                  <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-white whitespace-pre">
                     {primaryAction.label}
                   </p>
-                </div>
+                </button>
               )}
             </div>
           </div>

@@ -24,7 +24,8 @@ const variantClasses = {
   primary: 'icon-theme-primary',
   secondary: 'icon-theme-secondary',
   white: 'icon-white',
-  gray: 'icon-gray'
+  gray: 'icon-gray',
+  'gray-700': 'icon-gray-700'
 };
 
 export const ThemeIcon: React.FC<ThemeIconProps> = ({ 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from './ThemeIcon';
+import ProgressBar from './ProgressBar';
 
 // Asset constants
 const locationIcon = getAssetPath('location-icon');
@@ -126,27 +127,13 @@ export default function PropertyCard({
         </div>
 
         {/* Occupancy Section */}
-        <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="Occupancy Section">
-          <div className="content-stretch flex font-sans font-normal items-center justify-between leading-normal not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre" data-name="Occupancy Header">
-            <p className="relative shrink-0" data-name="Occupancy Label">
-              Occupancy
-            </p>
-            <p className="relative shrink-0" data-name="Occupancy Percentage">
-              {property.occupancy.percentage}%
-            </p>
-          </div>
-          <div className="bg-gradient-to-r box-border content-stretch flex flex-col from-[rgba(124,134,255,0.2)] h-2 items-start overflow-clip py-0 relative rounded-full shrink-0 to-[rgba(43,127,255,0.2)] w-full" data-name="Occupancy Bar Background">
-            <div className="absolute bg-gradient-to-b from-[#7c86ff] h-2 left-0 to-[#2b7fff] top-0" style={{ width: `${property.occupancy.percentage}%` }} data-name="Occupancy Fill" />
-          </div>
-          <div className="content-stretch flex font-sans font-normal items-center justify-between not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre" data-name="Occupancy Footer">
-            <p className="leading-normal relative shrink-0" data-name="Occupancy Description">
-              {property.occupancy.description}
-            </p>
-            <p className="leading-base opacity-0 relative shrink-0 tracking-tight" data-name="Occupancy Percentage Footer">
-              {property.occupancy.percentage}%
-            </p>
-          </div>
-        </div>
+        <ProgressBar
+          variant="occupancy"
+          percentage={property.occupancy.percentage}
+          label="Occupancy"
+          value={`${property.occupancy.percentage}%`}
+          subtitle={property.occupancy.description}
+        />
       </div>
     </div>
   );

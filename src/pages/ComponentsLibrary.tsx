@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
-import PageHeader from '../components/layout/PageHeader';
+import PageHeader from '../components/ui/PageHeader';
 import StatCard from '../components/cards/StatCard';
 import PropertyCard from '../components/ui/PropertyCard';
 import DashboardPropertyCard from '../components/cards/DashboardPropertyCard';
@@ -13,6 +13,12 @@ import SearchInput from '../components/ui/SearchInput';
 import ThemeIcon from '../components/ui/ThemeIcon';
 import PageSearch from '../components/ui/PageSearch';
 import ListView from '../components/ui/ListView';
+import ActivityFeedItem from '../components/ui/ActivityFeedItem';
+import AlertItem from '../components/ui/AlertItem';
+import DocumentItem from '../components/ui/DocumentItem';
+import UserCard from '../components/ui/UserCard';
+import StepWizard from '../components/ui/StepWizard';
+import ProgressBar from '../components/ui/ProgressBar';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
 // Asset constants for examples
@@ -41,6 +47,12 @@ export default function ComponentsLibrary() {
     { id: 'stat-cards', label: 'Stat Cards', icon: '📊' },
     { id: 'property-cards', label: 'Property Cards', icon: '🏠' },
     { id: 'dashboard-cards', label: 'Dashboard Cards', icon: '📈' },
+    { id: 'activity-feed', label: 'Activity Feed', icon: '📝' },
+    { id: 'alerts', label: 'Alerts', icon: '🚨' },
+    { id: 'documents', label: 'Documents', icon: '📄' },
+    { id: 'user-card', label: 'User Card', icon: '👤' },
+    { id: 'step-wizard', label: 'Step Wizard', icon: '🧙‍♂️' },
+    { id: 'progress-bar', label: 'Progress Bar', icon: '📊' },
   ];
 
   const renderHeaderExamples = () => (
@@ -188,38 +200,65 @@ export default function ComponentsLibrary() {
   const renderPageHeaderExamples = () => (
     <div className="space-y-8">
       <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Simple Page Header</h3>
+        <h3 className="text-h4 font-bold text-primary mb-4">Default Page Header</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader 
             title="Properties & Units"
-            description="Welcome back, John. Here's what's happening with your properties today."
+            subtitle="Manage your property portfolio with detailed unit tracking"
+            primaryAction={{
+              label: "Add Property",
+              onClick: () => console.log("Add Property clicked"),
+              icon: "/assets/add-property-button-icon.svg"
+            }}
+            secondaryAction={{
+              label: "Import",
+              onClick: () => console.log("Import clicked"),
+              icon: "/assets/edit-property-button-icon.svg"
+            }}
           />
         </div>
       </div>
       
       <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Page Header with Actions</h3>
+        <h3 className="text-h4 font-bold text-primary mb-4">Property Page Header Variant</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
-          <PageHeader 
-            title="Dashboard"
-            description="Overview of your property management performance"
-            actions={[
-              { id: 'edit', label: 'Edit Property', icon: 'edit', variant: 'outline' },
-              { id: 'add', label: 'Add Property', icon: 'add', variant: 'primary', gradient: 'aqua-2' }
-            ]}
+          <PageHeader
+            variant="property"
+            title="Sunset Apartments"
+            address="123 Sunset Blvd, Los Angeles, CA"
+            onBack={() => console.log("Back clicked")}
+            primaryAction={{
+              label: "Add Unit",
+              onClick: () => console.log("Add Unit clicked"),
+              icon: "/assets/add-unit-icon.svg"
+            }}
+            secondaryAction={{
+              label: "Edit Property",
+              onClick: () => console.log("Edit Property clicked"),
+              icon: "/assets/edit-property-button-icon.svg"
+            }}
           />
         </div>
       </div>
 
       <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Page Header with Multiple Actions</h3>
+        <h3 className="text-h4 font-bold text-primary mb-4">Property Header - Different Property</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
-          <PageHeader 
-            title="Top Performing Properties"
-            actions={[
-              { id: 'filter', label: 'Last 3 months', icon: 'calendar', variant: 'outline', rightIcon: 'dropdown' },
-              { id: 'add', label: 'Add Property', icon: 'add', variant: 'primary', gradient: 'brand-aurora' }
-            ]}
+          <PageHeader
+            variant="property"
+            title="Oak Villa Complex"
+            address="456 Oak Street, San Francisco, CA"
+            onBack={() => console.log("Back clicked")}
+            primaryAction={{
+              label: "Add Unit",
+              onClick: () => console.log("Add Unit clicked"),
+              icon: "/assets/add-unit-icon.svg"
+            }}
+            secondaryAction={{
+              label: "Edit Property",
+              onClick: () => console.log("Edit Property clicked"),
+              icon: "/assets/edit-property-button-icon.svg"
+            }}
           />
         </div>
       </div>
@@ -398,6 +437,662 @@ export default function ComponentsLibrary() {
             onItemClick={(id) => console.log('Tenant clicked:', id)}
             onItemEdit={(id) => console.log('Tenant edit:', id)}
           />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderActivityFeedExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Activity Feed Items</h3>
+        <div className="space-y-4 max-w-2xl">
+          <ActivityFeedItem
+            title="Sent rent reminder to Tenant John Doe"
+            category="communication"
+            timestamp="2 hours ago"
+            onClick={() => console.log('Communication activity clicked')}
+          />
+          
+          <ActivityFeedItem
+            title="Auto-scheduled maintenance for HVAC repair"
+            category="maintenance"
+            timestamp="4 hours ago"
+            onClick={() => console.log('Maintenance activity clicked')}
+          />
+          
+          <ActivityFeedItem
+            title="Generated lease renewal letter"
+            category="lease"
+            timestamp="6 hours ago"
+            onClick={() => console.log('Lease activity clicked')}
+          />
+          
+          <ActivityFeedItem
+            title="Processed rental payment for Unit 4B"
+            category="financial"
+            timestamp="1 day ago"
+            onClick={() => console.log('Financial activity clicked')}
+          />
+          
+          <ActivityFeedItem
+            title="AI analyzed property performance metrics"
+            category="system"
+            timestamp="2 days ago"
+            onClick={() => console.log('System activity clicked')}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Activity Feed in Card Container</h3>
+        <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <ThemeIcon src={getAssetPath('ai-efficiency-icon')} alt="Activity" size="sm" variant="primary" />
+            <h4 className="text-h5 font-semibold text-primary">Recent AI Actions</h4>
+          </div>
+          <div className="space-y-3">
+            <ActivityFeedItem
+              title="Sent rent reminder to Tenant John Doe"
+              category="communication"
+              timestamp="2 hours ago"
+            />
+            <ActivityFeedItem
+              title="Auto-scheduled maintenance for HVAC repair"
+              category="maintenance"
+              timestamp="4 hours ago"
+            />
+            <ActivityFeedItem
+              title="Generated lease renewal letter"
+              category="lease"
+              timestamp="6 hours ago"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderAlertExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Alert Items</h3>
+        <div className="space-y-4 max-w-2xl">
+          <AlertItem
+            priority="high"
+            category="Rent Collection"
+            message="Unit 4B - Rent overdue by 15 days"
+            timestamp="30 min"
+            onClick={() => console.log('High priority alert clicked')}
+          />
+          
+          <AlertItem
+            priority="medium"
+            category="Maintenance Ticket"
+            message="Unit 3A - HVAC system needs repair"
+            timestamp="2 hours ago"
+            onClick={() => console.log('Medium priority alert clicked')}
+          />
+          
+          <AlertItem
+            priority="low"
+            category="Lease"
+            message="Unit 2C - Lease renewal reminder"
+            timestamp="1 day ago"
+            onClick={() => console.log('Low priority alert clicked')}
+          />
+          
+          <AlertItem
+            priority="high"
+            category="Vacancy"
+            message="Unit 1A - Tenant moved out, needs cleaning"
+            timestamp="45 min"
+            onClick={() => console.log('Vacancy alert clicked')}
+          />
+          
+          <AlertItem
+            priority="medium"
+            category="Inspection Request"
+            message="Unit 3A - Scheduled for next week"
+            timestamp="3 hours ago"
+            onClick={() => console.log('Inspection alert clicked')}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Alerts in Card Container</h3>
+        <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <ThemeIcon src={getAssetPath('ai-efficiency-icon')} alt="Alerts" size="sm" variant="primary" />
+            <h4 className="text-h5 font-semibold text-primary">Urgent Alerts</h4>
+          </div>
+          <div className="space-y-3">
+            <AlertItem
+              priority="high"
+              category="Rent Collection"
+              message="Unit 4B - Rent overdue by 15 days"
+              timestamp="30 min"
+            />
+            <AlertItem
+              priority="medium"
+              category="Maintenance Ticket"
+              message="Unit 3A - HVAC system needs repair"
+              timestamp="2 hours ago"
+            />
+            <AlertItem
+              priority="high"
+              category="Lease"
+              message="Unit 2C - Lease expires in 5 days"
+              timestamp="1 hour ago"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderDocumentExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Document Items</h3>
+        <div className="space-y-4 max-w-2xl">
+          <DocumentItem
+            title="Lease-21365465"
+            subtitle="Lease Agreement"
+            expirationDate="01-10-2026"
+            isExpiring={true}
+            variant="detailed"
+            onDownload={() => console.log('Download lease document')}
+            onEdit={() => console.log('Edit lease document')}
+            onView={() => console.log('View lease document')}
+          />
+          
+          <DocumentItem
+            title="Driving Licence"
+            variant="simple"
+            onDownload={() => console.log('Download driving licence')}
+            onEdit={() => console.log('Edit driving licence')}
+            onView={() => console.log('View driving licence')}
+          />
+          
+          <DocumentItem
+            title="Social Security Card"
+            variant="simple"
+            onDownload={() => console.log('Download social security card')}
+            onEdit={() => console.log('Edit social security card')}
+            onView={() => console.log('View social security card')}
+          />
+          
+          <DocumentItem
+            title="Pet Care Agreement"
+            variant="simple"
+            onDownload={() => console.log('Download pet care agreement')}
+            onEdit={() => console.log('Edit pet care agreement')}
+            onView={() => console.log('View pet care agreement')}
+          />
+          
+          <DocumentItem
+            title="Insurance Policy-789123"
+            subtitle="Property Insurance"
+            expirationDate="12-31-2025"
+            isExpiring={false}
+            variant="detailed"
+            onDownload={() => console.log('Download insurance policy')}
+            onEdit={() => console.log('Edit insurance policy')}
+            onView={() => console.log('View insurance policy')}
+          />
+          
+          <DocumentItem
+            title="Lease Agreement-987654"
+            expirationDate="06-15-2025"
+            isExpiring={true}
+            variant="expiration"
+            onDownload={() => console.log('Download lease agreement')}
+            onEdit={() => console.log('Edit lease agreement')}
+            onView={() => console.log('View lease agreement')}
+          />
+          
+          <DocumentItem
+            title="Insurance Certificate-456789"
+            expirationDate="03-20-2026"
+            isExpiring={false}
+            variant="expiration"
+            onDownload={() => console.log('Download insurance certificate')}
+            onEdit={() => console.log('Edit insurance certificate')}
+            onView={() => console.log('View insurance certificate')}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Documents in Card Container</h3>
+        <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <ThemeIcon src="/assets/dcca7775f5c79ff238a864f59355e149ffc6cac3.svg" alt="Documents" size="sm" variant="primary" />
+            <h4 className="text-h5 font-semibold text-primary">Tenant Documents</h4>
+          </div>
+          <div className="space-y-3">
+            <DocumentItem
+              title="Lease-21365465"
+              subtitle="Lease Agreement"
+              expirationDate="01-10-2026"
+              isExpiring={true}
+              variant="detailed"
+            />
+            <DocumentItem
+              title="Driving Licence"
+              variant="simple"
+            />
+            <DocumentItem
+              title="Social Security Card"
+              variant="simple"
+            />
+            <DocumentItem
+              title="Pet Care Agreement"
+              variant="simple"
+            />
+            <DocumentItem
+              title="Insurance Certificate-456789"
+              expirationDate="03-20-2026"
+              isExpiring={false}
+              variant="expiration"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderUserCardExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">User Cards</h3>
+        <div className="space-y-4 max-w-md">
+          <UserCard
+            name="Walter Carter"
+            email="Walter90@hotmail.com"
+            phone="1-772-280-7340"
+            initials="WC"
+            onMenuClick={() => console.log('Menu clicked for Walter Carter')}
+          />
+          
+          <UserCard
+            name="Sarah Johnson"
+            email="sarah.johnson@email.com"
+            phone="1-555-123-4567"
+            initials="SJ"
+            onMenuClick={() => console.log('Menu clicked for Sarah Johnson')}
+          />
+          
+          <UserCard
+            name="Michael Chen"
+            email="m.chen@company.com"
+            phone="1-555-987-6543"
+            initials="MC"
+            onMenuClick={() => console.log('Menu clicked for Michael Chen')}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">User Cards in Grid Layout</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl">
+          <UserCard
+            name="Emily Rodriguez"
+            email="emily.rodriguez@email.com"
+            phone="1-555-111-2222"
+            initials="ER"
+            onMenuClick={() => console.log('Menu clicked for Emily Rodriguez')}
+          />
+          
+          <UserCard
+            name="David Kim"
+            email="david.kim@email.com"
+            phone="1-555-333-4444"
+            initials="DK"
+            onMenuClick={() => console.log('Menu clicked for David Kim')}
+          />
+          
+          <UserCard
+            name="Lisa Thompson"
+            email="lisa.thompson@email.com"
+            phone="1-555-555-6666"
+            initials="LT"
+            onMenuClick={() => console.log('Menu clicked for Lisa Thompson')}
+          />
+          
+          <UserCard
+            name="James Wilson"
+            email="james.wilson@email.com"
+            phone="1-555-777-8888"
+            initials="JW"
+            onMenuClick={() => console.log('Menu clicked for James Wilson')}
+          />
+          
+          <UserCard
+            name="Maria Garcia"
+            email="maria.garcia@email.com"
+            phone="1-555-999-0000"
+            initials="MG"
+            onMenuClick={() => console.log('Menu clicked for Maria Garcia')}
+          />
+          
+          <UserCard
+            name="Robert Brown"
+            email="robert.brown@email.com"
+            phone="1-555-123-7890"
+            initials="RB"
+            onMenuClick={() => console.log('Menu clicked for Robert Brown')}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">User Cards in Card Container</h3>
+        <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <ThemeIcon src="/assets/2a57308041b3d6f98dfd9c06504690d8a2358f17.svg" alt="Users" size="sm" variant="primary" />
+            <h4 className="text-h5 font-semibold text-primary">Tenant Management</h4>
+          </div>
+          <div className="space-y-3">
+            <UserCard
+              name="Walter Carter"
+              email="Walter90@hotmail.com"
+              phone="1-772-280-7340"
+              initials="WC"
+              onMenuClick={() => console.log('Menu clicked for Walter Carter')}
+            />
+            <UserCard
+              name="Sarah Johnson"
+              email="sarah.johnson@email.com"
+              phone="1-555-123-4567"
+              initials="SJ"
+              onMenuClick={() => console.log('Menu clicked for Sarah Johnson')}
+            />
+            <UserCard
+              name="Michael Chen"
+              email="m.chen@company.com"
+              phone="1-555-987-6543"
+              initials="MC"
+              onMenuClick={() => console.log('Menu clicked for Michael Chen')}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStepWizardExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Step Wizard - Add Property (4 Steps)</h3>
+        <div className="max-w-4xl">
+          <StepWizard
+            title="Add New Property"
+            subtitle="Follow these steps to add a new property to your portfolio"
+            currentStep={1}
+            onCancel={() => console.log('Cancel clicked')}
+            steps={[
+              {
+                id: 'property-details',
+                title: 'Property Details',
+                icon: '/assets/property-basic-details-icon.svg',
+                iconAlt: 'Property Details'
+              },
+              {
+                id: 'add-units',
+                title: 'Add Units',
+                icon: '/assets/units-icon.svg',
+                iconAlt: 'Add Units'
+              },
+              {
+                id: 'add-assets',
+                title: 'Add Assets',
+                icon: '/assets/add-assets-icon.svg',
+                iconAlt: 'Add Assets'
+              },
+              {
+                id: 'add-manager',
+                title: 'Add Manager',
+                icon: '/assets/user-icon.svg',
+                iconAlt: 'Add Manager'
+              }
+            ]}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Step Wizard - Add Tenant (3 Steps)</h3>
+        <div className="max-w-4xl">
+          <StepWizard
+            title="Add New Tenant"
+            subtitle="Follow these steps to add a new tenant"
+            currentStep={2}
+            onCancel={() => console.log('Cancel clicked')}
+            steps={[
+              {
+                id: 'basic-details',
+                title: 'Basic Details',
+                icon: '/assets/user-icon.svg',
+                iconAlt: 'Basic Details'
+              },
+              {
+                id: 'lease-agreement',
+                title: 'Lease Agreement',
+                icon: '/assets/leases-document-icon.svg',
+                iconAlt: 'Lease Agreement'
+              },
+              {
+                id: 'id-proofs',
+                title: 'ID Proofs',
+                icon: '/assets/document-files-icon.svg',
+                iconAlt: 'ID Proofs'
+              }
+            ]}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Step Wizard - Different Progress States</h3>
+        <div className="space-y-6 max-w-4xl">
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 1 of 4 (0% Complete)</h4>
+            <StepWizard
+              title="Add New Property"
+              subtitle="Follow these steps to add a new property to your portfolio"
+              currentStep={1}
+              steps={[
+                { id: 'step1', title: 'Step 1', icon: '/assets/property-basic-details-icon.svg' },
+                { id: 'step2', title: 'Step 2', icon: '/assets/units-icon.svg' },
+                { id: 'step3', title: 'Step 3', icon: '/assets/add-assets-icon.svg' },
+                { id: 'step4', title: 'Step 4', icon: '/assets/user-icon.svg' }
+              ]}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 2 of 4 (25% Complete)</h4>
+            <StepWizard
+              title="Add New Property"
+              subtitle="Follow these steps to add a new property to your portfolio"
+              currentStep={2}
+              steps={[
+                { id: 'step1', title: 'Step 1', icon: '/assets/property-basic-details-icon.svg' },
+                { id: 'step2', title: 'Step 2', icon: '/assets/units-icon.svg' },
+                { id: 'step3', title: 'Step 3', icon: '/assets/add-assets-icon.svg' },
+                { id: 'step4', title: 'Step 4', icon: '/assets/user-icon.svg' }
+              ]}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 3 of 4 (50% Complete)</h4>
+            <StepWizard
+              title="Add New Property"
+              subtitle="Follow these steps to add a new property to your portfolio"
+              currentStep={3}
+              steps={[
+                { id: 'step1', title: 'Step 1', icon: '/assets/property-basic-details-icon.svg' },
+                { id: 'step2', title: 'Step 2', icon: '/assets/units-icon.svg' },
+                { id: 'step3', title: 'Step 3', icon: '/assets/add-assets-icon.svg' },
+                { id: 'step4', title: 'Step 4', icon: '/assets/user-icon.svg' }
+              ]}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 4 of 4 (75% Complete)</h4>
+            <StepWizard
+              title="Add New Property"
+              subtitle="Follow these steps to add a new property to your portfolio"
+              currentStep={4}
+              steps={[
+                { id: 'step1', title: 'Step 1', icon: '/assets/property-basic-details-icon.svg' },
+                { id: 'step2', title: 'Step 2', icon: '/assets/units-icon.svg' },
+                { id: 'step3', title: 'Step 3', icon: '/assets/add-assets-icon.svg' },
+                { id: 'step4', title: 'Step 4', icon: '/assets/user-icon.svg' }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Step Wizard - Custom Steps (5 Steps)</h3>
+        <div className="max-w-4xl">
+          <StepWizard
+            title="Custom Process"
+            subtitle="A custom process with 5 steps"
+            currentStep={3}
+            onCancel={() => console.log('Cancel clicked')}
+            steps={[
+              { id: 'step1', title: 'Planning', icon: '/assets/property-basic-details-icon.svg' },
+              { id: 'step2', title: 'Design', icon: '/assets/units-icon.svg' },
+              { id: 'step3', title: 'Development', icon: '/assets/add-assets-icon.svg' },
+              { id: 'step4', title: 'Testing', icon: '/assets/user-icon.svg' },
+              { id: 'step5', title: 'Deployment', icon: '/assets/leases-document-icon.svg' }
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderProgressBarExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Progress Bar - Step Variant</h3>
+        <div className="space-y-6 max-w-2xl">
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 1 of 4 (0% Complete)</h4>
+            <ProgressBar
+              variant="step"
+              current={1}
+              total={4}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 2 of 4 (25% Complete)</h4>
+            <ProgressBar
+              variant="step"
+              current={2}
+              total={4}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 3 of 4 (50% Complete)</h4>
+            <ProgressBar
+              variant="step"
+              current={3}
+              total={4}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step 4 of 4 (75% Complete)</h4>
+            <ProgressBar
+              variant="step"
+              current={4}
+              total={4}
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Progress Bar - Occupancy Variant</h3>
+        <div className="space-y-6 max-w-2xl">
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">High Occupancy (92%)</h4>
+            <ProgressBar
+              variant="occupancy"
+              percentage={92}
+              label="Occupancy"
+              value="92%"
+              subtitle="22 of 24 units occupied"
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Medium Occupancy (65%)</h4>
+            <ProgressBar
+              variant="occupancy"
+              percentage={65}
+              label="Occupancy"
+              value="65%"
+              subtitle="13 of 20 units occupied"
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Low Occupancy (30%)</h4>
+            <ProgressBar
+              variant="occupancy"
+              percentage={30}
+              label="Occupancy"
+              value="30%"
+              subtitle="6 of 20 units occupied"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Progress Bar - Different Sizes</h3>
+        <div className="space-y-6 max-w-4xl">
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step Progress (3 steps)</h4>
+            <ProgressBar
+              variant="step"
+              current={2}
+              total={3}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Step Progress (5 steps)</h4>
+            <ProgressBar
+              variant="step"
+              current={3}
+              total={5}
+            />
+          </div>
+          
+          <div>
+            <h4 className="text-h5 font-semibold text-primary mb-2">Custom Occupancy</h4>
+            <ProgressBar
+              variant="occupancy"
+              percentage={78}
+              label="Rent Collection"
+              value="78%"
+              subtitle="$15,600 of $20,000 collected"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -948,6 +1643,12 @@ export default function ComponentsLibrary() {
       case 'stat-cards': return renderStatCardExamples();
       case 'property-cards': return renderPropertyCardExamples();
       case 'dashboard-cards': return renderDashboardCardExamples();
+      case 'activity-feed': return renderActivityFeedExamples();
+      case 'alerts': return renderAlertExamples();
+      case 'documents': return renderDocumentExamples();
+      case 'user-card': return renderUserCardExamples();
+      case 'step-wizard': return renderStepWizardExamples();
+      case 'progress-bar': return renderProgressBarExamples();
       default: return renderHeaderExamples();
     }
   };

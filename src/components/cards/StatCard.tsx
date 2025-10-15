@@ -8,16 +8,22 @@ const trendingUpIcon = getAssetPath('bdfb842fd34b514bce485e4a545244e6ae290405');
 
 interface StatCardProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   value: string;
-  icon: string;
-  gradient: 'aqua-2' | 'brand-aurora' | 'info-flow' | 'ai-violet-2' | 'magenta-pop' | 'emerald-glow';
+  icon?: string;
+  gradient?: 'aqua-2' | 'brand-aurora' | 'info-flow' | 'ai-violet-2' | 'magenta-pop' | 'emerald-glow';
   badge?: {
     text: string;
     color: 'primary' | 'error' | 'success' | 'warning' | 'info';
     trend?: 'up' | 'down';
   };
   showActions?: boolean;
+  variant?: 'default' | 'simple' | 'complex' | 'minimal';
+  actionButton?: {
+    text: string;
+    onClick: () => void;
+  };
+  valueColor?: 'primary' | 'success' | 'error' | 'warning' | 'info';
 }
 
 export default function StatCard({ 
@@ -25,9 +31,12 @@ export default function StatCard({
   subtitle,
   value,
   icon,
-  gradient,
+  gradient = 'aqua-2',
   badge,
-  showActions = true
+  showActions = true,
+  variant = 'default',
+  actionButton,
+  valueColor = 'primary'
 }: StatCardProps) {
   const getGradientClass = (gradient: string) => {
     switch (gradient) {
@@ -70,22 +79,122 @@ export default function StatCard({
     }
   };
 
+  const getValueColorClass = (color: string) => {
+    switch (color) {
+      case 'success': return 'text-success-700';
+      case 'error': return 'text-error-500';
+      case 'warning': return 'text-warning-500';
+      case 'info': return 'text-info-500';
+      default: return 'text-primary';
+    }
+  };
+
+  const getIconBackgroundClass = (gradient: string) => {
+    switch (gradient) {
+      case 'brand-aurora': return 'bg-gradient-brand-aurora';
+      case 'info-flow': return 'bg-gradient-info-flow';
+      case 'ai-violet-2': return 'bg-gradient-ai-violet-2';
+      case 'magenta-pop': return 'bg-gradient-magenta-pop';
+      case 'emerald-glow': return 'bg-gradient-emerald-glow';
+      default: return 'bg-gradient-aqua-2';
+    }
+  };
+
+  // Render different variants
+  if (variant === 'simple') {
+    return (
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex gap-4 items-center p-6 relative rounded-xxl size-full" data-name="Simple Stat Card">
+        {icon && (
+          <div className={`${getIconBackgroundClass(gradient)} content-stretch flex items-center justify-center relative rounded-xxl shrink-0 size-10`} data-name="Icon Container">
+            <div className="relative shrink-0 size-5" data-name="Icon">
+              <img alt="" className="block max-w-none size-full" src={icon} />
+            </div>
+          </div>
+        )}
+        <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-46" data-name="Summary Card Content">
+          <p className="font-normal leading-4 relative shrink-0 text-tertiary text-sm w-full" data-name="Title">
+            {title}
+          </p>
+          <p className={`font-bold leading-8 relative shrink-0 text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
+            {value}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === 'complex') {
+    return (
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl size-full" data-name="Complex Stat Card">
+        <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full" data-name="Content Container">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-name="Header">
+            <p className="font-medium leading-5 not-italic relative shrink-0 text-primary text-sm tracking-[-0.15px] w-29" data-name="Title">
+              {title}
+            </p>
+            {icon && (
+              <div className="bg-overlays-info-20 content-stretch flex items-center justify-center relative rounded-xl shrink-0 size-10" data-name="Icon Container">
+                <div className="relative shrink-0 size-5" data-name="Icon">
+                  <img alt="" className="block max-w-none size-full" src={icon} />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="content-stretch flex flex-col gap-1 items-start justify-center not-italic relative shrink-0 w-full" data-name="Value Section">
+            <p className={`font-bold leading-8 min-w-full relative shrink-0 text-2xl tracking-[0.07px] w-min ${getValueColorClass(valueColor)}`} data-name="Value">
+              {value}
+            </p>
+            {subtitle && (
+              <p className="font-normal leading-normal relative shrink-0 text-tertiary text-xs text-nowrap whitespace-pre" data-name="Subtitle">
+                {subtitle}
+              </p>
+            )}
+          </div>
+        </div>
+        {actionButton && (
+          <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 w-full" data-name="Action Button">
+            <p className="basis-0 font-medium grow leading-5 min-h-px min-w-px not-italic relative shrink-0 text-primary text-sm text-center tracking-[-0.15px]" data-name="Button Text">
+              {actionButton.text}
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (variant === 'minimal') {
+    return (
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex gap-4 items-center p-6 relative rounded-xxl size-full" data-name="Minimal Stat Card">
+        <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-46" data-name="Summary Card Content">
+          <p className="font-normal leading-4 relative shrink-0 text-tertiary text-sm w-full" data-name="Title">
+            {title}
+          </p>
+          <p className={`font-bold leading-8 relative shrink-0 text-2xl w-full ${getValueColorClass(valueColor)}`} data-name="Value">
+            {value}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Default variant (original design)
   return (
     <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-full max-w-56 sm:w-56 md:w-64 lg:w-72 h-auto min-h-48 sm:h-60 shadow-card-small" data-name="Stat Card">
       {/* Header with Icon and Actions */}
       <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Card Header">
-        <div className={`${getGradientClass(gradient)} box-border content-stretch flex items-center justify-center relative rounded-xxl shadow-brand-purple-glow shrink-0 w-12 h-12`} data-name="Icon Container">
-          <img 
-            src={icon} 
-            alt="Stat Icon" 
-            className="w-icon-lg h-icon-lg" 
-            style={{ 
-              filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)',
-              display: 'block',
-              maxWidth: 'none'
-            }}
-          />
-        </div>
+        {icon && (
+          <div className={`${getGradientClass(gradient)} box-border content-stretch flex items-center justify-center relative rounded-xxl shadow-brand-purple-glow shrink-0 w-12 h-12`} data-name="Icon Container">
+            <img 
+              src={icon} 
+              alt="Stat Icon" 
+              className="w-icon-lg h-icon-lg" 
+              style={{ 
+                filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)',
+                display: 'block',
+                maxWidth: 'none'
+              }}
+            />
+          </div>
+        )}
         {showActions && (
           <div className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6" data-name="Actions Button">
             <ThemeIcon src={propertyActionsIcon} alt="Actions" size="sm" variant="default" />
@@ -95,12 +204,14 @@ export default function StatCard({
 
       {/* Content */}
       <div className="content-stretch flex flex-col items-start not-italic relative shrink-0 w-full" data-name="Card Content">
-        <p className="font-sans font-medium leading-h4 relative shrink-0 text-primary text-h4 w-full" data-name="Value">
+        <p className={`font-sans font-medium leading-h4 relative shrink-0 text-h4 w-full ${getValueColorClass(valueColor)}`} data-name="Value">
           {value}
         </p>
-        <p className="font-sans font-normal leading-small relative shrink-0 text-tertiary text-small w-full" data-name="Subtitle">
-          {subtitle}
-        </p>
+        {subtitle && (
+          <p className="font-sans font-normal leading-small relative shrink-0 text-tertiary text-small w-full" data-name="Subtitle">
+            {subtitle}
+          </p>
+        )}
       </div>
 
       {/* Badge */}

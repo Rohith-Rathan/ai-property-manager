@@ -104,13 +104,13 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
                   { 
                     id: 'duplicate-template',
                     label: 'Duplicate Template', 
-                    icon: '/assets/duplicate-icon.svg',
+                    icon: '/assets/view-details-icon.svg',
                     onClick: () => console.log('Duplicate template clicked') 
                   },
                   { 
                     id: 'delete-template',
                     label: 'Delete Template', 
-                    icon: '/assets/delete-icon.svg',
+                    icon: '/assets/delete-item-icon.svg',
                     onClick: () => console.log('Delete template clicked') 
                   }
                 ]}

@@ -33,3 +33,4 @@ export { Tabs } from './Tabs';
 export { TenantCard } from './TenantCard';
 export { InvoiceCard } from './InvoiceCard';
 export { TemplateCard } from './TemplateCard';
+export { Table } from './Table';

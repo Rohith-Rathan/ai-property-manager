@@ -75,7 +75,7 @@ export const InvoiceCard: React.FC<InvoiceCardProps> = ({
                   { 
                     id: 'download-invoice',
                     label: 'Download PDF', 
-                    icon: '/assets/download-icon.svg',
+                    icon: '/assets/view-details-icon.svg',
                     onClick: () => console.log('Download invoice clicked') 
                   },
                   { 
@@ -87,7 +87,7 @@ export const InvoiceCard: React.FC<InvoiceCardProps> = ({
                   { 
                     id: 'duplicate-invoice',
                     label: 'Duplicate Invoice', 
-                    icon: '/assets/duplicate-icon.svg',
+                    icon: '/assets/view-details-icon.svg',
                     onClick: () => console.log('Duplicate invoice clicked') 
                   }
                 ]}

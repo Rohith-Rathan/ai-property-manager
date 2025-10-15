@@ -31,6 +31,7 @@ import { Tabs } from '../components/ui/Tabs';
 import { TenantCard } from '../components/ui/TenantCard';
 import { InvoiceCard } from '../components/ui/InvoiceCard';
 import { TemplateCard } from '../components/ui/TemplateCard';
+import { Table } from '../components/ui/Table';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
 // Asset constants for examples
@@ -90,6 +91,7 @@ export default function ComponentsLibrary() {
     { id: 'tenant-card', label: 'Tenant Card', icon: '👤' },
     { id: 'invoice-card', label: 'Invoice Card', icon: '🧾' },
     { id: 'template-card', label: 'Template Card', icon: '📄' },
+    { id: 'table', label: 'Table', icon: '📊' }
   ];
 
   const renderHeaderExamples = () => (
@@ -344,8 +346,54 @@ export default function ComponentsLibrary() {
 
   const renderStatCardExamples = () => (
     <div className="space-y-8">
+      {/* New Variants Section */}
       <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Stat Cards Grid</h3>
+        <h3 className="text-h4 font-bold text-primary mb-4">New Stat Card Variants</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {/* Simple Variant */}
+          <div>
+            <h4 className="text-lg font-semibold text-primary mb-3">Simple Variant</h4>
+            <StatCard
+              title="Rent Paid"
+              value="$18,400"
+              icon="/assets/dollar-icon.svg"
+              gradient="ai-violet-2"
+              variant="simple"
+            />
+          </div>
+          
+          {/* Complex Variant */}
+          <div>
+            <h4 className="text-lg font-semibold text-primary mb-3">Complex Variant</h4>
+            <StatCard
+              title="Rent Collected vs Expected"
+              value="$7,050 / $14,000"
+              subtitle="50% received (MTD)"
+              icon="/assets/dollar-icon.svg"
+              variant="complex"
+              actionButton={{
+                text: "View Collection Report",
+                onClick: () => console.log('View collection report clicked')
+              }}
+            />
+          </div>
+          
+          {/* Minimal Variant */}
+          <div>
+            <h4 className="text-lg font-semibold text-primary mb-3">Minimal Variant</h4>
+            <StatCard
+              title="Collected"
+              value="$3,950"
+              variant="minimal"
+              valueColor="success"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Original Variants Section */}
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Original Stat Cards Grid</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           <StatCard
             title="3/10 Vacant Units"
@@ -387,6 +435,57 @@ export default function ComponentsLibrary() {
             gradient="emerald-glow"
             badge={{ text: "+12.5%", color: "info", trend: "up" }}
           />
+        </div>
+      </div>
+
+      {/* Variant Comparison */}
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Variant Comparison</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div>
+            <h4 className="text-sm font-medium text-tertiary mb-2">Default</h4>
+            <StatCard
+              title="Total Revenue"
+              subtitle="This month"
+              value="$12,450"
+              icon="/assets/dollar-icon.svg"
+              gradient="brand-aurora"
+              badge={{ text: "+5.2%", color: "success", trend: "up" }}
+              variant="default"
+            />
+          </div>
+          <div>
+            <h4 className="text-sm font-medium text-tertiary mb-2">Simple</h4>
+            <StatCard
+              title="Total Revenue"
+              value="$12,450"
+              icon="/assets/dollar-icon.svg"
+              gradient="brand-aurora"
+              variant="simple"
+            />
+          </div>
+          <div>
+            <h4 className="text-sm font-medium text-tertiary mb-2">Complex</h4>
+            <StatCard
+              title="Total Revenue"
+              value="$12,450"
+              subtitle="This month"
+              icon="/assets/dollar-icon.svg"
+              variant="complex"
+              actionButton={{
+                text: "View Details",
+                onClick: () => console.log('View details clicked')
+              }}
+            />
+          </div>
+          <div>
+            <h4 className="text-sm font-medium text-tertiary mb-2">Minimal</h4>
+            <StatCard
+              title="Total Revenue"
+              value="$12,450"
+              variant="minimal"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -3601,6 +3700,235 @@ export default function ComponentsLibrary() {
     </div>
   );
 
+  const renderTableExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Communication Campaigns Table</h3>
+        <div className="max-w-6xl">
+          <Table
+            title="Campaign Performance"
+            subtitle="Track your communication campaign metrics"
+            columns={[
+              { key: 'name', label: 'Name', width: '290px' },
+              { key: 'status', label: 'Status', align: 'center' },
+              { key: 'recipients', label: 'Recipients', align: 'center' },
+              { key: 'sent', label: 'Sent', align: 'center' },
+              { key: 'delivered', label: 'Delivered', align: 'center' },
+              { key: 'opened', label: 'Opened', align: 'center' },
+              { key: 'replied', label: 'Replied', align: 'center' },
+              { key: 'actions', label: 'Actions', width: '99px' }
+            ]}
+            rows={[
+              {
+                id: '1',
+                cells: {
+                  name: {
+                    type: 'text',
+                    value: 'February Rent Reminders'
+                  },
+                  status: {
+                    type: 'badge',
+                    value: 'Active',
+                    variant: 'success'
+                  },
+                  recipients: { type: 'number', value: '87' },
+                  sent: { type: 'number', value: '87' },
+                  delivered: { type: 'number', value: '85' },
+                  opened: { type: 'number', value: '72' },
+                  replied: { type: 'number', value: '12' },
+                  actions: {
+                    type: 'actions',
+                    value: '',
+                    actions: [
+                      {
+                        id: 'view',
+                        label: 'View Details',
+                        icon: '/assets/eye-icon.svg',
+                        onClick: () => console.log('View campaign details')
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                id: '2',
+                cells: {
+                  name: {
+                    type: 'text',
+                    value: 'Q1 Lease Renewals'
+                  },
+                  status: {
+                    type: 'badge',
+                    value: 'Sending',
+                    variant: 'info'
+                  },
+                  recipients: { type: 'number', value: '87' },
+                  sent: { type: 'number', value: '87' },
+                  delivered: { type: 'number', value: '85' },
+                  opened: { type: 'number', value: '72' },
+                  replied: { type: 'number', value: '12' },
+                  actions: {
+                    type: 'actions',
+                    value: '',
+                    actions: [
+                      {
+                        id: 'view',
+                        label: 'View Details',
+                        icon: '/assets/eye-icon.svg',
+                        onClick: () => console.log('View campaign details')
+                      }
+                    ]
+                  }
+                }
+              }
+            ]}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Tenant Selection Table</h3>
+        <div className="max-w-4xl">
+          <Table
+            title="Select Recipients"
+            subtitle="0 recipients selected"
+            selectable={true}
+            columns={[
+              { key: 'name', label: 'Name', width: '200px' },
+              { key: 'property', label: 'Property' },
+              { key: 'type', label: 'Type', width: '120px' },
+              { key: 'language', label: 'Language', width: '115px' }
+            ]}
+            rows={[
+              {
+                id: '1',
+                cells: {
+                  name: {
+                    type: 'avatar',
+                    value: 'John Smith',
+                    initials: 'JS'
+                  },
+                  property: {
+                    type: 'text',
+                    value: 'Sunset Apartments - 4B'
+                  },
+                  type: {
+                    type: 'badge',
+                    value: 'Tenant',
+                    variant: 'neutral'
+                  },
+                  language: {
+                    type: 'badge',
+                    value: 'EN',
+                    variant: 'info'
+                  }
+                }
+              },
+              {
+                id: '2',
+                cells: {
+                  name: {
+                    type: 'avatar',
+                    value: 'Maria Garcia',
+                    initials: 'MG'
+                  },
+                  property: {
+                    type: 'text',
+                    value: 'Oak Villa - 12A'
+                  },
+                  type: {
+                    type: 'badge',
+                    value: 'Tenant',
+                    variant: 'neutral'
+                  },
+                  language: {
+                    type: 'badge',
+                    value: 'EN',
+                    variant: 'info'
+                  }
+                }
+              }
+            ]}
+          />
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Payment History Table</h3>
+        <div className="max-w-2xl">
+          <Table
+            columns={[
+              { key: 'dueDate', label: 'Due Date' },
+              { key: 'status', label: 'Status', align: 'center' },
+              { key: 'amount', label: 'Rent Total', align: 'right' },
+              { key: 'actions', label: 'Actions', width: '120px' }
+            ]}
+            rows={[
+              {
+                id: '1',
+                cells: {
+                  dueDate: {
+                    type: 'date',
+                    value: '2025-10-10'
+                  },
+                  status: {
+                    type: 'badge',
+                    value: 'Upcoming',
+                    variant: 'neutral'
+                  },
+                  amount: {
+                    type: 'currency',
+                    value: '180.00'
+                  },
+                  actions: {
+                    type: 'text',
+                    value: '-'
+                  }
+                }
+              },
+              {
+                id: '2',
+                cells: {
+                  dueDate: {
+                    type: 'date',
+                    value: '2025-09-10'
+                  },
+                  status: {
+                    type: 'badge',
+                    value: 'Paid',
+                    variant: 'success'
+                  },
+                  amount: {
+                    type: 'currency',
+                    value: '180.00'
+                  },
+                  actions: {
+                    type: 'actions',
+                    value: '',
+                    actions: [
+                      {
+                        id: 'view',
+                        label: 'View Receipt',
+                        icon: '/assets/view-details-icon.svg',
+                        onClick: () => console.log('View receipt')
+                      },
+                      {
+                        id: 'download',
+                        label: 'Download',
+                        icon: '/assets/view-details-icon.svg',
+                        onClick: () => console.log('Download receipt')
+                      }
+                    ]
+                  }
+                }
+              }
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
   const renderTemplateCardExamples = () => (
     <div className="space-y-8">
       <div>
@@ -3714,6 +4042,7 @@ export default function ComponentsLibrary() {
       case 'invoice-card': return renderInvoiceCardExamples();
       case 'maintenance-ticket-card': return renderMaintenanceTicketCardExamples();
       case 'template-card': return renderTemplateCardExamples();
+      case 'table': return renderTableExamples();
       default: return renderHeaderExamples();
     }
   };

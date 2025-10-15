@@ -100,7 +100,7 @@ const UserCard: React.FC<UserCardProps> = ({
                 { 
                   id: 'call-user',
                   label: 'Call User', 
-                  icon: '/assets/phone-icon.svg',
+                  icon: '/assets/email-icon.svg',
                   onClick: () => console.log('Call user clicked') 
                 }
               ]}

@@ -1,5 +1,14 @@
 /* AI Property Manager Styles - Exact JSON Replication */
 
+/* ===== UTILITY CLASSES ===== */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 /* ===== TEXT STYLES ===== */
 .text-small {
   font-family: Inter;

@@ -1,5 +1,6 @@
 import React from 'react';
 import ThemeIcon from './ThemeIcon';
+import { MoreActionsButton } from './MoreActionsButton';
 
 interface UserCardProps {
   name: string;
@@ -7,6 +8,7 @@ interface UserCardProps {
   phone: string;
   initials: string;
   onMenuClick?: () => void;
+  onMoreActions?: () => void;
   className?: string;
 }
 
@@ -16,6 +18,7 @@ const UserCard: React.FC<UserCardProps> = ({
   phone,
   initials,
   onMenuClick,
+  onMoreActions,
   className = ''
 }) => {
   return (
@@ -72,20 +75,54 @@ const UserCard: React.FC<UserCardProps> = ({
             </div>
           </div>
           
-          {/* Menu Button */}
-          <div className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6">
-            <button 
-              onClick={onMenuClick}
-              className="block cursor-pointer relative shrink-0 w-4 h-4"
-            >
-              <ThemeIcon 
-                src="/assets/1f1cfc25eb2eae5af3fa71139b714c255a241a43.svg" 
-                alt="More options" 
-                size="sm" 
-                color="tertiary" 
-              />
-            </button>
-          </div>
+          {/* More Actions Button */}
+          {onMoreActions && (
+            <MoreActionsButton 
+              items={[
+                { 
+                  id: 'view-profile',
+                  label: 'View Profile', 
+                  icon: '/assets/view-details-icon.svg',
+                  onClick: onMoreActions 
+                },
+                { 
+                  id: 'edit-user',
+                  label: 'Edit User', 
+                  icon: '/assets/edit-property-icon.svg',
+                  onClick: () => console.log('Edit user clicked') 
+                },
+                { 
+                  id: 'send-email',
+                  label: 'Send Email', 
+                  icon: '/assets/email-icon.svg',
+                  onClick: () => console.log('Send email clicked') 
+                },
+                { 
+                  id: 'call-user',
+                  label: 'Call User', 
+                  icon: '/assets/phone-icon.svg',
+                  onClick: () => console.log('Call user clicked') 
+                }
+              ]}
+            />
+          )}
+          
+          {/* Fallback Menu Button */}
+          {!onMoreActions && onMenuClick && (
+            <div className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6">
+              <button 
+                onClick={onMenuClick}
+                className="block cursor-pointer relative shrink-0 w-4 h-4"
+              >
+                <ThemeIcon 
+                  src="/assets/1f1cfc25eb2eae5af3fa71139b714c255a241a43.svg" 
+                  alt="More options" 
+                  size="sm" 
+                  color="tertiary" 
+                />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

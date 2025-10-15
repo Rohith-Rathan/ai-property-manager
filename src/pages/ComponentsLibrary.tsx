@@ -20,6 +20,17 @@ import UserCard from '../components/ui/UserCard';
 import StepWizard from '../components/ui/StepWizard';
 import ProgressBar from '../components/ui/ProgressBar';
 import { Popup } from '../components/ui/Popup';
+import { MoreActions } from '../components/ui/MoreActions';
+import { MoreActionsButton } from '../components/ui/MoreActionsButton';
+import { AssetCard } from '../components/ui/AssetCard';
+import { MaintenanceTicketCard } from '../components/ui/MaintenanceTicketCard';
+import { KeyValuePair } from '../components/ui/KeyValuePair';
+import { BotConversation } from '../components/ui/BotConversation';
+import { Chip } from '../components/ui/Chip';
+import { Tabs } from '../components/ui/Tabs';
+import { TenantCard } from '../components/ui/TenantCard';
+import { InvoiceCard } from '../components/ui/InvoiceCard';
+import { TemplateCard } from '../components/ui/TemplateCard';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
 // Asset constants for examples
@@ -39,6 +50,15 @@ export default function ComponentsLibrary() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isRecordPaymentOpen, setIsRecordPaymentOpen] = useState(false);
   const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
+  
+  // MoreActions state variables
+  const [isSimpleActionsOpen, setIsSimpleActionsOpen] = useState(false);
+  const [isGradientActionsOpen, setIsGradientActionsOpen] = useState(false);
+  const [isPropertyActionsOpen, setIsPropertyActionsOpen] = useState(false);
+  const [selectedCheckboxOptions, setSelectedCheckboxOptions] = useState<string[]>(['swimming-pool']);
+  
+  // Tabs state variables
+  const [activeTab, setActiveTab] = useState('rent-history');
 
   const sections = [
     { id: 'header', label: 'Header', icon: '📋' },
@@ -47,7 +67,6 @@ export default function ComponentsLibrary() {
     { id: 'page-search', label: 'Page Search', icon: '🔍' },
     { id: 'list-view', label: 'List View', icon: '📋' },
     { id: 'form-fields', label: 'Form Fields', icon: '📝' },
-    { id: 'checkboxes', label: 'Checkboxes', icon: '☑️' },
     { id: 'buttons', label: 'Buttons', icon: '🔘' },
     { id: 'icons', label: 'Theme Icons', icon: '🎨' },
     { id: 'stat-cards', label: 'Stat Cards', icon: '📊' },
@@ -60,6 +79,17 @@ export default function ComponentsLibrary() {
     { id: 'step-wizard', label: 'Step Wizard', icon: '🧙‍♂️' },
     { id: 'progress-bar', label: 'Progress Bar', icon: '📊' },
     { id: 'popup', label: 'Popup', icon: '🪟' },
+    { id: 'more-actions', label: 'More Actions', icon: '⚡' },
+    { id: 'asset-card', label: 'Asset Card', icon: '🏠' },
+    { id: 'maintenance-ticket-card', label: 'Maintenance Ticket Card', icon: '🎫' },
+    { id: 'checkbox', label: 'Checkbox', icon: '☑️' },
+    { id: 'key-value-pair', label: 'Key Value Pair', icon: '🔑' },
+    { id: 'bot-conversation', label: 'Bot Conversation', icon: '🤖' },
+    { id: 'chips', label: 'Chips', icon: '🏷️' },
+    { id: 'tabs', label: 'Tabs', icon: '📑' },
+    { id: 'tenant-card', label: 'Tenant Card', icon: '👤' },
+    { id: 'invoice-card', label: 'Invoice Card', icon: '🧾' },
+    { id: 'template-card', label: 'Template Card', icon: '📄' },
   ];
 
   const renderHeaderExamples = () => (
@@ -269,6 +299,46 @@ export default function ComponentsLibrary() {
           />
         </div>
       </div>
+
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Header - Ticket Details</h3>
+        <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
+          <PageHeader
+            variant="maintenance"
+            title="Maintenance Ticket"
+            ticketId="MNT-001"
+            priority="urgent"
+            createdDate="Oct 6, 2025"
+            lastUpdatedDate="Oct 6, 2025"
+            onBack={() => console.log("Back clicked")}
+            secondaryAction={{
+              label: "Mark as Resolved",
+              onClick: () => console.log("Mark as Resolved clicked"),
+              icon: "/assets/checkmark-icon.svg"
+            }}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Header - Different Priority</h3>
+        <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
+          <PageHeader
+            variant="maintenance"
+            title="Maintenance Ticket"
+            ticketId="MNT-002"
+            priority="medium"
+            createdDate="Oct 5, 2025"
+            lastUpdatedDate="Oct 6, 2025"
+            onBack={() => console.log("Back clicked")}
+            secondaryAction={{
+              label: "Update Status",
+              onClick: () => console.log("Update Status clicked"),
+              icon: "/assets/edit-property-icon.svg"
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 
@@ -416,6 +486,23 @@ export default function ComponentsLibrary() {
           />
         </div>
       </div>
+      
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Search with Multiple Filters</h3>
+        <div className="max-w-4xl">
+          <PageSearch
+            variant="filters"
+            placeholder="Search assets..."
+            filters={[
+              { label: "All Categories", value: "categories" },
+              { label: "All Actors", value: "actors" },
+              { label: "All Risk Levels", value: "risk-levels", icon: "/assets/filter-icon.svg" }
+            ]}
+            onSearch={(query) => console.log('Search:', query)}
+            onFilterChange={(filterType, value) => console.log('Filter changed:', filterType, value)}
+          />
+        </div>
+      </div>
     </div>
   );
 
@@ -455,38 +542,99 @@ export default function ComponentsLibrary() {
         <h3 className="text-h4 font-bold text-primary mb-4">Activity Feed Items</h3>
         <div className="space-y-4 max-w-2xl">
           <ActivityFeedItem
-            title="Sent rent reminder to Tenant John Doe"
-            category="communication"
+            userName="Sarah Johnson"
+            userIcon="/assets/user-icon.svg"
+            action="Sent rent reminder"
+            description="Sent rent reminder to Tenant John Doe"
             timestamp="2 hours ago"
-            onClick={() => console.log('Communication activity clicked')}
+            badges={[
+              { label: "user action", variant: "neutral" },
+              { label: "tenant", variant: "neutral", icon: "/assets/user-icon.svg" }
+            ]}
+            priority="low"
+            metadata={[
+              { label: "Action", value: "SEND_REMINDER" },
+              { label: "Entity", value: "tenant" },
+              { label: "Time", value: "2024-02-05 14:30:25" }
+            ]}
+            onMoreActions={() => console.log('Communication activity clicked')}
           />
           
           <ActivityFeedItem
-            title="Auto-scheduled maintenance for HVAC repair"
-            category="maintenance"
+            userName="System AI"
+            userIcon="/assets/ai-efficiency-icon.svg"
+            action="Auto-scheduled maintenance"
+            description="Auto-scheduled maintenance for HVAC repair"
             timestamp="4 hours ago"
-            onClick={() => console.log('Maintenance activity clicked')}
+            badges={[
+              { label: "system action", variant: "info" },
+              { label: "maintenance", variant: "warning" }
+            ]}
+            priority="medium"
+            metadata={[
+              { label: "Action", value: "SCHEDULE_MAINTENANCE" },
+              { label: "Entity", value: "maintenance" },
+              { label: "Time", value: "2024-02-05 12:15:30" }
+            ]}
+            onMoreActions={() => console.log('Maintenance activity clicked')}
           />
           
           <ActivityFeedItem
-            title="Generated lease renewal letter"
-            category="lease"
+            userName="Property Manager"
+            userIcon="/assets/property-manager-icon.svg"
+            action="Generated lease renewal"
+            description="Generated lease renewal letter"
             timestamp="6 hours ago"
-            onClick={() => console.log('Lease activity clicked')}
+            badges={[
+              { label: "user action", variant: "neutral" },
+              { label: "lease", variant: "primary" }
+            ]}
+            priority="low"
+            metadata={[
+              { label: "Action", value: "GENERATE_LEASE" },
+              { label: "Entity", value: "lease" },
+              { label: "Time", value: "2024-02-05 10:45:15" }
+            ]}
+            onMoreActions={() => console.log('Lease activity clicked')}
           />
           
           <ActivityFeedItem
-            title="Processed rental payment for Unit 4B"
-            category="financial"
+            userName="Financial System"
+            userIcon="/assets/financial-icon.svg"
+            action="Processed payment"
+            description="Processed rental payment for Unit 4B"
             timestamp="1 day ago"
-            onClick={() => console.log('Financial activity clicked')}
+            badges={[
+              { label: "system action", variant: "success" },
+              { label: "payment", variant: "success" }
+            ]}
+            priority="low"
+            metadata={[
+              { label: "Action", value: "PROCESS_PAYMENT" },
+              { label: "Entity", value: "payment" },
+              { label: "Time", value: "2024-02-04 16:20:45" }
+            ]}
+            onMoreActions={() => console.log('Financial activity clicked')}
           />
           
           <ActivityFeedItem
-            title="AI analyzed property performance metrics"
-            category="system"
+            userName="AI Analytics"
+            userIcon="/assets/ai-efficiency-icon.svg"
+            action="Analyzed metrics"
+            description="AI analyzed property performance metrics"
             timestamp="2 days ago"
-            onClick={() => console.log('System activity clicked')}
+            badges={[
+              { label: "ai action", variant: "info" },
+              { label: "analytics", variant: "secondary" }
+            ]}
+            priority="low"
+            metadata={[
+              { label: "Action", value: "ANALYZE_METRICS" },
+              { label: "Entity", value: "analytics" },
+              { label: "Time", value: "2024-02-03 09:30:00" }
+            ]}
+            onMoreActions={() => console.log('System activity clicked')}
+            isLastItem={true}
           />
         </div>
       </div>
@@ -500,19 +648,41 @@ export default function ComponentsLibrary() {
           </div>
           <div className="space-y-3">
             <ActivityFeedItem
-              title="Sent rent reminder to Tenant John Doe"
-              category="communication"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Sent rent reminder"
+              description="Sent rent reminder to Tenant John Doe"
               timestamp="2 hours ago"
+              badges={[
+                { label: "ai action", variant: "info" },
+                { label: "communication", variant: "primary" }
+              ]}
+              priority="low"
             />
             <ActivityFeedItem
-              title="Auto-scheduled maintenance for HVAC repair"
-              category="maintenance"
+              userName="AI System"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Auto-scheduled maintenance"
+              description="Auto-scheduled maintenance for HVAC repair"
               timestamp="4 hours ago"
+              badges={[
+                { label: "ai action", variant: "info" },
+                { label: "maintenance", variant: "warning" }
+              ]}
+              priority="medium"
             />
             <ActivityFeedItem
-              title="Generated lease renewal letter"
-              category="lease"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Generated lease renewal"
+              description="Generated lease renewal letter"
               timestamp="6 hours ago"
+              badges={[
+                { label: "ai action", variant: "info" },
+                { label: "lease", variant: "primary" }
+              ]}
+              priority="low"
+              isLastItem={true}
             />
           </div>
         </div>
@@ -1302,115 +1472,6 @@ export default function ComponentsLibrary() {
     </div>
   );
 
-  const renderCheckboxExamples = () => (
-    <div className="space-y-8">
-      <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Checkbox Variants</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <h4 className="text-base font-semibold text-primary">Basic Checkboxes</h4>
-            <Checkbox
-              label="Default Checkbox"
-              checked={true}
-              onChange={() => {}}
-            />
-            <Checkbox
-              label="Unchecked"
-              checked={false}
-              onChange={() => {}}
-            />
-            <Checkbox
-              label="Disabled Checked"
-              checked={true}
-              onChange={() => {}}
-              disabled
-            />
-            <Checkbox
-              label="Disabled Unchecked"
-              checked={false}
-              onChange={() => {}}
-              disabled
-            />
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-base font-semibold text-primary">Color Variants</h4>
-            <Checkbox
-              label="Primary (Default)"
-              checked={true}
-              onChange={() => {}}
-              color="primary"
-            />
-            <Checkbox
-              label="Success"
-              checked={true}
-              onChange={() => {}}
-              color="success"
-            />
-            <Checkbox
-              label="Warning"
-              checked={true}
-              onChange={() => {}}
-              color="warning"
-            />
-            <Checkbox
-              label="Error"
-              checked={true}
-              onChange={() => {}}
-              color="error"
-            />
-          </div>
-        </div>
-      </div>
-      
-      <div>
-        <h3 className="text-h4 font-bold text-primary mb-4">Checkbox Sizes & Variants</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="space-y-4">
-            <h4 className="text-base font-semibold text-primary">Sizes</h4>
-            <Checkbox
-              label="Small"
-              checked={true}
-              onChange={() => {}}
-              size="sm"
-            />
-            <Checkbox
-              label="Medium"
-              checked={true}
-              onChange={() => {}}
-              size="md"
-            />
-            <Checkbox
-              label="Large"
-              checked={true}
-              onChange={() => {}}
-              size="lg"
-            />
-          </div>
-          <div className="space-y-4">
-            <h4 className="text-base font-semibold text-primary">Variants</h4>
-            <Checkbox
-              label="Default"
-              checked={true}
-              onChange={() => {}}
-              variant="default"
-            />
-            <Checkbox
-              label="Filled"
-              checked={true}
-              onChange={() => {}}
-              variant="filled"
-            />
-            <Checkbox
-              label="Outlined"
-              checked={true}
-              onChange={() => {}}
-              variant="outlined"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   const renderButtonExamples = () => (
     <div className="space-y-8">
@@ -1877,6 +1938,1750 @@ export default function ComponentsLibrary() {
     );
   };
 
+  const renderMoreActionsExamples = () => {
+
+    const simpleActions = [
+      {
+        id: 'view-details',
+        label: 'View Details',
+        icon: '/assets/view-details-icon.svg',
+        onClick: () => console.log('View Details clicked')
+      },
+      {
+        id: 'edit-property',
+        label: 'Edit Property',
+        icon: '/assets/edit-property-button-icon.svg',
+        onClick: () => console.log('Edit Property clicked')
+      },
+      {
+        id: 'add-unit',
+        label: 'Add Unit',
+        icon: '/assets/add-unit-icon.svg',
+        onClick: () => console.log('Add Unit clicked')
+      },
+      {
+        id: 'delete-property',
+        label: 'Delete Property',
+        icon: '/assets/delete-property-icon.svg',
+        onClick: () => console.log('Delete Property clicked'),
+        variant: 'danger' as const
+      }
+    ];
+
+    const gradientActions = [
+      {
+        id: 'add-property',
+        label: 'Add Property',
+        icon: '/assets/add-property-action-icon.svg',
+        onClick: () => console.log('Add Property clicked'),
+        gradient: 'info-flow' as const
+      },
+      {
+        id: 'add-tenant',
+        label: 'Add Tenant',
+        icon: '/assets/add-tenant-action-icon.svg',
+        onClick: () => console.log('Add Tenant clicked'),
+        gradient: 'magenta-pop' as const
+      },
+      {
+        id: 'schedule-maintenance',
+        label: 'Schedule Maintenance',
+        icon: '/assets/schedule-maintenance-action-icon.svg',
+        onClick: () => console.log('Schedule Maintenance clicked'),
+        gradient: 'brand-aurora' as const
+      },
+      {
+        id: 'request-rent',
+        label: 'Request Rent',
+        icon: '/assets/request-rent-action-icon.svg',
+        onClick: () => console.log('Request Rent clicked'),
+        gradient: 'ai-violet-2' as const
+      }
+    ];
+
+    const propertyActions = [
+      {
+        id: 'view-details',
+        label: 'View Details',
+        icon: '/assets/view-details-icon.svg',
+        onClick: () => console.log('View Details clicked')
+      },
+      {
+        id: 'edit-property',
+        label: 'Edit Property',
+        icon: '/assets/edit-property-button-icon.svg',
+        onClick: () => console.log('Edit Property clicked')
+      },
+      {
+        id: 'add-unit',
+        label: 'Add Unit',
+        icon: '/assets/add-unit-icon.svg',
+        onClick: () => console.log('Add Unit clicked')
+      },
+      {
+        id: 'delete-property',
+        label: 'Delete Property',
+        icon: '/assets/delete-property-icon.svg',
+        onClick: () => console.log('Delete Property clicked'),
+        variant: 'danger' as const
+      }
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">More Actions - Simple Variant</h3>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsSimpleActionsOpen(true)}
+                className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+              >
+                <span>⚡</span>
+                Open Simple Actions
+              </button>
+              <p className="text-tertiary text-sm">
+                Click to open simple actions dropdown with regular icons
+              </p>
+            </div>
+            
+            <MoreActions
+              items={simpleActions}
+              isOpen={isSimpleActionsOpen}
+              onClose={() => setIsSimpleActionsOpen(false)}
+              variant="simple"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">More Actions - Gradient Variant</h3>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsGradientActionsOpen(true)}
+                className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+              >
+                <span>⚡</span>
+                Open Gradient Actions
+              </button>
+              <p className="text-tertiary text-sm">
+                Click to open gradient actions dropdown with colored icon backgrounds
+              </p>
+            </div>
+            
+            <MoreActions
+              items={gradientActions}
+              isOpen={isGradientActionsOpen}
+              onClose={() => setIsGradientActionsOpen(false)}
+              variant="gradient"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">More Actions - Property Card Context</h3>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsPropertyActionsOpen(true)}
+                className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+              >
+                <span>⚡</span>
+                Open Property Actions
+              </button>
+              <p className="text-tertiary text-sm">
+                Property-specific actions with danger variant for delete
+              </p>
+            </div>
+            
+            <MoreActions
+              items={propertyActions}
+              isOpen={isPropertyActionsOpen}
+              onClose={() => setIsPropertyActionsOpen(false)}
+              variant="simple"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">More Actions Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Simple Variant</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Regular icons with text labels</li>
+                <li>• Hover effects and transitions</li>
+                <li>• Support for danger variant (red text)</li>
+                <li>• Disabled state support</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Gradient Variant</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Colored gradient icon backgrounds</li>
+                <li>• Multiple gradient options</li>
+                <li>• Shadow effects on icons</li>
+                <li>• White icons on colored backgrounds</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Reusable MoreActionsButton Component</h3>
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                <h4 className="font-semibold text-primary mb-2">Property Card Actions</h4>
+                <MoreActionsButton
+                  items={propertyActions}
+                  variant="simple"
+                  position="bottom-right"
+                  triggerIcon="/assets/more-options-icon.svg"
+                />
+              </div>
+              <p className="text-tertiary text-sm">
+                Ready-to-use button with property actions
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                <h4 className="font-semibold text-primary mb-2">Dashboard Actions</h4>
+                <MoreActionsButton
+                  items={gradientActions}
+                  variant="gradient"
+                  position="bottom-right"
+                  triggerIcon="/assets/more-options-icon.svg"
+                />
+              </div>
+              <p className="text-tertiary text-sm">
+                Ready-to-use button with gradient actions
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Available Gradients</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-info-flow rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span className="text-white text-xs">IF</span>
+              </div>
+              <p className="text-sm text-tertiary">Info Flow</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-magenta-pop rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span className="text-white text-xs">MP</span>
+              </div>
+              <p className="text-sm text-tertiary">Magenta Pop</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-brand-aurora rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span className="text-white text-xs">BA</span>
+              </div>
+              <p className="text-sm text-tertiary">Brand Aurora</p>
+            </div>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-ai-violet-2 rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span className="text-white text-xs">AV</span>
+              </div>
+              <p className="text-sm text-tertiary">AI Violet 2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+
+
+  const renderCheckboxExamples = () => {
+    const handleOptionChange = (option: string, checked: boolean) => {
+      if (checked) {
+        setSelectedCheckboxOptions(prev => [...prev, option]);
+      } else {
+        setSelectedCheckboxOptions(prev => prev.filter(item => item !== option));
+      }
+    };
+
+    return (
+      <div className="space-y-8">
+        {/* Traditional Checkboxes */}
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Traditional Checkboxes</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h4 className="text-base font-semibold text-primary">Basic Checkboxes</h4>
+              <Checkbox
+                label="Default Checkbox"
+                checked={true}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Unchecked"
+                checked={false}
+                onChange={() => {}}
+              />
+              <Checkbox
+                label="Disabled Checked"
+                checked={true}
+                onChange={() => {}}
+                disabled
+              />
+              <Checkbox
+                label="Disabled Unchecked"
+                checked={false}
+                onChange={() => {}}
+                disabled
+              />
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-base font-semibold text-primary">Color Variants</h4>
+              <Checkbox
+                label="Primary (Default)"
+                checked={true}
+                onChange={() => {}}
+                color="primary"
+              />
+              <Checkbox
+                label="Success"
+                checked={true}
+                onChange={() => {}}
+                color="success"
+              />
+              <Checkbox
+                label="Warning"
+                checked={true}
+                onChange={() => {}}
+                color="warning"
+              />
+              <Checkbox
+                label="Error"
+                checked={true}
+                onChange={() => {}}
+                color="error"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Checkbox Sizes & Variants</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-4">
+              <h4 className="text-base font-semibold text-primary">Sizes</h4>
+              <Checkbox
+                label="Small"
+                checked={true}
+                onChange={() => {}}
+                size="sm"
+              />
+              <Checkbox
+                label="Medium"
+                checked={true}
+                onChange={() => {}}
+                size="md"
+              />
+              <Checkbox
+                label="Large"
+                checked={true}
+                onChange={() => {}}
+                size="lg"
+              />
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-base font-semibold text-primary">Variants</h4>
+              <Checkbox
+                label="Default"
+                checked={true}
+                onChange={() => {}}
+                variant="default"
+              />
+              <Checkbox
+                label="Filled"
+                checked={true}
+                onChange={() => {}}
+                variant="filled"
+              />
+              <Checkbox
+                label="Outlined"
+                checked={true}
+                onChange={() => {}}
+                variant="outlined"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Button Variant Checkboxes */}
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Button Variant Checkboxes</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-base font-semibold text-primary mb-4">Button Variant States</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+                <Checkbox
+                  label="Swimming Pool"
+                  checked={false}
+                  variant="button"
+                  onChange={(checked) => console.log('Swimming Pool:', checked)}
+                />
+                <Checkbox
+                  label="Swimming Pool"
+                  checked={true}
+                  variant="button"
+                  onChange={(checked) => console.log('Swimming Pool:', checked)}
+                />
+                <Checkbox
+                  label="Swimming Pool"
+                  checked={false}
+                  variant="button"
+                  disabled={true}
+                  onChange={(checked) => console.log('Swimming Pool:', checked)}
+                />
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-base font-semibold text-primary mb-4">Multiple Button Options</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl">
+                <Checkbox
+                  label="Swimming Pool"
+                  checked={selectedCheckboxOptions.includes('swimming-pool')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('swimming-pool', checked)}
+                />
+                <Checkbox
+                  label="Gym"
+                  checked={selectedCheckboxOptions.includes('gym')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('gym', checked)}
+                />
+                <Checkbox
+                  label="Parking"
+                  checked={selectedCheckboxOptions.includes('parking')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('parking', checked)}
+                />
+                <Checkbox
+                  label="Security"
+                  checked={selectedCheckboxOptions.includes('security')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('security', checked)}
+                />
+                <Checkbox
+                  label="Elevator"
+                  checked={selectedCheckboxOptions.includes('elevator')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('elevator', checked)}
+                />
+                <Checkbox
+                  label="WiFi"
+                  checked={selectedCheckboxOptions.includes('wifi')}
+                  variant="button"
+                  onChange={(checked) => handleOptionChange('wifi', checked)}
+                />
+              </div>
+              <div className="mt-4 p-4 bg-paper-paper-elevation-2 rounded-lg">
+                <p className="text-sm text-tertiary">
+                  Selected options: {selectedCheckboxOptions.length > 0 ? selectedCheckboxOptions.join(', ') : 'None'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Checkbox Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Traditional Checkboxes</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Checkmark icon when selected</li>
+                <li>• Multiple sizes (sm, md, lg)</li>
+                <li>• Color variants (primary, success, warning, error)</li>
+                <li>• Visual variants (default, filled, outlined)</li>
+                <li>• Disabled state support</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Button Variant</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Button-style appearance</li>
+                <li>• Click to toggle selection state</li>
+                <li>• Keyboard navigation (Enter/Space)</li>
+                <li>• Accessibility support (ARIA attributes)</li>
+                <li>• Hover effects and theme support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderKeyValuePairExamples = () => {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Key Value Pair - Horizontal Layout</h3>
+          <div className="space-y-4">
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Property"
+                value="Sunset Apartments"
+                icon="/assets/878cd835ab10ca42796d3d46ca1955b32ffb2ff2.svg"
+                layout="horizontal"
+                labelColor="primary"
+                valueColor="primary"
+              />
+            </div>
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Asset Name"
+                value="Refrigerator - Kitchen"
+                layout="horizontal"
+                labelColor="primary"
+                valueColor="primary"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Key Value Pair - Vertical Layout</h3>
+          <div className="space-y-4">
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Property"
+                value="Sunset Apartments"
+                icon="/assets/add-property-icon.svg"
+                layout="vertical"
+                labelColor="tertiary"
+                valueColor="primary"
+              />
+            </div>
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Manufacturer"
+                value="Carrier"
+                layout="vertical"
+                labelColor="tertiary"
+                valueColor="primary"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Key Value Pair - Different Color Combinations</h3>
+          <div className="space-y-4">
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Status"
+                value="Active"
+                layout="horizontal"
+                labelColor="tertiary"
+                valueColor="primary"
+              />
+            </div>
+            <div className="w-full max-w-md">
+              <KeyValuePair
+                label="Last Updated"
+                value="2 hours ago"
+                layout="horizontal"
+                labelColor="tertiary"
+                valueColor="tertiary"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Key Value Pair - Multiple Items</h3>
+          <div className="space-y-4">
+            <div className="w-full max-w-md space-y-3">
+              <KeyValuePair
+                label="Property"
+                value="Sunset Apartments"
+                icon="/assets/878cd835ab10ca42796d3d46ca1955b32ffb2ff2.svg"
+                layout="horizontal"
+                labelColor="primary"
+                valueColor="primary"
+              />
+              <KeyValuePair
+                label="Unit"
+                value="Apt 201"
+                layout="horizontal"
+                labelColor="tertiary"
+                valueColor="primary"
+              />
+              <KeyValuePair
+                label="Tenant"
+                value="John Smith"
+                layout="horizontal"
+                labelColor="tertiary"
+                valueColor="primary"
+              />
+              <KeyValuePair
+                label="Lease End"
+                value="Dec 31, 2024"
+                layout="horizontal"
+                labelColor="tertiary"
+                valueColor="tertiary"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Key Value Pair Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Layout Options</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Horizontal: Label and value side by side</li>
+                <li>• Vertical: Label above value</li>
+                <li>• Optional icon support</li>
+                <li>• Flexible width and spacing</li>
+                <li>• Responsive design</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Styling Options</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Label color variants (primary/tertiary)</li>
+                <li>• Value color variants (primary/tertiary)</li>
+                <li>• Theme-aware colors</li>
+                <li>• Consistent typography</li>
+                <li>• Icon integration with ThemeIcon</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderBotConversationExamples = () => {
+    const sampleMessages = [
+      {
+        id: '1',
+        type: 'user' as const,
+        content: 'Water heater not heating properly',
+        userInitials: 'JD'
+      },
+      {
+        id: '2',
+        type: 'bot' as const,
+        content: 'Got it, Thomas. You\'re referring to your unit at Lakeside Villas, Villa 7B, right?\n\nJust confirming — is this about your water heater not providing hot water?'
+      },
+      {
+        id: '3',
+        type: 'user' as const,
+        content: 'Yes, no hot water since morning.',
+        userInitials: 'JD'
+      },
+      {
+        id: '4',
+        type: 'bot' as const,
+        content: 'Thanks for confirming. Could you please tell me — is any water leaking from it, or is it just not heating?\n\nYou can also send a quick photo of the unit or the control panel if possible. 📸'
+      },
+      {
+        id: '5',
+        type: 'user' as const,
+        content: 'No leaks. Here\'s a photo.\n\n(📷 5 images)',
+        userInitials: 'JD',
+        attachments: [
+          { type: 'image' as const, count: 5, label: '📷 5 images' }
+        ]
+      },
+      {
+        id: '6',
+        type: 'bot' as const,
+        content: 'Thank you, Thomas.\n\nI\'ve created a maintenance ticket for this issue:\n\n"Water heater not heating properly."\n\n**Ticket ID:** MNT-001\n**Priority:** Urgent (24h SLA) 🔴\n\nI\'ll check your appliance warranty and find an available technician.'
+      },
+      {
+        id: '7',
+        type: 'user' as const,
+        content: 'Thank you!',
+        userInitials: 'JD'
+      },
+      {
+        id: '8',
+        type: 'bot' as const,
+        content: 'Your water heater\'s warranty has expired, so we\'ll send one of our partner vendors (AquaPro Plumbing Services).\n\nThe next available slots are:\n\n1. **Today, 5–7 PM**\n2. **Tomorrow, 9–11 AM**\n3. **Tomorrow, 1–3 PM**\n\nWhich time works best for you?'
+      },
+      {
+        id: '9',
+        type: 'user' as const,
+        content: 'Option 2 please — tomorrow 9–11 AM.',
+        userInitials: 'JD'
+      },
+      {
+        id: '10',
+        type: 'bot' as const,
+        content: 'Perfect 👍\n\nI\'ve scheduled AquaPro Plumbing Services to visit **tomorrow (Oct 7) between 9:00–11:00 AM**.\n\nYou\'ll receive a reminder 1 hour before the technician arrives.'
+      },
+      {
+        id: '11',
+        type: 'user' as const,
+        content: 'Perfect!',
+        userInitials: 'JD'
+      },
+      {
+        id: '12',
+        type: 'bot' as const,
+        content: '🔔 Reminder: The technician from **AquaPro Plumbing Services** will arrive between **9–11 AM today** for your water heater repair.\n\nPlease make sure someone is home to provide access.'
+      }
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Bot Conversation - Maintenance Support</h3>
+          <div className="w-full max-w-4xl">
+            <BotConversation
+              title="AI Conversation"
+              messages={sampleMessages}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Bot Conversation Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Message Types</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• User messages: Right-aligned with gray background</li>
+                <li>• Bot messages: Left-aligned with gradient background</li>
+                <li>• User avatars: Gradient background with initials</li>
+                <li>• Bot avatars: AI icon with brand gradient</li>
+                <li>• Rich text formatting support</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Features</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Scrollable conversation area</li>
+                <li>• Message attachments (images, files)</li>
+                <li>• Bold text formatting (**text**)</li>
+                <li>• Line breaks and spacing</li>
+                <li>• Emoji support</li>
+                <li>• Responsive design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderChipExamples = () => {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Chip Types - Filled, Low-Hue, Low-Hue with Border</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Filled Chips (Solid Background)</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Error" variant="error" type="filled" />
+                <Chip label="Success" variant="success" type="filled" />
+                <Chip label="Warning" variant="warning" type="filled" />
+                <Chip label="Info" variant="info" type="filled" />
+                <Chip label="Primary" variant="primary" type="filled" />
+                <Chip label="Secondary" variant="secondary" type="filled" />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Low-Hue Chips (Light Background)</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Warranty Expired" variant="error" type="low-hue" />
+                <Chip label="Paid" variant="success" type="low-hue" />
+                <Chip label="Pending" variant="warning" type="low-hue" />
+                <Chip label="Draft" variant="info" type="low-hue" />
+                <Chip label="Featured" variant="primary" type="low-hue" />
+                <Chip label="Fixture" variant="secondary" type="low-hue" />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Low-Hue with Border Chips</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Payment Failed" variant="error" type="low-hue-border" />
+                <Chip label="Completed" variant="success" type="low-hue-border" />
+                <Chip label="Overdue" variant="warning" type="low-hue-border" />
+                <Chip label="In Review" variant="info" type="low-hue-border" />
+                <Chip label="Premium" variant="primary" type="low-hue-border" />
+                <Chip label="Appliance" variant="secondary" type="low-hue-border" />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Icon + Text Chips (When Icons Are Needed)</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip 
+                  label="AI" 
+                  variant="neutral" 
+                  type="low-hue-border" 
+                  icon="/assets/ai-efficiency-icon.svg"
+                />
+                <Chip 
+                  label="Maintenance" 
+                  variant="error" 
+                  type="low-hue-border" 
+                  icon="/assets/maintenance-icon.svg"
+                />
+                <Chip 
+                  label="Completed" 
+                  variant="success" 
+                  type="low-hue-border" 
+                  icon="/assets/save-icon.svg"
+                />
+                <Chip 
+                  label="In Progress" 
+                  variant="info" 
+                  type="low-hue-border" 
+                  icon="/assets/property-actions-icon.svg"
+                />
+                <Chip 
+                  label="Pending" 
+                  variant="warning" 
+                  type="low-hue-border" 
+                  icon="/assets/schedule-maintenance-action-icon.svg"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Neutral Chips (New Variant)</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Neutral" variant="neutral" type="filled" />
+                <Chip label="Default" variant="neutral" type="low-hue" />
+                <Chip label="Standard" variant="neutral" type="low-hue-border" />
+                <Chip 
+                  label="AI" 
+                  variant="neutral" 
+                  type="low-hue-border" 
+                  icon="/assets/ai-efficiency-icon.svg"
+                />
+                <Chip 
+                  label="General" 
+                  variant="neutral" 
+                  type="low-hue" 
+                  icon="/assets/properties-icon.svg"
+                />
+                <Chip 
+                  label="Default" 
+                  variant="neutral" 
+                  type="filled" 
+                  icon="/assets/document-files-icon.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Chip Sizes</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Small Chips (Default)</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Small Error" variant="error" type="filled" size="sm" />
+                <Chip label="Small Success" variant="success" type="low-hue" size="sm" />
+                <Chip label="Small Warning" variant="warning" type="low-hue-border" size="sm" />
+                <Chip label="Small Info" variant="info" type="filled" size="sm" />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Medium Chips</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip label="Medium Error" variant="error" type="filled" size="md" />
+                <Chip label="Medium Success" variant="success" type="low-hue" size="md" />
+                <Chip label="Medium Warning" variant="warning" type="low-hue-border" size="md" />
+                <Chip label="Medium Info" variant="info" type="filled" size="md" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Interactive Chips</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Clickable Chips</h4>
+              <div className="flex flex-wrap gap-3">
+                <Chip 
+                  label="Clickable Error" 
+                  variant="error" 
+                  type="filled"
+                  onClick={() => console.log("Error chip clicked")} 
+                />
+                <Chip 
+                  label="Clickable Success" 
+                  variant="success" 
+                  type="low-hue"
+                  onClick={() => console.log("Success chip clicked")} 
+                />
+                <Chip 
+                  label="Clickable Warning" 
+                  variant="warning" 
+                  type="low-hue-border"
+                  onClick={() => console.log("Warning chip clicked")} 
+                />
+                <Chip 
+                  label="Clickable Info" 
+                  variant="info" 
+                  type="filled"
+                  onClick={() => console.log("Info chip clicked")} 
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Chip Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Types</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Filled:</strong> Solid background with white text</li>
+                <li>• <strong>Low-Hue:</strong> Light background with dark text</li>
+                <li>• <strong>Low-Hue-Border:</strong> Light background with border and dark text</li>
+              </ul>
+              <h4 className="font-semibold text-primary mb-3 mt-4">Variants</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• Error, Success, Warning, Info</li>
+                <li>• Primary, Secondary, Tertiary, Gray</li>
+                <li>• <strong>Neutral:</strong> Text-primary color for general use</li>
+                <li>• All variants work with all types</li>
+              </ul>
+              <h4 className="font-semibold text-primary mb-3 mt-4">Icon Support</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Icon + Text:</strong> Optional icon with text label</li>
+                <li>• <strong>Icon Size:</strong> 12px (w-3 h-3) for proper scaling</li>
+                <li>• <strong>Icon Variants:</strong> AI, Vendor, Urgent, Completed, etc.</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Features</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Full radius:</strong> All chips use rounded-full</li>
+                <li>• Two sizes: Small (default) and Medium</li>
+                <li>• Optional click handler for interactive chips</li>
+                <li>• Hover effects for clickable chips</li>
+                <li>• Theme-aware colors and typography</li>
+                <li>• Flexible content and responsive design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderTabsExamples = () => {
+    const tenantTabs = [
+      { id: 'lease-details', label: 'Lease Details' },
+      { id: 'rent-history', label: 'Rent History' },
+      { id: 'co-tenants', label: 'Co-Tenants', count: 3 },
+      { id: 'maintenance-tickets', label: 'Maintenance Tickets' },
+      { id: 'communication-history', label: 'Communication History' },
+    ];
+
+    const propertyTabs = [
+      { id: 'overview', label: 'Overview' },
+      { id: 'units', label: 'Units', count: 12 },
+      { id: 'tenants', label: 'Tenants', count: 8 },
+      { id: 'maintenance', label: 'Maintenance' },
+      { id: 'financials', label: 'Financials' },
+      { id: 'documents', label: 'Documents' },
+    ];
+
+    const simpleTabs = [
+      { id: 'tab1', label: 'Tab 1' },
+      { id: 'tab2', label: 'Tab 2' },
+      { id: 'tab3', label: 'Tab 3' },
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Tabs Component - Flexible & Responsive</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Tenant Management Tabs (5 tabs)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <Tabs 
+                  tabs={tenantTabs} 
+                  activeTab={activeTab}
+                  onTabChange={setActiveTab}
+                />
+                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-tertiary">
+                    Active Tab: <strong>{activeTab}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Property Management Tabs (6 tabs)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <Tabs 
+                  tabs={propertyTabs} 
+                  activeTab="units"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Simple Tabs (3 tabs)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <Tabs 
+                  tabs={simpleTabs} 
+                  activeTab="tab2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Responsive Behavior</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Content-Based Width (Default)</h4>
+              <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                <p className="text-sm text-tertiary mb-3">Container adapts to content, not full width</p>
+                <Tabs 
+                  tabs={tenantTabs} 
+                  activeTab="rent-history"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Mobile View with Horizontal Scrolling</h4>
+              <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                <p className="text-sm text-tertiary mb-3">Scrollable tabs for mobile - industry standard</p>
+                <div className="max-w-xs border border-gray-200 rounded-lg p-2">
+                  <Tabs 
+                    tabs={propertyTabs} 
+                    activeTab="units"
+                    scrollable={true}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Many Tabs with Scrolling</h4>
+              <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                <p className="text-sm text-tertiary mb-3">When tabs exceed container width, enable scrolling</p>
+                <div className="max-w-sm border border-gray-200 rounded-lg p-2">
+                  <Tabs 
+                    tabs={[
+                      { id: 'tab1', label: 'Very Long Tab Name' },
+                      { id: 'tab2', label: 'Another Long Tab' },
+                      { id: 'tab3', label: 'Short' },
+                      { id: 'tab4', label: 'Medium Length Tab' },
+                      { id: 'tab5', label: 'Extra Long Tab Name Here' },
+                      { id: 'tab6', label: 'Final Tab' },
+                    ]} 
+                    activeTab="tab2"
+                    scrollable={true}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Tab Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Design</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Full radius:</strong> Rounded-full container and tabs</li>
+                <li>• <strong>Gradient background:</strong> Light brand gradient container</li>
+                <li>• <strong>Active state:</strong> Brand gradient with white text</li>
+                <li>• <strong>Inactive state:</strong> Transparent with primary text</li>
+                <li>• <strong>Hover effects:</strong> Subtle background on hover</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Functionality</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Content-based width:</strong> Container adapts to tab content</li>
+                <li>• <strong>Horizontal scrolling:</strong> Mobile-friendly scrollable tabs</li>
+                <li>• <strong>Count support:</strong> Optional count display (e.g., "Co-Tenants (3)")</li>
+                <li>• <strong>Controlled/Uncontrolled:</strong> Support both modes</li>
+                <li>• <strong>Industry standard:</strong> Mobile tabs with adopted sizes</li>
+                <li>• <strong>Accessible:</strong> Proper button semantics</li>
+                <li>• <strong>Theme-aware:</strong> Uses design system colors</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderTenantCardExamples = () => {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Tenant Card Component - Comprehensive Tenant Information</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Complete Tenant Card (Figma Design)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <div className="max-w-md">
+                  <TenantCard
+                    userInitials="WC"
+                    userName="Walter Carter"
+                    propertyName="Sunset Apartments"
+                    unitName="Unit 001"
+                    badges={[
+                      { label: 'Active', variant: 'success' },
+                      { label: 'Rent due', variant: 'error' }
+                    ]}
+                    document={{
+                      title: 'Lease-21365465',
+                      subtitle: 'Expires on 01-10-2026 (800 days)'
+                    }}
+                    additionalInfo={{
+                      text: '1 active maintenance request'
+                    }}
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Tenant Card Variations</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Basic Tenant Info</h5>
+                  <TenantCard
+                    userInitials="JD"
+                    userName="John Doe"
+                    propertyName="Riverside Complex"
+                    unitName="Apt 205"
+                    badges={[
+                      { label: 'Active', variant: 'success' }
+                    ]}
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">With Document Info</h5>
+                  <TenantCard
+                    userInitials="SM"
+                    userName="Sarah Miller"
+                    propertyName="Garden View"
+                    unitName="Unit 12B"
+                    badges={[
+                      { label: 'Active', variant: 'success' },
+                      { label: 'Payment pending', variant: 'warning' }
+                    ]}
+                    document={{
+                      title: 'Lease-98765432',
+                      subtitle: 'Expires on 15-03-2025 (150 days)'
+                    }}
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">With Additional Info</h5>
+                  <TenantCard
+                    userInitials="AB"
+                    userName="Alice Brown"
+                    propertyName="Downtown Lofts"
+                    unitName="Loft 301"
+                    badges={[
+                      { label: 'Active', variant: 'success' }
+                    ]}
+                    additionalInfo={{
+                      text: '3 maintenance requests completed this month'
+                    }}
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Multiple Status Badges</h5>
+                  <TenantCard
+                    userInitials="MJ"
+                    userName="Michael Johnson"
+                    propertyName="Hillside Manor"
+                    unitName="Villa 5"
+                    badges={[
+                      { label: 'Active', variant: 'success' },
+                      { label: 'Rent overdue', variant: 'error' },
+                      { label: 'Maintenance', variant: 'warning' }
+                    ]}
+                    document={{
+                      title: 'Lease-45678901',
+                      subtitle: 'Expires on 30-12-2024 (45 days)'
+                    }}
+                    additionalInfo={{
+                      text: '2 pending maintenance requests'
+                    }}
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Tenant Card Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Design</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>User Avatar:</strong> Gradient background with initials</li>
+                <li>• <strong>Property Info:</strong> Icon with property and unit details</li>
+                <li>• <strong>Status Badges:</strong> Color-coded status indicators</li>
+                <li>• <strong>Document Section:</strong> Optional lease/document info</li>
+                <li>• <strong>Additional Info:</strong> Optional maintenance/other details</li>
+                <li>• <strong>Actions:</strong> More actions button for additional options</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Functionality</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Flexible Content:</strong> All sections are optional</li>
+                <li>• <strong>Badge Variants:</strong> Success, Error, Warning, Info</li>
+                <li>• <strong>Interactive Elements:</strong> More actions and document clicks</li>
+                <li>• <strong>Responsive Design:</strong> Adapts to container width</li>
+                <li>• <strong>Theme-aware:</strong> Uses design system colors</li>
+                <li>• <strong>Accessible:</strong> Proper alt texts and button semantics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderInvoiceCardExamples = () => {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Invoice Card Component - Financial Management</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Complete Invoice Card (Figma Design)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <div className="max-w-md">
+                  <InvoiceCard
+                    invoiceId="INV-2024-001"
+                    status={{ label: 'Partial', variant: 'warning' }}
+                    tenantName="John Smith"
+                    propertyName="Sunset Apartments"
+                    unitName="4B"
+                    dueDate="2024-02-01"
+                    totalAmount="$1950"
+                    paidAmount="$1850"
+                    balance="$100"
+                    onView={() => console.log('View clicked')}
+                    onRecordPayment={() => console.log('Record Payment clicked')}
+                    onSendReminder={() => console.log('Send Reminder clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Invoice Card Variations</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Paid Invoice</h5>
+                  <InvoiceCard
+                    invoiceId="INV-2024-002"
+                    status={{ label: 'Paid', variant: 'success' }}
+                    tenantName="Sarah Johnson"
+                    propertyName="Riverside Complex"
+                    unitName="Apt 205"
+                    dueDate="2024-01-15"
+                    totalAmount="$1200"
+                    paidAmount="$1200"
+                    balance="$0"
+                    onView={() => console.log('View clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Overdue Invoice</h5>
+                  <InvoiceCard
+                    invoiceId="INV-2024-003"
+                    status={{ label: 'Overdue', variant: 'error' }}
+                    tenantName="Michael Brown"
+                    propertyName="Garden View"
+                    unitName="Unit 12B"
+                    dueDate="2023-12-01"
+                    totalAmount="$800"
+                    paidAmount="$0"
+                    balance="$800"
+                    onView={() => console.log('View clicked')}
+                    onRecordPayment={() => console.log('Record Payment clicked')}
+                    onSendReminder={() => console.log('Send Reminder clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Pending Invoice</h5>
+                  <InvoiceCard
+                    invoiceId="INV-2024-004"
+                    status={{ label: 'Pending', variant: 'info' }}
+                    tenantName="Alice Wilson"
+                    propertyName="Downtown Lofts"
+                    unitName="Loft 301"
+                    dueDate="2024-03-01"
+                    totalAmount="$1500"
+                    paidAmount="$0"
+                    balance="$1500"
+                    onView={() => console.log('View clicked')}
+                    onRecordPayment={() => console.log('Record Payment clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Large Amount Invoice</h5>
+                  <InvoiceCard
+                    invoiceId="INV-2024-005"
+                    status={{ label: 'Partial', variant: 'warning' }}
+                    tenantName="David Miller"
+                    propertyName="Hillside Manor"
+                    unitName="Villa 5"
+                    dueDate="2024-02-15"
+                    totalAmount="$5000"
+                    paidAmount="$3000"
+                    balance="$2000"
+                    onView={() => console.log('View clicked')}
+                    onRecordPayment={() => console.log('Record Payment clicked')}
+                    onSendReminder={() => console.log('Send Reminder clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Invoice Card Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Design</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Invoice Header:</strong> ID with status badge</li>
+                <li>• <strong>Tenant Info:</strong> Name and property/unit details</li>
+                <li>• <strong>Financial Grid:</strong> Due date, total, paid, balance</li>
+                <li>• <strong>Action Buttons:</strong> View, Record Payment, Send Reminder</li>
+                <li>• <strong>Color Coding:</strong> Green for paid, red for balance</li>
+                <li>• <strong>Status Badges:</strong> Paid, Partial, Overdue, Pending</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Functionality</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Flexible Actions:</strong> All buttons are optional</li>
+                <li>• <strong>Status Variants:</strong> Success, Error, Warning, Info</li>
+                <li>• <strong>Financial Display:</strong> Clear amount breakdown</li>
+                <li>• <strong>Responsive Design:</strong> Adapts to container width</li>
+                <li>• <strong>Theme-aware:</strong> Uses design system colors</li>
+                <li>• <strong>Built with existing components:</strong> Card, Chip, Buttons</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderMaintenanceTicketCardExamples = () => {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Ticket Card Component - Maintenance Management</h3>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Complete Maintenance Ticket Card (Figma Design)</h4>
+              <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+                <div className="max-w-md">
+                  <MaintenanceTicketCard
+                    ticketId="MNT-001"
+                    propertyName="Sunset Apartments - Unit 001"
+                    equipmentType="Water heater"
+                    badges={[
+                      { label: 'AI', variant: 'secondary', icon: '/assets/ai-efficiency-icon.svg' },
+                      { label: 'Vendor Assigned', variant: 'primary' },
+                      { label: 'Urgent', variant: 'error' }
+                    ]}
+                    description="Water heater not heating properly"
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-primary mb-3">Maintenance Ticket Card Variations</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Basic Maintenance Ticket</h5>
+                  <MaintenanceTicketCard
+                    ticketId="MNT-002"
+                    propertyName="Riverside Complex - Apt 205"
+                    equipmentType="HVAC System"
+                    badges={[
+                      { label: 'Pending', variant: 'warning' }
+                    ]}
+                    description="Air conditioning not working properly"
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Completed Ticket</h5>
+                  <MaintenanceTicketCard
+                    ticketId="MNT-003"
+                    propertyName="Garden View - Unit 12B"
+                    equipmentType="Plumbing"
+                    badges={[
+                      { label: 'Completed', variant: 'success' },
+                      { label: 'Vendor Assigned', variant: 'primary' }
+                    ]}
+                    description="Leaky faucet in kitchen sink"
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">AI-Generated Ticket</h5>
+                  <MaintenanceTicketCard
+                    ticketId="MNT-004"
+                    propertyName="Downtown Lofts - Loft 301"
+                    equipmentType="Electrical"
+                    badges={[
+                      { label: 'AI', variant: 'secondary', icon: '/assets/ai-efficiency-icon.svg' },
+                      { label: 'In Progress', variant: 'info' }
+                    ]}
+                    description="Electrical outlet not working in bedroom"
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+                
+                <div className="bg-paper-paper-elevation-2 p-4 rounded-lg">
+                  <h5 className="font-semibold text-primary mb-3">Multiple Status Badges</h5>
+                  <MaintenanceTicketCard
+                    ticketId="MNT-005"
+                    propertyName="Hillside Manor - Villa 5"
+                    equipmentType="Appliance"
+                    badges={[
+                      { label: 'AI', variant: 'secondary', icon: '/assets/ai-efficiency-icon.svg' },
+                      { label: 'Vendor Assigned', variant: 'primary' },
+                      { label: 'Urgent', variant: 'error' },
+                      { label: 'In Progress', variant: 'info' }
+                    ]}
+                    description="Dishwasher not draining properly"
+                    onMoreActions={() => console.log('More actions clicked')}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Ticket Card Features</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Design</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Maintenance Avatar:</strong> Gradient background with maintenance icon</li>
+                <li>• <strong>Ticket ID:</strong> Prominent ticket identifier</li>
+                <li>• <strong>Property Info:</strong> Property and equipment details</li>
+                <li>• <strong>Status Badges:</strong> AI, Vendor Assigned, Urgent, etc.</li>
+                <li>• <strong>Description Section:</strong> Issue description in gray background</li>
+                <li>• <strong>Actions:</strong> More actions button for additional options</li>
+              </ul>
+            </div>
+            <div className="bg-paper-paper-elevation-2 p-6 rounded-lg">
+              <h4 className="font-semibold text-primary mb-3">Functionality</h4>
+              <ul className="space-y-2 text-sm text-tertiary">
+                <li>• <strong>Flexible Badges:</strong> Support for multiple status indicators</li>
+                <li>• <strong>Badge Variants:</strong> Success, Error, Warning, Info, Primary, Secondary</li>
+                <li>• <strong>Interactive Elements:</strong> More actions and ticket management</li>
+                <li>• <strong>Responsive Design:</strong> Adapts to container width</li>
+                <li>• <strong>Theme-aware:</strong> Uses design system colors</li>
+                <li>• <strong>Built with existing components:</strong> Card, Chip, MoreActionsButton</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Ticket Card - Compact Variant</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Example 1: Basic Compact Ticket */}
+            <MaintenanceTicketCard
+              ticketId="MNT-001"
+              assetInfo="Asset: Water Heater (Rheem 50 Gal)"
+              variant="compact"
+              badges={[
+                { label: 'AI', variant: 'neutral', type: 'low-hue-border', icon: '/assets/ai-efficiency-icon.svg' },
+                { label: 'Vendor Assigned', variant: 'primary', type: 'low-hue-border' }
+              ]}
+              description="Water heater not heating properly"
+              onViewDetails={() => console.log('View details clicked')}
+            />
+            
+            {/* Example 2: Different Asset */}
+            <MaintenanceTicketCard
+              ticketId="MNT-002"
+              assetInfo="Asset: HVAC System (Carrier Infinity)"
+              variant="compact"
+              badges={[
+                { label: 'Urgent', variant: 'error', type: 'filled' },
+                { label: 'In Progress', variant: 'info', type: 'low-hue' }
+              ]}
+              description="Air conditioning not cooling properly"
+              onViewDetails={() => console.log('View details clicked')}
+            />
+            
+            {/* Example 3: Simple Ticket */}
+            <MaintenanceTicketCard
+              ticketId="MNT-003"
+              assetInfo="Asset: Dishwasher (Whirlpool WDF520PADM)"
+              variant="compact"
+              badges={[
+                { label: 'Scheduled', variant: 'success', type: 'low-hue' }
+              ]}
+              description="Dishwasher not draining properly"
+              onViewDetails={() => console.log('View details clicked')}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderAssetCardExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Asset Card - Detailed Variant</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Example 1: Refrigerator Asset */}
+          <AssetCard
+            assetName="Refrigerator"
+            category="Appliance"
+            propertyName="Sunset Apartments - 4B"
+            date="10-10-2023"
+            imageUrl="/assets/unit-image-1.png"
+            variant="detailed"
+            details={[
+              { label: 'Manufacturer', value: 'Whirlpool' },
+              { label: 'Model', value: 'WRT518SZFG' },
+              { label: 'Install Date', value: '2022-03-15' },
+              { label: 'Purchase Price', value: '$899' }
+            ]}
+            maintenanceInfo={{
+              text: '1 Ongoing maintenance ticket',
+              vendor: 'John Smith'
+            }}
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+          
+          {/* Example 2: HVAC System */}
+          <AssetCard
+            assetName="HVAC System"
+            category="HVAC"
+            propertyName="Lakeside Villas - 7B"
+            date="15-08-2023"
+            imageUrl="/assets/unit-image-2.png"
+            variant="detailed"
+            details={[
+              { label: 'Manufacturer', value: 'Carrier' },
+              { label: 'Model', value: 'Infinity 19VS' },
+              { label: 'Install Date', value: '2021-06-20' },
+              { label: 'Purchase Price', value: '$2,450' }
+            ]}
+            maintenanceInfo={{
+              text: '2 Scheduled maintenance tickets',
+              vendor: 'AquaPro Services'
+            }}
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+          
+          {/* Example 3: Water Heater */}
+          <AssetCard
+            assetName="Water Heater"
+            category="Plumbing"
+            propertyName="Garden View - 2A"
+            date="22-11-2023"
+            imageUrl="/assets/unit-image-3.png"
+            variant="detailed"
+            details={[
+              { label: 'Manufacturer', value: 'Rheem' },
+              { label: 'Model', value: 'PROTECH-50' },
+              { label: 'Install Date', value: '2020-09-10' },
+              { label: 'Purchase Price', value: '$650' }
+            ]}
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Asset Card - Compact Variant</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Example 1: Refrigerator Asset - Compact */}
+          <AssetCard
+            assetName="Refrigerator"
+            category="Appliance"
+            date="10-10-2028"
+            imageUrl="/assets/unit-image-1.png"
+            variant="compact"
+            maintenanceInfo={{
+              text: '1 Ongoing maintenance ticket',
+              vendor: 'John Smith'
+            }}
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+          
+          {/* Example 2: HVAC System - Compact */}
+          <AssetCard
+            assetName="HVAC System"
+            category="HVAC"
+            date="15-08-2023"
+            imageUrl="/assets/unit-image-2.png"
+            variant="compact"
+            maintenanceInfo={{
+              text: '2 Scheduled maintenance tickets',
+              vendor: 'AquaPro Services'
+            }}
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+          
+          {/* Example 3: Water Heater - Compact */}
+          <AssetCard
+            assetName="Water Heater"
+            category="Plumbing"
+            date="22-11-2023"
+            imageUrl="/assets/unit-image-3.png"
+            variant="compact"
+            onMoreActions={() => console.log('More actions clicked')}
+            onExpand={() => console.log('Expand clicked')}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderTemplateCardExamples = () => (
+    <div className="space-y-8">
+      <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Template Card Examples</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Example 1: Rent Reminder Template */}
+          <TemplateCard
+            title="Rent Reminder - Friendly"
+            category="Rent Reminder"
+            templateName="Rent Reminder - Friendly"
+            details={[
+              { 
+                label: 'Subject', 
+                value: 'Friendly Rent Reminder - {{property_name}}' 
+              },
+              { 
+                label: 'Content:', 
+                value: 'Hi {{tenant_name}}, this is a friendly reminder that your rent payment of ${{ rent_amount }} for {{property_name}} Unit {{unit_number}} is due on {{due_date}}. You can pay online at {{payment_link}} or contact us if you need assistance.' 
+              }
+            ]}
+            channels={[
+              { src: '/assets/email-icon.svg', alt: 'Email' },
+              { src: '/assets/notification-icon.svg', alt: 'SMS' }
+            ]}
+            onUseTemplate={() => console.log('Use template clicked')}
+            onViewDetails={() => console.log('View details clicked')}
+            onTranslate={() => console.log('Translate clicked')}
+          />
+          
+          {/* Example 2: Maintenance Notice Template */}
+          <TemplateCard
+            title="Maintenance Notice - Scheduled"
+            category="Maintenance"
+            templateName="Maintenance Notice - Scheduled"
+            details={[
+              { 
+                label: 'Subject', 
+                value: 'Scheduled Maintenance - {{property_name}}' 
+              },
+              { 
+                label: 'Content:', 
+                value: 'Dear {{tenant_name}}, we will be performing scheduled maintenance on {{equipment_type}} in your unit {{unit_number}} on {{maintenance_date}} from {{start_time}} to {{end_time}}. Please ensure access is available.' 
+              }
+            ]}
+            channels={[
+              { src: '/assets/email-icon.svg', alt: 'Email' },
+              { src: '/assets/notification-icon.svg', alt: 'SMS' }
+            ]}
+            onUseTemplate={() => console.log('Use template clicked')}
+            onViewDetails={() => console.log('View details clicked')}
+            onTranslate={() => console.log('Translate clicked')}
+          />
+          
+          {/* Example 3: Welcome Message Template */}
+          <TemplateCard
+            title="Welcome Message - New Tenant"
+            category="Welcome"
+            templateName="Welcome Message - New Tenant"
+            details={[
+              { 
+                label: 'Subject', 
+                value: 'Welcome to {{property_name}} - {{tenant_name}}' 
+              },
+              { 
+                label: 'Content:', 
+                value: 'Welcome {{tenant_name}}! We are excited to have you as our new tenant at {{property_name}} Unit {{unit_number}}. Your lease starts on {{lease_start_date}}. Please find attached your welcome package and important contact information.' 
+              }
+            ]}
+            channels={[
+              { src: '/assets/email-icon.svg', alt: 'Email' },
+              { src: '/assets/notification-icon.svg', alt: 'SMS' }
+            ]}
+            onUseTemplate={() => console.log('Use template clicked')}
+            onViewDetails={() => console.log('View details clicked')}
+            onTranslate={() => console.log('Translate clicked')}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
   const renderContent = () => {
     switch (activeSection) {
       case 'header': return renderHeaderExamples();
@@ -1885,7 +3690,7 @@ export default function ComponentsLibrary() {
       case 'page-search': return renderPageSearchExamples();
       case 'list-view': return renderListViewExamples();
       case 'form-fields': return renderFormFieldExamples();
-      case 'checkboxes': return renderCheckboxExamples();
+      case 'checkbox': return renderCheckboxExamples();
       case 'buttons': return renderButtonExamples();
       case 'icons': return renderIconExamples();
       case 'stat-cards': return renderStatCardExamples();
@@ -1898,6 +3703,17 @@ export default function ComponentsLibrary() {
       case 'step-wizard': return renderStepWizardExamples();
       case 'progress-bar': return renderProgressBarExamples();
       case 'popup': return renderPopupExamples();
+      case 'more-actions': return renderMoreActionsExamples();
+      case 'asset-card': return renderAssetCardExamples();
+      case 'checkbox': return renderCheckboxExamples();
+      case 'key-value-pair': return renderKeyValuePairExamples();
+      case 'bot-conversation': return renderBotConversationExamples();
+      case 'chips': return renderChipExamples();
+      case 'tabs': return renderTabsExamples();
+      case 'tenant-card': return renderTenantCardExamples();
+      case 'invoice-card': return renderInvoiceCardExamples();
+      case 'maintenance-ticket-card': return renderMaintenanceTicketCardExamples();
+      case 'template-card': return renderTemplateCardExamples();
       default: return renderHeaderExamples();
     }
   };

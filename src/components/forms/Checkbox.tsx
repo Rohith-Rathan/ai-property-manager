@@ -10,7 +10,7 @@ interface CheckboxProps {
   onChange: (checked: boolean) => void;
   disabled?: boolean;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'filled' | 'outlined';
+  variant?: 'default' | 'filled' | 'outlined' | 'button';
   color?: 'primary' | 'success' | 'warning' | 'error';
   indeterminate?: boolean;
   className?: string;
@@ -51,6 +51,20 @@ export default function Checkbox({
   };
 
   const getVariantClasses = (variant: string, checked: boolean, color: string) => {
+    if (variant === 'button') {
+      const baseClasses = 'border border-solid box-border flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg w-full cursor-pointer transition-colors duration-200';
+      
+      if (disabled) {
+        return `${baseClasses} border-overlays-white-inverse-10 bg-gray-100 text-tertiary cursor-not-allowed opacity-50`;
+      }
+      
+      if (checked) {
+        return `${baseClasses} border-secondary-500 bg-overlays-primary-10 text-primary hover:bg-overlays-primary-20`;
+      }
+      
+      return `${baseClasses} border-overlays-white-inverse-10 bg-default text-tertiary hover:bg-overlays-white-inverse-5`;
+    }
+
     const baseClasses = 'border-solid relative rounded-md shrink-0 cursor-pointer transition-all duration-200';
     
     if (checked || indeterminate) {
@@ -84,6 +98,30 @@ export default function Checkbox({
       onChange(!checked);
     }
   };
+
+  if (variant === 'button') {
+    return (
+      <div 
+        className={`${variantClasses} ${className}`}
+        onClick={handleClick}
+        role="checkbox"
+        aria-checked={checked}
+        aria-disabled={disabled}
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && !disabled) {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+        data-name="Checkbox Button"
+      >
+        <p className="font-medium leading-6 not-italic relative shrink-0 text-center text-nowrap whitespace-pre">
+          {label}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className={`bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center relative w-auto ${className}`} data-name="Checkbox Container">

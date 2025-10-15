@@ -101,7 +101,7 @@ export default function PropertyCard({
               <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-primary text-label-small w-13" data-name="Units Text">
                 {property.units} units
               </p>
-            </div>
+      </div>
             <div className="content-stretch flex gap-2 h-4 items-center relative shrink-0 w-33" data-name="Revenue Container">
               <ThemeIcon src={dollarIcon} alt="Revenue" size="sm" variant="default" />
               <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-primary text-label-small w-13" data-name="Revenue Text">
@@ -122,9 +122,9 @@ export default function PropertyCard({
               <p className="basis-0 font-sans font-normal grow leading-normal min-h-px min-w-px not-italic relative shrink-0 text-primary text-label-small" data-name="Manager Text">
                 {property.manager}
               </p>
-            </div>
           </div>
         </div>
+      </div>
 
         {/* Occupancy Section */}
         <ProgressBar

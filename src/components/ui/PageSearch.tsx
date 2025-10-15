@@ -10,13 +10,20 @@ const listViewIcon = getAssetPath('list-view-icon');
 const dropdownArrowIcon = getAssetPath('dropdown-arrow-down-icon');
 
 interface PageSearchProps {
-  variant?: 'grid' | 'list' | 'mobile';
+  variant?: 'grid' | 'list' | 'mobile' | 'filters';
   title?: string;
   subtitle?: string;
   placeholder?: string;
   onSearch?: (query: string) => void;
   onFilter?: (filter: string) => void;
   onViewChange?: (view: 'grid' | 'list') => void;
+  // Filter variant props
+  filters?: Array<{
+    label: string;
+    value: string;
+    icon?: string;
+  }>;
+  onFilterChange?: (filterType: string, value: string) => void;
 }
 
 export default function PageSearch({
@@ -26,11 +33,15 @@ export default function PageSearch({
   placeholder = 'Search properties...',
   onSearch,
   onFilter,
-  onViewChange
+  onViewChange,
+  filters = [],
+  onFilterChange
 }: PageSearchProps) {
   const [searchValue, setSearchValue] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All Properties');
-  const [currentView, setCurrentView] = useState<'grid' | 'list'>(variant === 'mobile' ? 'grid' : variant);
+  const [currentView, setCurrentView] = useState<'grid' | 'list'>(
+    variant === 'mobile' || variant === 'filters' ? 'grid' : variant
+  );
 
   const handleSearch = (query: string) => {
     setSearchValue(query);
@@ -47,10 +58,54 @@ export default function PageSearch({
     onViewChange?.(view);
   };
 
+  // Filters variant - search with multiple filter buttons
+  if (variant === 'filters') {
+    return (
+      <div className="bg-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-4 relative rounded-xxl size-full shadow-card-large" data-name="search">
+        {/* Search Input */}
+        <div className="h-9 relative shrink-0" data-name="Search Container">
+          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 h-9 items-center px-3 py-2.5 relative">
+            <ThemeIcon src={searchIcon} alt="Search" size="sm" variant="default" />
+            <input
+              type="text"
+              placeholder={placeholder}
+              value={searchValue}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="font-sans font-normal leading-4 not-italic relative shrink-0 text-tertiary text-sm text-nowrap whitespace-pre bg-transparent border-none outline-none w-full"
+              data-name="Search Input"
+            />
+          </div>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="relative shrink-0" data-name="Filter Container">
+          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-4 items-center relative">
+            {filters.map((filter, index) => (
+              <button
+                key={index}
+                className="bg-white box-border content-stretch flex gap-2 h-9 items-center pl-3 pr-3 py-0 relative rounded-lg shrink-0 cursor-pointer hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => onFilterChange?.(filter.value, filter.label)}
+                data-name="Filter Button"
+              >
+                {filter.icon && (
+                  <ThemeIcon src={filter.icon} alt={filter.label} size="sm" variant="default" />
+                )}
+                <span className="font-sans font-normal leading-4 not-italic relative shrink-0 text-tertiary text-sm text-nowrap whitespace-pre">
+                  {filter.label}
+                </span>
+                <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="sm" variant="default" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Mobile variant - simplified search bar
   if (variant === 'mobile') {
     return (
-      <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-xl shrink-0 w-full shadow-card-small" data-name="Mobile Search Bar">
+      <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-xl shrink-0 w-full shadow-card-large" data-name="Mobile Search Bar">
         {/* Search Input - Full Width */}
         <div className="flex-1 relative" data-name="Search Container">
           <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-3 py-2 relative">

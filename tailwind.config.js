@@ -152,7 +152,9 @@ module.exports = {
         // ===== OVERLAY COLORS =====
         // White Overlays
         'overlays-white-5': 'var(--color-overlays-white-5)',
+        'white-5': 'var(--color-overlays-white-5)',
         'overlays-white-10': 'var(--color-overlays-white-10)',
+        'white-10': 'var(--color-overlays-white-10)',
         'overlays-white-20': 'var(--color-overlays-white-20)',
         'overlays-white-30': 'var(--color-overlays-white-30)',
         'overlays-white-50': 'var(--color-overlays-white-50)',
@@ -603,6 +605,7 @@ module.exports = {
         'gradient-magenta-candy': 'var(--gradient-magenta-candy)',
         'gradient-cyber-neon': 'var(--gradient-cyber-neon)',
         'gradient-brand-aurora': 'var(--gradient-brand-aurora)',
+        'gradient-brand-aurora-10': 'var(--gradient-brand-aurora-10)',
         'gradient-brand-aurora-20': 'var(--gradient-brand-aurora-20)',
         'gradient-background-base': 'var(--gradient-background-base)',
       },

@@ -2,7 +2,7 @@ import React from 'react';
 import ThemeIcon from './ThemeIcon';
 
 interface PageHeaderProps {
-  variant?: 'default' | 'property';
+  variant?: 'default' | 'property' | 'maintenance';
   title: string;
   subtitle?: string;
   address?: string;
@@ -17,6 +17,11 @@ interface PageHeaderProps {
     onClick: () => void;
     icon?: string;
   };
+  // Maintenance variant specific props
+  ticketId?: string;
+  priority?: 'urgent' | 'high' | 'medium' | 'low';
+  createdDate?: string;
+  lastUpdatedDate?: string;
 }
 
 export default function PageHeader({
@@ -26,7 +31,11 @@ export default function PageHeader({
   address,
   onBack,
   primaryAction,
-  secondaryAction
+  secondaryAction,
+  ticketId,
+  priority,
+  createdDate,
+  lastUpdatedDate
 }: PageHeaderProps) {
   
   if (variant === 'property') {
@@ -87,6 +96,115 @@ export default function PageHeader({
               )}
               <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-white whitespace-pre">
                 {primaryAction.label}
+              </p>
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === 'maintenance') {
+    const getPriorityBadgeClass = (priority?: string) => {
+      switch (priority) {
+        case 'urgent':
+          return 'bg-error-500';
+        case 'high':
+          return 'bg-warning-500';
+        case 'medium':
+          return 'bg-info-500';
+        case 'low':
+          return 'bg-success-500';
+        default:
+          return 'bg-gray-500';
+      }
+    };
+
+    return (
+      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
+        <div className="content-stretch flex gap-4 h-16 items-center relative shrink-0">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="relative shrink-0 w-4 h-4 hover:opacity-70 transition-opacity duration-200"
+            >
+              <ThemeIcon src="/assets/previous-arrow-icon.svg" alt="Back" size="sm" variant="default" />
+            </button>
+          )}
+          <div className="relative shrink-0">
+            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col gap-1 items-start relative">
+              {/* Title and Priority Badge */}
+              <div className="content-stretch flex gap-2 items-center relative shrink-0">
+                <p className="font-bold leading-h3 not-italic relative shrink-0 text-primary text-h3 text-nowrap whitespace-pre">
+                  {ticketId || title}
+                </p>
+                {priority && (
+                  <div className={`box-border content-stretch flex gap-1 h-6 items-center justify-center overflow-clip px-2 py-1 relative rounded-lg shrink-0 ${getPriorityBadgeClass(priority)}`}>
+                    <p className="font-normal leading-normal not-italic relative shrink-0 text-xs text-nowrap text-white whitespace-pre">
+                      {priority.charAt(0).toUpperCase() + priority.slice(1)}
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              {/* Metadata */}
+              <div className="content-stretch flex gap-2 items-center relative shrink-0">
+                {createdDate && (
+                  <div className="content-stretch flex gap-1 items-center relative shrink-0">
+                    <div className="relative shrink-0 w-4 h-4">
+                      <ThemeIcon 
+                        src="/assets/calendar-icon.svg" 
+                        alt="Created" 
+                        size="sm" 
+                        color="tertiary"
+                      />
+                    </div>
+                    <p className="font-normal leading-6 not-italic relative shrink-0 text-base text-tertiary text-nowrap whitespace-pre">
+                      Created: {createdDate}
+                    </p>
+                  </div>
+                )}
+                
+                {createdDate && lastUpdatedDate && (
+                  <div className="relative shrink-0 w-1 h-1">
+                    <div className="bg-tertiary relative rounded-full w-1 h-1" />
+                  </div>
+                )}
+                
+                {lastUpdatedDate && (
+                  <div className="content-stretch flex gap-1 items-center relative shrink-0">
+                    <div className="relative shrink-0 w-4 h-4">
+                      <ThemeIcon 
+                        src="/assets/calendar-icon.svg" 
+                        alt="Updated" 
+                        size="sm" 
+                        color="tertiary"
+                      />
+                    </div>
+                    <p className="font-normal leading-6 not-italic relative shrink-0 text-base text-tertiary text-nowrap whitespace-pre">
+                      Last Updated: {lastUpdatedDate}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Action Button */}
+        <div className="content-center flex flex-wrap gap-2 items-center relative shrink-0">
+          {secondaryAction && (
+            <button
+              onClick={secondaryAction.onClick}
+              className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 hover:bg-gray-50 transition-colors duration-200"
+            >
+              {secondaryAction.icon && (
+                <div className="relative shrink-0 w-4 h-4">
+                  <ThemeIcon src={secondaryAction.icon} alt={secondaryAction.label} size="sm" color="primary" />
+                </div>
+              )}
+              <p className="font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
+                {secondaryAction.label}
               </p>
             </button>
           )}

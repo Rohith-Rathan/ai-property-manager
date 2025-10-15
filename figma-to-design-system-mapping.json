@@ -45,8 +45,7 @@
       "bg-gradient-magenta-pop": "bg-gradient-magenta-pop",
       "bg-gradient-ai-violet-1": "bg-gradient-ai-violet-1",
       "bg-gradient-ai-violet-2": "bg-gradient-ai-violet-2",
-      "bg-gradient-emerald-glow": "bg-gradient-emerald-glow",
-      "bg-[rgba(0,211,242,0.2)]": "bg-overlays-info-20"
+      "bg-gradient-emerald-glow": "bg-gradient-emerald-glow"
     },
     "borders": {
       "border-[rgba(10,18,32,0.1)]": "border-overlays-white-inverse-10",

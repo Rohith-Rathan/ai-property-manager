@@ -138,8 +138,7 @@
       "rounded-[4px]": "rounded-sm",
       "rounded-[inherit]": "rounded-none",
       "rounded-[1.67772e+07px]": "rounded-full",
-      "rounded-[9999px]": "rounded-full",
-      "rounded-[24px]": "rounded-xxxl"
+      "rounded-[9999px]": "rounded-full"
     },
     "sizing": {
       "size-[64px]": "w-16 h-16",

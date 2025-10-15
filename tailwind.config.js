@@ -141,6 +141,11 @@ module.exports = {
         'border-error': 'var(--color-border-error)',
         'border-success': 'var(--color-border-success)',
         'border-warning': 'var(--color-border-warning)',
+        
+        // Overlay Border Colors
+        'overlays-white-inverse-5': 'var(--color-overlays-white-inverse-5)',
+        'overlays-white-inverse-10': 'var(--color-overlays-white-inverse-10)',
+        'overlays-white-inverse-20': 'var(--color-overlays-white-inverse-20)',
 
         // Static Colors (Duplicate removed - already defined above)
 

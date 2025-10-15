@@ -19,6 +19,7 @@ import DocumentItem from '../components/ui/DocumentItem';
 import UserCard from '../components/ui/UserCard';
 import StepWizard from '../components/ui/StepWizard';
 import ProgressBar from '../components/ui/ProgressBar';
+import { Popup } from '../components/ui/Popup';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
 // Asset constants for examples
@@ -33,6 +34,11 @@ export default function ComponentsLibrary() {
   const [activeSection, setActiveSection] = useState('header');
   const [searchValue, setSearchValue] = useState('');
   const [formSearchValue, setFormSearchValue] = useState('');
+  
+  // Popup state variables
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isRecordPaymentOpen, setIsRecordPaymentOpen] = useState(false);
+  const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
 
   const sections = [
     { id: 'header', label: 'Header', icon: '📋' },
@@ -53,6 +59,7 @@ export default function ComponentsLibrary() {
     { id: 'user-card', label: 'User Card', icon: '👤' },
     { id: 'step-wizard', label: 'Step Wizard', icon: '🧙‍♂️' },
     { id: 'progress-bar', label: 'Progress Bar', icon: '📊' },
+    { id: 'popup', label: 'Popup', icon: '🪟' },
   ];
 
   const renderHeaderExamples = () => (
@@ -1629,6 +1636,247 @@ export default function ComponentsLibrary() {
     </div>
   );
 
+  const renderPopupExamples = () => {
+
+    const recordPaymentFields = [
+      {
+        id: 'outstanding-balance',
+        fields: [
+          {
+            id: 'balance',
+            label: 'Outstanding Balance:',
+            value: '$1950',
+            type: 'readonly' as const,
+            icon: '/assets/dollar-icon.svg'
+          }
+        ],
+        layout: 'single' as const
+      },
+      {
+        id: 'payment-details',
+        fields: [
+          {
+            id: 'amount',
+            label: 'Payment Amount',
+            placeholder: '0.00',
+            icon: '/assets/dollar-icon.svg'
+          },
+          {
+            id: 'method',
+            label: 'Payment Method',
+            placeholder: 'Select method',
+            type: 'select' as const,
+            icon: '/assets/dropdown-arrow-down-icon.svg'
+          }
+        ],
+        layout: 'double' as const
+      },
+      {
+        id: 'reference',
+        fields: [
+          {
+            id: 'reference-number',
+            label: 'Reference Number (Optional)',
+            placeholder: 'Transaction ID, Check number, etc.',
+            icon: '/assets/edit-item-icon.svg'
+          }
+        ],
+        layout: 'single' as const
+      },
+      {
+        id: 'waive-details',
+        fields: [
+          {
+            id: 'waive-amount',
+            label: 'Waive Amount',
+            placeholder: 'Enter',
+            icon: '/assets/edit-item-icon.svg'
+          },
+          {
+            id: 'reason',
+            label: 'Reason',
+            placeholder: 'Select reason',
+            type: 'select' as const,
+            icon: '/assets/dropdown-arrow-down-icon.svg'
+          }
+        ],
+        layout: 'double' as const
+      }
+    ];
+
+    const addPropertyFields = [
+      {
+        id: 'basic-info',
+        fields: [
+          {
+            id: 'property-name',
+            label: 'Property Name',
+            placeholder: 'Enter property name',
+            required: true
+          },
+          {
+            id: 'property-type',
+            label: 'Property Type',
+            placeholder: 'Select type',
+            type: 'select' as const,
+            icon: '/assets/dropdown-arrow-down-icon.svg',
+            required: true
+          }
+        ],
+        layout: 'double' as const
+      },
+      {
+        id: 'address',
+        fields: [
+          {
+            id: 'address',
+            label: 'Address',
+            placeholder: 'Enter full address',
+            required: true
+          }
+        ],
+        layout: 'single' as const
+      }
+    ];
+
+    return (
+      <div className="space-y-8">
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Popup Component - Record Payment</h3>
+          <div className="space-y-4">
+            <button
+              onClick={() => setIsRecordPaymentOpen(true)}
+              className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Open Record Payment Popup
+            </button>
+            
+            <Popup
+              title="Record Payment - INV-2024-003"
+              isOpen={isRecordPaymentOpen}
+              onClose={() => setIsRecordPaymentOpen(false)}
+              fieldGroups={recordPaymentFields}
+              primaryButton={{
+                label: 'Record Payment',
+                onClick: () => {
+                  console.log('Record Payment clicked');
+                  setIsRecordPaymentOpen(false);
+                }
+              }}
+              secondaryButton={{
+                label: 'Cancel',
+                onClick: () => setIsRecordPaymentOpen(false)
+              }}
+              size="lg"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Popup Component - Add Property</h3>
+          <div className="space-y-4">
+            <button
+              onClick={() => setIsAddPropertyOpen(true)}
+              className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Open Add Property Popup
+            </button>
+            
+            <Popup
+              title="Add New Property"
+              subtitle="Create a new property in your portfolio"
+              isOpen={isAddPropertyOpen}
+              onClose={() => setIsAddPropertyOpen(false)}
+              fieldGroups={addPropertyFields}
+              primaryButton={{
+                label: 'Create Property',
+                onClick: () => {
+                  console.log('Create Property clicked');
+                  setIsAddPropertyOpen(false);
+                }
+              }}
+              secondaryButton={{
+                label: 'Cancel',
+                onClick: () => setIsAddPropertyOpen(false)
+              }}
+              size="md"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Popup Component - Custom Content</h3>
+          <div className="space-y-4">
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-gradient-brand-aurora text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Open Custom Content Popup
+            </button>
+            
+            <Popup
+              title="Custom Content Example"
+              subtitle="This popup contains custom React content"
+              isOpen={isPopupOpen}
+              onClose={() => setIsPopupOpen(false)}
+              size="lg"
+            >
+              <div className="space-y-4">
+                <div className="bg-overlays-primary-10 p-4 rounded-lg">
+                  <h4 className="font-semibold text-primary mb-2">Custom Content Section</h4>
+                  <p className="text-tertiary text-sm">
+                    This popup demonstrates how you can include custom React content 
+                    alongside or instead of form fields.
+                  </p>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+                    <h5 className="font-medium text-primary mb-2">Feature 1</h5>
+                    <p className="text-tertiary text-sm">Custom content can include any React components.</p>
+                  </div>
+                  <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+                    <h5 className="font-medium text-primary mb-2">Feature 2</h5>
+                    <p className="text-tertiary text-sm">Perfect for complex forms or information displays.</p>
+                  </div>
+                </div>
+              </div>
+            </Popup>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-h4 font-bold text-primary mb-4">Popup Sizes</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Small (sm)
+            </button>
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Medium (md)
+            </button>
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Large (lg)
+            </button>
+            <button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-gray-100 text-primary px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Extra Large (xl)
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderContent = () => {
     switch (activeSection) {
       case 'header': return renderHeaderExamples();
@@ -1649,14 +1897,15 @@ export default function ComponentsLibrary() {
       case 'user-card': return renderUserCardExamples();
       case 'step-wizard': return renderStepWizardExamples();
       case 'progress-bar': return renderProgressBarExamples();
+      case 'popup': return renderPopupExamples();
       default: return renderHeaderExamples();
     }
   };
 
   return (
-    <div className="bg-paper-paper-elevation-0 min-h-screen">
+    <div className="bg-paper-paper-elevation-0 h-screen flex flex-col overflow-hidden">
       {/* Library Header */}
-      <div className="bg-paper-paper-elevation-1 border-b border-overlays-white-inverse-10 p-6 relative">
+      <div className="bg-paper-paper-elevation-1 border-b border-overlays-white-inverse-10 p-6 relative shrink-0">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
@@ -1681,34 +1930,93 @@ export default function ComponentsLibrary() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-6 bg-paper-paper-elevation-1 rounded-lg">
-        <div className="flex gap-8">
-          {/* Sidebar Navigation */}
-          <div className="w-64 shrink-0">
-            <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-lg p-4">
-              <h2 className="text-h4 font-semibold text-primary mb-4">Components</h2>
-              <nav className="space-y-2">
-                {sections.map((section) => (
+      {/* Main Content Area with Two Scrollable Sections */}
+      <div className="flex-1 flex min-h-0">
+        {/* Sidebar Navigation - Fixed Width with Independent Scrolling */}
+        <div className="w-80 shrink-0 bg-paper-paper-elevation-1 border-r border-overlays-white-inverse-10 flex flex-col">
+          <div className="p-6 flex-1 overflow-y-auto">
+            <div className="mb-6">
+              <h2 className="text-h4 font-semibold text-primary mb-2">Components</h2>
+              <p className="text-sm text-tertiary">
+                {sections.length} components available
+              </p>
+            </div>
+            
+            {/* Search/Filter */}
+            <div className="mb-6">
+              <input
+                type="text"
+                placeholder="Search components..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                className="w-full px-3 py-2 border border-overlays-white-inverse-10 rounded-lg bg-paper-paper-elevation-2 text-primary placeholder-tertiary focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* Component List */}
+            <nav className="space-y-1">
+              {sections
+                .filter(section => 
+                  section.label.toLowerCase().includes(searchValue.toLowerCase()) ||
+                  section.icon.includes(searchValue)
+                )
+                .map((section) => (
                   <button
                     key={section.id}
                     onClick={() => setActiveSection(section.id)}
-                    className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center ${
                       activeSection === section.id
-                        ? 'bg-gradient-aqua-2 text-white'
-                        : 'text-secondary hover:bg-paper-paper-elevation-1'
+                        ? 'bg-gradient-brand-aurora text-white shadow-card-small'
+                        : 'text-secondary hover:bg-paper-paper-elevation-2 hover:text-primary'
                     }`}
                   >
-                    <span className="mr-2">{section.icon}</span>
-                    {section.label}
+                    <span className="mr-3 text-lg">{section.icon}</span>
+                    <div className="flex-1">
+                      <div className="font-medium">{section.label}</div>
+                      <div className={`text-xs mt-1 ${
+                        activeSection === section.id ? 'text-white-80' : 'text-tertiary'
+                      }`}>
+                        {section.id.replace('-', ' ')}
+                      </div>
+                    </div>
+                    {activeSection === section.id && (
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    )}
                   </button>
                 ))}
-              </nav>
-            </div>
+            </nav>
           </div>
+        </div>
 
-          {/* Main Content */}
-          <div className="flex-1">
-            {renderContent()}
+        {/* Main Content - Flexible Width with Independent Scrolling */}
+        <div className="flex-1 flex flex-col min-h-0">
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-8 max-w-none">
+              {/* Component Preview Header */}
+              <div className="mb-8 pb-6 border-b border-overlays-white-inverse-10">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-h3 font-bold text-primary mb-2">
+                      {sections.find(s => s.id === activeSection)?.icon} {sections.find(s => s.id === activeSection)?.label}
+                    </h2>
+                    <p className="text-tertiary">
+                      Interactive examples and variations of the {sections.find(s => s.id === activeSection)?.label.toLowerCase()} component
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-tertiary">
+                    <span>Theme:</span>
+                    <span className="px-2 py-1 bg-paper-paper-elevation-2 rounded text-primary">
+                      {theme === 'light' ? 'Light' : 'Dark'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Component Examples */}
+              <div className="space-y-8">
+                {renderContent()}
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -21,3 +21,4 @@ export { default as DocumentItem } from './DocumentItem';
 export { default as UserCard } from './UserCard';
 export { default as StepWizard } from './StepWizard';
 export { default as ProgressBar } from './ProgressBar';
+export { Popup } from './Popup';

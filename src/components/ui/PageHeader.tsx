@@ -40,7 +40,7 @@ export default function PageHeader({
   
   if (variant === 'property') {
     return (
-      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-center flex flex-wrap gap-4 items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
+      <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-center flex flex-wrap gap-4 items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
         <div className="basis-0 content-stretch flex gap-4 grow items-center min-h-px min-w-80 relative shrink-0">
           {onBack && (
             <button
@@ -121,7 +121,7 @@ export default function PageHeader({
     };
 
     return (
-      <div className="bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
+      <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex items-center justify-between p-6 relative rounded-xxxl size-full shadow-card-large">
         <div className="content-stretch flex gap-4 h-16 items-center relative shrink-0">
           {onBack && (
             <button
@@ -214,60 +214,54 @@ export default function PageHeader({
   }
 
   return (
-    <div className="content-center flex flex-wrap gap-4 items-center justify-between relative shrink-0 w-full">
-      <div className="relative shrink-0">
-        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col items-start not-italic relative">
+    <div className="flex flex-wrap gap-4 items-start justify-between w-full">
+      <div className="flex-1 min-w-0">
+        <div className="flex flex-col items-start">
           <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3">
             {title}
           </p>
           {subtitle && (
-            <p className="font-sans font-normal leading-base relative shrink-0 text-base text-tertiary text-nowrap whitespace-pre">
+            <p className="font-sans font-normal leading-base relative shrink-0 text-base text-tertiary">
               {subtitle}
             </p>
           )}
         </div>
       </div>
-      <div className="h-[36px] relative shrink-0" data-name="Container" data-node-id="242:8219">
-        <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex gap-[8px] h-[36px] items-start relative">
-          <div className="relative shrink-0" data-node-id="242:14186">
-            <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-center flex flex-wrap gap-[8px] items-center relative">
+      <div className="flex gap-3 items-center">
               
-              {/* Secondary Action Button */}
-              {secondaryAction && (
-                <button
-                  onClick={secondaryAction.onClick}
-                  className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 hover:bg-gray-50 transition-colors duration-200"
-                >
-                  {secondaryAction.icon && (
-                    <div className="relative shrink-0 w-4 h-4">
-                      <ThemeIcon src={secondaryAction.icon} alt={secondaryAction.label} size="sm" variant="default" />
-                    </div>
-                  )}
-                  <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
-                    {secondaryAction.label}
-                  </p>
-                </button>
-              )}
+        {/* Secondary Action Button */}
+        {secondaryAction && (
+          <button
+            onClick={secondaryAction.onClick}
+            className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 hover:bg-gray-50 transition-colors duration-200"
+          >
+            {secondaryAction.icon && (
+              <div className="relative shrink-0 w-4 h-4">
+                <ThemeIcon src={secondaryAction.icon} alt={secondaryAction.label} size="sm" variant="default" />
+              </div>
+            )}
+            <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
+              {secondaryAction.label}
+            </p>
+          </button>
+        )}
 
-              {/* Primary Action Button */}
-              {primaryAction && (
-                <button
-                  onClick={primaryAction.onClick}
-                  className="bg-gradient-brand-aurora box-border content-stretch cursor-pointer flex gap-2 items-center justify-center overflow-visible px-4 py-2 relative rounded-lg shrink-0 hover:opacity-90 transition-opacity duration-200"
-                >
-                  {primaryAction.icon && (
-                    <div className="relative shrink-0 w-4 h-4">
-                      <ThemeIcon src={primaryAction.icon} alt={primaryAction.label} size="sm" variant="white" />
-                    </div>
-                  )}
-                  <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-nowrap text-white whitespace-pre">
-                    {primaryAction.label}
-                  </p>
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+        {/* Primary Action Button */}
+        {primaryAction && (
+          <button
+            onClick={primaryAction.onClick}
+            className="bg-gradient-brand-aurora box-border cursor-pointer flex gap-2 items-center justify-center overflow-visible px-4 py-2 relative rounded-lg shrink-0 hover:opacity-90 transition-opacity duration-200"
+          >
+            {primaryAction.icon && (
+              <div className="relative shrink-0 w-4 h-4">
+                <ThemeIcon src={primaryAction.icon} alt={primaryAction.label} size="sm" variant="white" />
+              </div>
+            )}
+            <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-small text-white">
+              {primaryAction.label}
+            </p>
+          </button>
+        )}
       </div>
     </div>
   );

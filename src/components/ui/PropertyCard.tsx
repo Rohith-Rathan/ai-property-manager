@@ -2,6 +2,7 @@ import React from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from './ThemeIcon';
 import ProgressBar from './ProgressBar';
+import { MoreActionsButton } from './MoreActionsButton';
 
 // Asset constants
 const locationIcon = getAssetPath('location-icon');
@@ -47,7 +48,7 @@ export default function PropertyCard({
   };
 
   return (
-    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl shrink-0 w-full shadow-card-small" data-name="Property Card">
+    <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl shrink-0 w-full shadow-card-small" data-name="Property Card">
       {/* Image Section with Badge */}
       <div className="content-stretch flex flex-col gap-4 items-center overflow-clip relative rounded-tl-xxl rounded-tr-xxl shrink-0 w-full" data-name="Card">
         <div className="h-48 relative shrink-0 w-full" data-name="ImageWithFallback">
@@ -79,17 +80,36 @@ export default function PropertyCard({
               </div>
             </div>
           </div>
-          <div className="relative rounded-lg shrink-0 w-6 h-6" data-name="Actions Button">
-            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex items-center justify-center relative w-6 h-6">
-              <button 
-                className="block cursor-pointer relative shrink-0 w-4 h-4" 
-                data-name="Icon"
-                onClick={() => onEdit?.(property.id)}
-              >
-                <ThemeIcon src={propertyActionsIcon} alt="Actions" size="sm" variant="default" />
-              </button>
-            </div>
-          </div>
+          <MoreActionsButton
+            items={[
+              { 
+                id: 'view-property',
+                label: 'View Property', 
+                onClick: () => onView?.(property.id),
+                icon: '/assets/view-details-icon.svg'
+              },
+              { 
+                id: 'edit-property',
+                label: 'Edit Property', 
+                onClick: () => onEdit?.(property.id),
+                icon: '/assets/edit-icon.svg'
+              },
+              { 
+                id: 'view-units',
+                label: 'View Units', 
+                onClick: () => console.log('View units for', property.id),
+                icon: '/assets/units-icon.svg'
+              },
+              { 
+                id: 'generate-report',
+                label: 'Generate Report', 
+                onClick: () => console.log('Generate report for', property.id),
+                icon: '/assets/reports-icon.svg'
+              }
+            ]}
+            triggerIcon="/assets/more-options-icon.svg"
+            position="bottom-right"
+          />
         </div>
 
         {/* Stats Section */}

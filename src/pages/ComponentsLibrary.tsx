@@ -741,6 +741,68 @@ export default function ComponentsLibrary() {
       </div>
       
       <div>
+        <h3 className="text-h4 font-bold text-primary mb-4">Activity Feed Items - Compact Variant</h3>
+        <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
+          <div className="flex items-center gap-2 mb-4">
+            <ThemeIcon src={getAssetPath('ai-efficiency-icon')} alt="Activity" size="sm" variant="primary" />
+            <h4 className="text-h5 font-semibold text-primary">Recent AI Actions</h4>
+          </div>
+          <div className="space-y-2">
+            <ActivityFeedItem
+              variant="compact"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Sent rent reminder to Tenant John Doe"
+              description=""
+              timestamp="2 hours ago"
+              badges={[{ label: "communication", variant: "info" }]}
+              priority="medium"
+            />
+            <ActivityFeedItem
+              variant="compact"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Auto-scheduled maintenance for HVAC repair"
+              description=""
+              timestamp="4 hours ago"
+              badges={[{ label: "maintenance", variant: "warning" }]}
+              priority="medium"
+            />
+            <ActivityFeedItem
+              variant="compact"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Generated lease renewal letter"
+              description=""
+              timestamp="6 hours ago"
+              badges={[{ label: "lease", variant: "primary" }]}
+              priority="medium"
+            />
+            <ActivityFeedItem
+              variant="compact"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="Processed rental payment for Unit 4B"
+              description=""
+              timestamp="1 day ago"
+              badges={[{ label: "financial", variant: "success" }]}
+              priority="low"
+            />
+            <ActivityFeedItem
+              variant="compact"
+              userName="AI Assistant"
+              userIcon="/assets/ai-efficiency-icon.svg"
+              action="AI analyzed property performance metrics"
+              description=""
+              timestamp="2 days ago"
+              badges={[{ label: "analytics", variant: "info" }]}
+              priority="low"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div>
         <h3 className="text-h4 font-bold text-primary mb-4">Activity Feed in Card Container</h3>
         <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 rounded-xxl p-6 max-w-2xl">
           <div className="flex items-center gap-2 mb-4">

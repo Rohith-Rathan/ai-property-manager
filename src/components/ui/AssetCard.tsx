@@ -51,7 +51,7 @@ export const AssetCard: React.FC<AssetCardProps> = ({
   className = ''
 }) => {
   return (
-    <Card className={`bg-white-5 border border-overlays-white-inverse-10 shadow-card-small ${className}`}>
+    <Card className={`bg-overlays-white-10 border border-overlays-white-inverse-10 shadow-card-small ${className}`}>
       <div className="flex flex-col gap-4">
         {/* Header Section */}
         <div className="flex items-start justify-between">

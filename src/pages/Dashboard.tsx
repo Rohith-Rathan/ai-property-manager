@@ -3,41 +3,47 @@ import { getAssetPath } from '../utils/completeAssetMapping';
 import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
 import StatCard from '../components/cards/StatCard';
-import PropertyCard from '../components/ui/PropertyCard';
+import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import ProgressBar from '../components/ui/ProgressBar';
 import ThemeIcon from '../components/ui/ThemeIcon';
+import Chip from '../components/ui/Chip';
+import { ActivityFeedItem, AlertItem, PageHeader } from '../components/ui';
+import DashboardPropertyCard from '../components/cards/DashboardPropertyCard';
 
-// Asset constants with descriptive names - using complete asset mapping
-const loginLogoIcon = getAssetPath('login-logo-icon');           // Header logo
-const searchIcon = getAssetPath('search-icon');                  // Search icon
-const notificationIcon = getAssetPath('notification-icon');      // Notification bell
-const settingsIcon = getAssetPath('settings-icon');              // Settings gear
-const themeSwitchIcon = getAssetPath('theme-switch-icon');       // Theme toggle
-const dashboardNavIcon = getAssetPath('dashboard-nav-icon');     // Dashboard navigation
-const propertiesNavIcon = getAssetPath('properties-nav-icon');   // Properties navigation
-const tenantsNavIcon = getAssetPath('tenants-nav-icon');         // Tenants navigation
-const maintenanceNavIcon = getAssetPath('maintenance-nav-icon'); // Maintenance navigation
-const reportsNavIcon = getAssetPath('reports-nav-icon');         // Reports navigation
-const helpNavIcon = getAssetPath('help-nav-icon');               // Help navigation
-const analyticsNavIcon = getAssetPath('analytics-nav-icon');     // Analytics navigation
-const addPropertyActionIcon = getAssetPath('add-property-action-icon'); // Add property action
-const addPropertyButtonIcon = getAssetPath('add-property-button-icon'); // Add property button
-const propertyActionsIcon = getAssetPath('property-actions-icon'); // Property actions
-const calendarIcon = getAssetPath('calendar-icon');              // Calendar icon
-const checkmarkIcon = getAssetPath('checkmark-icon');            // Checkmark icon
-const dollarIcon = getAssetPath('dollar-icon');                  // Dollar icon
-const dotSeparatorIcon = getAssetPath('dot-separator-icon');     // Dot separator
-const dropdownArrowIcon = getAssetPath('dropdown-arrow-icon');   // Dropdown arrow
-const settingsNavIcon = getAssetPath('settings-nav-icon');       // Settings navigation
+// Asset constants
+const loginLogoIcon = getAssetPath('login-logo-icon');
+const searchIcon = getAssetPath('search-icon');
+const notificationIcon = getAssetPath('notification-icon');
+const settingsIcon = getAssetPath('settings-icon');
+const themeSwitchIcon = getAssetPath('theme-switch-icon');
+const dashboardNavIcon = getAssetPath('dashboard-nav-icon');
+const propertiesNavIcon = getAssetPath('properties-nav-icon');
+const tenantsNavIcon = getAssetPath('tenants-nav-icon');
+const maintenanceNavIcon = getAssetPath('maintenance-nav-icon');
+const reportsNavIcon = getAssetPath('reports-nav-icon');
+const helpNavIcon = getAssetPath('help-nav-icon');
+const analyticsNavIcon = getAssetPath('analytics-nav-icon');
+const addPropertyActionIcon = getAssetPath('add-property-action-icon');
+const addPropertyButtonIcon = getAssetPath('add-property-button-icon');
+const propertyActionsIcon = getAssetPath('property-actions-icon');
+const calendarIcon = getAssetPath('calendar-icon');
+const starFilledIcon = getAssetPath('star-filled-icon');
+const dollarIcon = getAssetPath('dollar-icon');
+const locationIcon = getAssetPath('location-icon');
+const alertIcon = getAssetPath('alert-icon');
+const financialIcon = getAssetPath('financial-icon');
+const aiEfficiencyIcon = getAssetPath('ai-efficiency-icon');
+const emailIcon = getAssetPath('email-icon');
+const communicationIcon = getAssetPath('communication-icon');
+const trendingUpIcon = getAssetPath('trending-up-icon');
 
-// Correct icon mappings for stat cards using actual hash values
-const vacancyCardIcon = getAssetPath('878cd835ab10ca42796d3d46ca1955b32ffb2ff2');        // building-property-icon
-const rentCollectionCardIcon = getAssetPath('0f44f729311136017322fe20df2f07dfb5735258');       // dollar-sign-icon
-const maintenanceCardIcon = getAssetPath('bd7230e7a66d09f8f2922c1dbe464bf845edafdb');   // maintenance-wrench-icon
-const leasesCardIcon = getAssetPath('6d3c0204ac37f038cd091108592cad5b0022f2e9');           // leases-document-icon
-const aiEfficiencyCardIcon = getAssetPath('financial-icon');         // chart-graph-icon (using descriptive name)
-const trendingUpIcon = getAssetPath('bdfb842fd34b514bce485e4a545244e6ae290405');                // trending-up-streamline-tabler-icon
+// Stat card icons
+const vacancyCardIcon = getAssetPath('878cd835ab10ca42796d3d46ca1955b32ffb2ff2');
+const rentCollectionCardIcon = getAssetPath('0f44f729311136017322fe20df2f07dfb5735258');
+const maintenanceCardIcon = getAssetPath('bd7230e7a66d09f8f2922c1dbe464bf845edafdb');
+const leasesCardIcon = getAssetPath('6d3c0204ac37f038cd091108592cad5b0022f2e9');
+const aiEfficiencyCardIcon = getAssetPath('financial-icon');
 
 export default function Dashboard() {
   const [searchValue, setSearchValue] = useState('');
@@ -45,7 +51,6 @@ export default function Dashboard() {
 
   const handleSearch = (query: string) => {
     console.log('Dashboard search:', query);
-    // Implement search functionality here
   };
 
   const handleLogoClick = () => {
@@ -53,63 +58,52 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="bg-static-white content-stretch flex items-center justify-center relative h-screen w-screen" data-name="Dashboard" data-node-id="225:5071">
-      <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0" data-name="Container" data-node-id="225:5072">
-        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col items-start relative size-full">
+    <div className="bg-background-default min-h-screen w-full">
+      <div className="flex flex-col h-screen">
           {/* Header */}
-          <Header 
-            searchPlaceholder="Search properties, tenants, tickets..."
-            notificationCount={3}
-            showThemeToggle={true}
-            logoGradient="brand-aurora"
-            searchValue={searchValue}
-            onSearchChange={setSearchValue}
-            onSearch={handleSearch}
-            onLogoClick={handleLogoClick}
-          />
+        <Header 
+          searchPlaceholder="Search properties, tenants, tickets..."
+          notificationCount={3}
+          showThemeToggle={true}
+          logoGradient="brand-aurora"
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          onSearch={handleSearch}
+          onLogoClick={handleLogoClick}
+        />
 
           {/* Main Content */}
-          <div className="basis-0 grow min-h-px min-w-px relative shrink-0 w-full" data-name="Main Content" data-node-id="225:5074">
-            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex items-start relative size-full">
-              {/* Left Navigation */}
-              <LeftNavigation 
-                activeItem="dashboard"
-                expanded={isNavigationExpanded}
-                userName="Jhon Deo"
-                userInitials="JD"
-                userGradient="aqua-2"
-                onItemClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
-              />
+        <div className="flex-1 flex overflow-hidden">
+              {/* Left Navigation - Visible on all viewports */}
+              <div className="block">
+                <LeftNavigation 
+                  activeItem="dashboard"
+                  expanded={isNavigationExpanded}
+                  userName="Jhon Deo"
+                  userInitials="JD"
+                  userGradient="aqua-2"
+                  onItemClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
+                />
+                    </div>
+
 
               {/* Dashboard Content */}
-              <div className="basis-0 box-border content-stretch flex flex-col gap-8 grow h-full items-start min-h-px min-w-px overflow-x-clip overflow-y-auto pb-18 pt-8 px-18 relative shrink-0" data-name="NewDashboardScreen" data-node-id="225:5076">
-                {/* Welcome Section */}
-                <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 246" data-node-id="288:20053">
-                  <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0" data-name="Container" data-node-id="225:5078">
-                    <p className="font-sans font-bold leading-h2 relative shrink-0 text-text-primary text-h2" data-node-id="225:5079">
-                      Welcome back, John
-                    </p>
-                    <p className="font-sans font-normal leading-base relative shrink-0 text-text-secondary text-base" data-node-id="225:5080">
-                      Welcome back, John. Here's what's happening with your properties today.
-                    </p>
-                  </div>
-                  <div className="content-stretch flex items-center justify-center relative shrink-0" data-name="Container" data-node-id="225:5081">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      icon={addPropertyActionIcon}
-                      iconPosition="left"
-                      onClick={() => console.log('Quick action clicked')}
-                    >
-                        Quick Action
-                    </Button>
-                  </div>
-                </div>
+          <div className="flex-1 flex flex-col gap-6 md:gap-8 overflow-y-auto pb-18 pt-8 px-18">
+                {/* Page Header */}
+                <PageHeader
+                  variant="default"
+                  title="Welcome back, John"
+                  subtitle="Welcome back, John. Here's what's happening with your properties today."
+                  primaryAction={{
+                    label: "Quick Action",
+                    onClick: () => console.log('Quick action clicked'),
+                    icon: addPropertyActionIcon
+                  }}
+                />
 
                 {/* Stats Cards */}
-                <div className="flex gap-4 sm:gap-6 w-full overflow-x-auto" data-name="Stats Cards Grid">
-                  {/* Vacancy Card */}
-                  <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="3/10 Vacant Units"
                       subtitle="Vacancy"
@@ -117,11 +111,10 @@ export default function Dashboard() {
                       icon={vacancyCardIcon}
                       gradient="info-flow"
                       badge={{ text: "70% Occupancy", color: "primary", trend: "up" }}
+                      variant="default"
                     />
                   </div>
-
-                  {/* Rent Collection Card */}
-                  <div className="min-w-0 flex-1">
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="$7,050 / $14,000"
                       subtitle="Rent Collection"
@@ -129,11 +122,10 @@ export default function Dashboard() {
                       icon={rentCollectionCardIcon}
                       gradient="ai-violet-2"
                       badge={{ text: "50% Pending", color: "error", trend: "down" }}
+                      variant="default"
                     />
                   </div>
-
-                  {/* Maintenance Card */}
-                  <div className="min-w-0 flex-1">
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="2/5 Open Tickets"
                       subtitle="Maintenance"
@@ -141,11 +133,10 @@ export default function Dashboard() {
                       icon={maintenanceCardIcon}
                       gradient="brand-aurora"
                       badge={{ text: "3 Completed", color: "success", trend: "up" }}
+                      variant="default"
                     />
                   </div>
-
-                  {/* Leases Card */}
-                  <div className="min-w-0 flex-1">
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="In next 2 months"
                       subtitle="Leases"
@@ -153,11 +144,10 @@ export default function Dashboard() {
                       icon={leasesCardIcon}
                       gradient="magenta-pop"
                       badge={{ text: "2 Expiring Soon", color: "warning", trend: "up" }}
+                      variant="default"
                     />
                   </div>
-
-                  {/* AI Efficiency Card */}
-                  <div className="min-w-0 flex-1">
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="500 hours saved month"
                       subtitle="AI Efficiency"
@@ -165,19 +155,23 @@ export default function Dashboard() {
                       icon={aiEfficiencyCardIcon}
                       gradient="emerald-glow"
                       badge={{ text: "+12.5%", color: "info", trend: "up" }}
+                      variant="default"
                     />
                   </div>
                 </div>
 
                 {/* Top Performing Properties Section */}
-                <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 174" data-node-id="288:19169">
-                  <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Frame 176" data-node-id="288:19170">
-                    <ThemeIcon src={propertiesNavIcon} alt="Properties nav" size="sm" variant="default" />
-                    <p className="font-sans font-semibold leading-base not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19179">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
+                  {/* Left side - Properties icon and title */}
+                  <div className="flex items-center gap-2">
+                    <ThemeIcon src={propertiesNavIcon} alt="Properties" size="sm" variant="default" />
+                    <h2 className="font-semibold text-base text-primary">
                       Top Performing Properties
-                    </p>
+                    </h2>
                   </div>
-                  <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Frame 245" data-node-id="288:19877">
+                  
+                  {/* Right side - Action buttons */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
                     <Button
                       variant="secondary"
                       size="sm"
@@ -200,172 +194,349 @@ export default function Dashboard() {
                 </div>
 
                 {/* Property Cards Grid */}
-                <div className="content-stretch flex gap-6 items-start relative shrink-0 w-full" data-name="Container" data-node-id="288:19246">
-                  {/* Property Card 1 */}
-                  <div className="bg-static-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-96 h-66 shadow-card-small" data-name="Card" data-node-id="288:19247">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="288:19881">
-                      <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-10 h-10 shadow-brand-purple-glow" data-name="Container" data-node-id="288:19882">
-                        <p className="font-sans font-bold leading-base not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="288:19897">
-                          1
-                        </p>
-                      </div>
-                      <div className="content-stretch flex gap-1 items-center relative shrink-0" data-name="Button" data-node-id="288:19891">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Star--Streamline-Tabler-Filled" data-node-id="288:19929">
-                          <img alt="" className="block max-w-none size-full" src={checkmarkIcon} />
-                        </div>
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19932">
-                          4.8
-                        </p>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:19253">
-                      <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full" data-name="Container" data-node-id="288:19254">
-                        <p className="font-sans font-semibold leading-base not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19255">
-                          Sunset Apartments
-                        </p>
-                        <div className="content-stretch flex gap-2 items-center relative shrink-0 w-full" data-name="Paragraph" data-node-id="288:19256">
-                          <div className="relative shrink-0 w-3 h-3" data-name="Icon" data-node-id="288:19257">
-                            <img alt="" className="block max-w-none size-full" src={dotSeparatorIcon} />
-                          </div>
-                          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:19260">
-                            123 Sunset Blvd, Los Angeles, CA
-                          </p>
-                        </div>
-                      </div>
-                      <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:19261">
-                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
-                      </button>
-                    </div>
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:19266">
-                      <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:19913">
-                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19917">
-                          Revenue
-                        </p>
-                      </div>
-                      <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19918">
-                        $24,580
-                      </p>
-                    </div>
-                    <ProgressBar
-                      variant="occupancy"
-                      percentage={92}
-                      label="Occupancy"
-                      value="92%"
-                      subtitle="22 of 24 units occupied"
+                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                  {/* Property Card 1 - Sunset Apartments */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <DashboardPropertyCard
+                      rank={1}
+                      title="Sunset Apartments"
+                      address="123 Sunset Blvd, Los Angeles, CA"
+                      rating={4.8}
+                      revenue="$24,580"
+                      occupancy={{
+                        percentage: 92,
+                        color: 'success',
+                        description: '22 of 24 units occupied'
+                      }}
+                      onView={(title) => console.log('View property:', title)}
+                      onEdit={(title) => console.log('Edit property:', title)}
                     />
+                      </div>
+
+                  {/* Property Card 2 - Oak Villa Complex */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <DashboardPropertyCard
+                      rank={2}
+                      title="Oak Villa Complex"
+                      address="456 Oak Street, San Francisco, CA"
+                      rating={4.5}
+                      revenue="$18,240"
+                      occupancy={{
+                        percentage: 80,
+                        color: 'warning',
+                        description: '20 of 25 units occupied'
+                      }}
+                      onView={(title) => console.log('View property:', title)}
+                      onEdit={(title) => console.log('Edit property:', title)}
+                    />
+                        </div>
+
+                  {/* Property Card 3 - Pine Heights */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <DashboardPropertyCard
+                      rank={3}
+                      title="Pine Heights"
+                      address="789 Pine Avenue, Seattle, WA"
+                      rating={4.0}
+                      revenue="$16,720"
+                      occupancy={{
+                        percentage: 76,
+                        color: 'error',
+                        description: '19 of 25 units occupied'
+                      }}
+                      onView={(title) => console.log('View property:', title)}
+                      onEdit={(title) => console.log('Edit property:', title)}
+                    />
+                      </div>
+                    </div>
+
+                {/* Two Column Layout - Alerts and Financial/AI Actions */}
+                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                  {/* Left Column - Urgent Alerts */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card lg:w-1/2">
+                    <Card className="shadow-card-small flex flex-col gap-4 p-6 h-[676.83px]">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex gap-2 items-center">
+                        <ThemeIcon src={alertIcon} alt="Alerts" size="sm" variant="default" />
+                        <h2 className="font-semibold text-base text-primary">Urgent Alerts</h2>
+                      </div>
+                      <Button variant="secondary" size="sm" onClick={() => console.log('View all alerts')}>
+                        View All
+                      </Button>
+                    </div>
+                    <div className="flex flex-col gap-3 overflow-y-auto" style={{ maxHeight: 'calc(676.83px - 120px)' }}>
+                      <AlertItem
+                        priority="high"
+                        category="Rent Collection"
+                        message="Unit 4B - Rent overdue by 15 days"
+                        timestamp="30 min"
+                        onClick={() => console.log('Alert clicked: Rent overdue')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Maintenance Ticket"
+                        message="Unit 2A - HVAC system needs repair"
+                        timestamp="30 min"
+                        onClick={() => console.log('Alert clicked: HVAC repair')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Vacancy"
+                        message="Unit 7C - Vacant for 45 days"
+                        timestamp="30 min"
+                        onClick={() => console.log('Alert clicked: Vacancy')}
+                      />
+                      <AlertItem
+                        priority="high"
+                        category="Lease"
+                        message="Unit 5A - Lease expires in 7 days"
+                        timestamp="30 min"
+                        onClick={() => console.log('Alert clicked: Lease expiry')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Inspection Request"
+                        message="Unit 3A - Scheduled for next week"
+                        timestamp="45 min"
+                        onClick={() => console.log('Alert clicked: Inspection')}
+                      />
+                      <AlertItem
+                        priority="high"
+                        category="Feedback Collection"
+                        message="Unit 2C - Request for tenant reviews"
+                        timestamp="1 hr"
+                        onClick={() => console.log('Alert clicked: Feedback collection')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Payment Issue"
+                        message="Unit 1B - Failed payment attempt"
+                        timestamp="2 hrs"
+                        onClick={() => console.log('Alert clicked: Payment issue')}
+                      />
+                      <AlertItem
+                        priority="high"
+                        category="Emergency"
+                        message="Unit 6A - Water leak reported"
+                        timestamp="3 hrs"
+                        onClick={() => console.log('Alert clicked: Water leak')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Document Request"
+                        message="Unit 8C - Lease renewal documents needed"
+                        timestamp="4 hrs"
+                        onClick={() => console.log('Alert clicked: Document request')}
+                      />
+                      <AlertItem
+                        priority="low"
+                        category="Maintenance"
+                        message="Unit 9A - Routine cleaning scheduled"
+                        timestamp="5 hrs"
+                        onClick={() => console.log('Alert clicked: Routine cleaning')}
+                      />
+                      <AlertItem
+                        priority="high"
+                        category="Complaint"
+                        message="Unit 3B - Noise complaint from neighbor"
+                        timestamp="6 hrs"
+                        onClick={() => console.log('Alert clicked: Noise complaint')}
+                      />
+                      <AlertItem
+                        priority="medium"
+                        category="Inspection"
+                        message="Unit 7A - Annual inspection completed"
+                        timestamp="1 day"
+                        onClick={() => console.log('Alert clicked: Inspection completed')}
+                      />
+                    </div>
+                    </Card>
                   </div>
 
-                  {/* Property Card 2 */}
-                  <div className="bg-static-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-96 h-66 shadow-card-small" data-name="Card" data-node-id="288:19934">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="288:19936">
-                      <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-10 h-10 shadow-brand-purple-glow" data-name="Container" data-node-id="288:19937">
-                        <p className="font-sans font-bold leading-base not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="288:19938">
-                          2
-                        </p>
-                      </div>
-                      <div className="content-stretch flex gap-1 items-center relative shrink-0" data-name="Button" data-node-id="288:19939">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Star--Streamline-Tabler-Filled" data-node-id="288:19940">
-                          <img alt="" className="block max-w-none size-full" src={checkmarkIcon} />
+                  {/* Right Column - Financial Snapshot and Recent AI Actions */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card lg:w-1/2 flex flex-col gap-6 h-full">
+                    {/* Financial Snapshot */}
+                    <Card className="shadow-card-small flex flex-col gap-4 p-6">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex gap-2 items-center">
+                          <ThemeIcon src={financialIcon} alt="Financial" size="sm" variant="default" />
+                          <h2 className="font-semibold text-base text-primary">Financial Snapshot</h2>
                         </div>
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19942">
-                          4.5
-                        </p>
+                        <Button variant="secondary" size="sm" onClick={() => console.log('View all financial')}>
+                          View All
+                        </Button>
                       </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:19943">
-                      <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full" data-name="Container" data-node-id="288:19944">
-                        <p className="font-sans font-semibold leading-base not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19945">
-                          Oak Villa Complex
-                        </p>
-                        <div className="content-stretch flex gap-2 items-center relative shrink-0 w-full" data-name="Paragraph" data-node-id="288:19946">
-                          <div className="relative shrink-0 w-3 h-3" data-name="Icon" data-node-id="288:19947">
-                            <img alt="" className="block max-w-none size-full" src={dotSeparatorIcon} />
+                      <div className="flex flex-col gap-4">
+                        {/* Revenue Section */}
+                        <div className="flex flex-col gap-2">
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm text-secondary">Expected Rent</p>
+                            <p className="font-bold text-base text-primary">$295,000</p>
                           </div>
-                          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:19950">
-                            123 Sunset Blvd, Los Angeles, CA
-                          </p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm text-secondary">Collected Rent</p>
+                            <p className="font-bold text-base text-primary">$284,650</p>
+                    </div>
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm text-secondary">Collection Rate</p>
+                            <p className="font-bold text-base text-primary">96.5%</p>
+                          </div>
+                          <ProgressBar
+                            variant="occupancy"
+                            percentage={96.5}
+                            label=""
+                            value=""
+                            subtitle=""
+                          />
                         </div>
-                      </div>
-                      <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:19951">
-                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
-                      </button>
-                    </div>
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:19956">
-                      <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:19959">
-                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:19963">
-                          Revenue
-                        </p>
-                      </div>
-                      <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:19964">
-                        $18,240
-                      </p>
-                    </div>
-                    <ProgressBar
-                      variant="occupancy"
-                      percentage={80}
-                      label="Occupancy"
-                      value="80%"
-                      subtitle="22 of 24 units occupied"
-                    />
-                  </div>
 
-                  {/* Property Card 3 */}
-                  <div className="bg-static-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-96 h-66 shadow-card-small" data-name="Card" data-node-id="288:20013">
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 157" data-node-id="288:20015">
-                      <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-10 h-10 shadow-brand-purple-glow" data-name="Container" data-node-id="288:20016">
-                        <p className="font-sans font-bold leading-base not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="288:20017">
-                          3
-                        </p>
-                      </div>
-                      <div className="content-stretch flex gap-1 items-center relative shrink-0" data-name="Button" data-node-id="288:20018">
-                        <div className="relative shrink-0 w-4 h-4" data-name="Star--Streamline-Tabler-Filled" data-node-id="288:20019">
-                          <img alt="" className="block max-w-none size-full" src={checkmarkIcon} />
-                        </div>
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:20021">
-                          4.0
-                        </p>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-2 items-start relative shrink-0 w-full" data-name="PropertyCard" data-node-id="288:20022">
-                      <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full" data-name="Container" data-node-id="288:20023">
-                        <p className="font-sans font-semibold leading-base not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:20024">
-                          Pine Heights
-                        </p>
-                        <div className="content-stretch flex gap-2 items-center relative shrink-0 w-full" data-name="Paragraph" data-node-id="288:20025">
-                          <div className="relative shrink-0 w-3 h-3" data-name="Icon" data-node-id="288:20026">
-                            <img alt="" className="block max-w-none size-full" src={dotSeparatorIcon} />
+                        {/* Expenses Section */}
+                        <div className="flex flex-col gap-2 pt-4 border-t border-overlays-white-inverse-10">
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm text-secondary">Operating Expenses</p>
+                            <p className="font-bold text-base text-primary">$89,250</p>
                           </div>
-                          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small" data-node-id="288:20029">
-                            123 Sunset Blvd, Los Angeles, CA
-                          </p>
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm text-secondary">Maintenance Costs</p>
+                            <p className="font-bold text-base text-primary">$12,400</p>
+                      </div>
+                          <div className="flex items-center justify-between">
+                            <p className="font-semibold text-base text-primary">Net Cash Flow</p>
+                            <p className="font-bold text-lg text-success-500">$183,000</p>
                         </div>
-                      </div>
-                      <button className="content-stretch flex items-center justify-center relative rounded-lg shrink-0 w-6 h-6 cursor-pointer" data-name="Button" data-node-id="288:20030">
-                        <ThemeIcon src={propertyActionsIcon} alt="Property actions" size="sm" variant="default" />
-                      </button>
                     </div>
-                    <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Frame 202" data-node-id="288:20035">
-                      <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Container" data-node-id="288:20038">
-                        <ThemeIcon src={dollarIcon} alt="Dollar" size="sm" variant="default" />
-                        <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-text-primary text-label-small" data-node-id="288:20042">
-                          Revenue
-                        </p>
                       </div>
-                      <p className="font-sans font-bold leading-small not-italic relative shrink-0 text-text-primary text-base" data-node-id="288:20043">
-                        $16,720
+                    </Card>
+
+                    {/* Recent AI Actions */}
+                    <Card className="shadow-card-small flex flex-col gap-4 p-6">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex gap-2 items-center">
+                          <ThemeIcon src={aiEfficiencyIcon} alt="AI Actions" size="sm" variant="default" />
+                          <h2 className="font-semibold text-base text-primary">Recent AI Actions</h2>
+                    </div>
+                        <Button variant="secondary" size="sm" onClick={() => console.log('View all AI actions')}>
+                          View All
+                        </Button>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <ActivityFeedItem
+                          variant="compact"
+                          userName="AI Assistant"
+                          userIcon={aiEfficiencyIcon}
+                          action="Sent rent reminder to Tenant John Doe"
+                          description=""
+                          timestamp="2 hours ago"
+                          badges={[{ label: "communication", variant: "info" }]}
+                          priority="medium"
+                        />
+                        <ActivityFeedItem
+                          variant="compact"
+                          userName="AI Assistant"
+                          userIcon={aiEfficiencyIcon}
+                          action="Auto-scheduled maintenance for HVAC repair"
+                          description=""
+                          timestamp="4 hours ago"
+                          badges={[{ label: "maintenance", variant: "warning" }]}
+                          priority="medium"
+                        />
+                        <ActivityFeedItem
+                          variant="compact"
+                          userName="AI Assistant"
+                          userIcon={aiEfficiencyIcon}
+                          action="Generated lease renewal letter"
+                          description=""
+                          timestamp="6 hours ago"
+                          badges={[{ label: "lease", variant: "primary" }]}
+                          priority="medium"
+                        />
+                      </div>
+                    </Card>
+                      </div>
+                    </div>
+
+                {/* Properties Portfolio Map */}
+                <Card className="shadow-card-small flex flex-col gap-4 p-6">
+                  <div className="flex gap-2 items-center">
+                    <ThemeIcon src={propertiesNavIcon} alt="Portfolio" size="sm" variant="default" />
+                    <h2 className="font-semibold text-base text-primary">Properties Portfolio</h2>
+                  </div>
+                  <div className="bg-overlays-black-inverse-95 rounded-xl p-8 flex items-center justify-center min-h-96">
+                    <div className="flex flex-col items-center gap-4">
+                      <ThemeIcon src={propertiesNavIcon} alt="Map placeholder" size="lg" variant="gray" />
+                      <p className="text-sm text-tertiary text-center">
+                        Interactive properties map visualization will be displayed here
                       </p>
                     </div>
-                    <ProgressBar
-                      variant="occupancy"
-                      percentage={76}
-                      label="Occupancy"
-                      value="76%"
-                      subtitle="22 of 24 units occupied"
+                      </div>
+                </Card>
+
+                {/* Bottom Quick Stats - 4 Cards */}
+                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                  {/* Rent Collected vs Expected */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <StatCard
+                      title="Rent Collected vs Expected"
+                      value="$7,050 / $14,000"
+                      subtitle="50% received (MTD)"
+                      icon={dollarIcon}
+                      gradient="info-flow"
+                      variant="complex"
+                      actionButton={{
+                        text: "View Collection Report",
+                        onClick: () => console.log('View collection report')
+                      }}
                     />
-                  </div>
-                </div>
+                      </div>
+
+                  {/* Expenses */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <StatCard
+                      title="Expenses"
+                      value="$2,500"
+                      subtitle="Top: Maintenance (MTD)"
+                      icon={dollarIcon}
+                      gradient="brand-aurora"
+                      variant="complex"
+                      actionButton={{
+                        text: "View Expense Breakdown",
+                        onClick: () => console.log('View expense breakdown')
+                      }}
+                    />
+                      </div>
+
+                  {/* Net Cash Flow */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <StatCard
+                      title="Net Cash Flow"
+                      value="+$4,550"
+                      subtitle="Net so far (MTD)"
+                      icon={trendingUpIcon}
+                      gradient="emerald-glow"
+                      variant="complex"
+                      valueColor="success"
+                      actionButton={{
+                        text: "View P&L Report",
+                        onClick: () => console.log('View P&L report')
+                      }}
+                    />
+                    </div>
+
+                  {/* ROI / Cap Rate Trend */}
+                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                    <StatCard
+                      title="ROI / Cap Rate Trend"
+                      value="8.4%"
+                      subtitle="↑0.6% from last year"
+                      icon={financialIcon}
+                      gradient="magenta-pop"
+                      variant="complex"
+                      valueColor="success"
+                      actionButton={{
+                        text: "View Investment Analysis",
+                        onClick: () => console.log('View investment analysis')
+                      }}
+                    />
               </div>
             </div>
           </div>

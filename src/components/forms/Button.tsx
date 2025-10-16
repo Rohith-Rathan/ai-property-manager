@@ -80,7 +80,7 @@ export default function Button({
   };
 
   const getVariantClasses = (variant: string, gradient: string) => {
-    const baseClasses = 'box-border content-stretch cursor-pointer flex gap-2 items-center justify-center overflow-visible relative rounded-lg shrink-0 transition-all duration-200';
+    const baseClasses = 'box-border cursor-pointer flex gap-2 items-center justify-center overflow-visible relative rounded-lg shrink-0 transition-all duration-200';
     
     switch (variant) {
       case 'primary':
@@ -122,10 +122,10 @@ export default function Button({
   const buttonClasses = `
     ${variantClasses}
     ${sizeClasses.container}
+    ${className}
     ${fullWidth ? 'w-full' : ''}
     ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
     ${loading ? 'cursor-wait' : ''}
-    ${className}
   `.trim();
 
   const renderIcon = (iconSrc: string | null, position: string) => {

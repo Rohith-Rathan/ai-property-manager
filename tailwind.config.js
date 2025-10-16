@@ -31,6 +31,11 @@ module.exports = {
         'disabled': 'var(--color-text-disabled)',
         'accent': 'var(--color-text-accent)',
         'error': 'var(--color-text-error)',
+        'success': 'var(--color-text-success)',
+        'warning': 'var(--color-text-warning)',
+        'info': 'var(--color-text-info)',
+        'brand-primary': 'var(--color-text-brand-primary)',
+        'accent-purple': 'var(--color-text-accent-purple)',
         'muted': 'var(--color-text-muted)',
 
         // Static Colors (Fixed - removed text- prefix to avoid double prefix)
@@ -624,6 +629,15 @@ module.exports = {
         // Container Tokens - Use responsive variables
         'container-max-width': 'var(--container-max-width)',
         'container-min-width': 'var(--container-min-width)',
+
+        // Fractional Widths for Responsive Layouts
+        '1/2': '50%',
+        '1/3': '33.333333%',
+        '1/4': '25%',
+        '1/5': '20%',
+        '2/3': '66.666667%',
+        '3/4': '75%',
+        '4/5': '80%',
       },
 
       height: {
@@ -648,7 +662,35 @@ module.exports = {
       // Grid - Use responsive variables
       gridTemplateColumns: {
         'container': 'repeat(var(--grid-columns), minmax(0, 1fr))',
+        // Standard CSS Grid columns
+        '1': 'repeat(1, minmax(0, 1fr))',
+        '2': 'repeat(2, minmax(0, 1fr))',
+        '3': 'repeat(3, minmax(0, 1fr))',
+        '4': 'repeat(4, minmax(0, 1fr))',
+        '5': 'repeat(5, minmax(0, 1fr))',
+        '6': 'repeat(6, minmax(0, 1fr))',
+        '7': 'repeat(7, minmax(0, 1fr))',
+        '8': 'repeat(8, minmax(0, 1fr))',
+        '9': 'repeat(9, minmax(0, 1fr))',
+        '10': 'repeat(10, minmax(0, 1fr))',
+        '11': 'repeat(11, minmax(0, 1fr))',
+        '12': 'repeat(12, minmax(0, 1fr))',
       },
+
+        // Responsive Flexbox Layouts
+        flex: {
+          'responsive-card': '1 1 200px',
+          'responsive-card-sm': '1 1 150px',
+          'responsive-card-lg': '1 1 300px',
+          'responsive-card-xl': '1 1 350px',
+        },
+
+        minWidth: {
+          'responsive-card': '200px',
+          'responsive-card-sm': '150px',
+          'responsive-card-lg': '300px',
+          'responsive-card-xl': '350px',
+        },
 
       gap: {
         'container': 'var(--grid-gap)',

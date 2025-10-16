@@ -99,7 +99,7 @@ export const BotConversation: React.FC<BotConversationProps> = ({
   };
 
   return (
-    <div className={`bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-8 relative rounded-xxxl w-full h-96 ${className}`}>
+    <div className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-8 relative rounded-xxxl w-full h-96 ${className}`}>
       {/* Header Section */}
       <div className="content-stretch flex items-center relative shrink-0 w-full">
         <div className="content-stretch flex gap-2 items-center relative shrink-0">

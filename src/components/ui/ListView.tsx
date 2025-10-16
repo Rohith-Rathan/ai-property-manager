@@ -165,7 +165,7 @@ export default function ListView({
   const displayTenants = tenants.length > 0 ? tenants : defaultTenants;
 
   return (
-    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-full h-auto min-h-96 sm:h-auto md:h-auto lg:h-auto shadow-card-small" data-name="List View Container">
+    <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-4 items-start p-6 relative rounded-xxl shrink-0 w-full h-auto min-h-96 sm:h-auto md:h-auto lg:h-auto shadow-card-small" data-name="List View Container">
       
       {/* Properties List */}
       {variant === 'properties' && displayProperties.map((property) => (

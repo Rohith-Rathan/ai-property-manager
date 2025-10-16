@@ -41,7 +41,7 @@ export default function Button({
       case 'primary':
         return 'bg-gradient-brand-aurora text-white hover:opacity-90';
       case 'secondary':
-        return 'border border-overlays-white-inverse-10 bg-white-5 text-primary hover:bg-surface-secondary';
+        return 'border border-overlays-white-inverse-10 bg-overlays-white-10 text-primary hover:bg-surface-secondary';
       case 'link':
         return 'bg-transparent text-primary-1 hover:opacity-80';
       case 'social':

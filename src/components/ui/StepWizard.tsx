@@ -46,7 +46,7 @@ const StepWizard: React.FC<StepWizardProps> = ({
   };
 
   return (
-    <div className={`bg-white-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-2 items-start p-8 relative rounded-xxxl size-full ${className}`}>
+    <div className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-2 items-start p-8 relative rounded-xxxl size-full ${className}`}>
       {/* Header Section */}
       <div className="content-center flex flex-wrap gap-4 items-center justify-between relative shrink-0 w-full">
         <div className="relative shrink-0">

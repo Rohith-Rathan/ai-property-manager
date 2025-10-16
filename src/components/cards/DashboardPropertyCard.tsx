@@ -2,6 +2,7 @@ import React from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from '../ui/ThemeIcon';
 import ProgressBar from '../ui/ProgressBar';
+import { MoreActionsButton } from '../ui/MoreActionsButton';
 
 // Asset constants
 const starFilledIcon = getAssetPath('star-filled-icon');
@@ -21,6 +22,8 @@ interface DashboardPropertyCardProps {
     description: string;
   };
   showActions?: boolean;
+  onView?: (title: string) => void;
+  onEdit?: (title: string) => void;
 }
 
 export default function DashboardPropertyCard({ 
@@ -30,11 +33,13 @@ export default function DashboardPropertyCard({
   rating,
   revenue,
   occupancy,
-  showActions = true
+  showActions = true,
+  onView,
+  onEdit
 }: DashboardPropertyCardProps) {
 
   return (
-    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl shrink-0 w-96 h-66 shadow-card-small" data-name="Dashboard Property Card">
+    <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl w-full h-66 shadow-card-small" data-name="Dashboard Property Card">
       <div className="box-border content-stretch flex flex-col gap-4 items-center p-6 relative rounded-bl-xxl rounded-br-xxl shrink-0 w-full" data-name="Card">
         {/* Header with Rank and Rating */}
         <div className="content-stretch flex items-center justify-between relative shrink-0 w-full" data-name="Card Header">
@@ -67,13 +72,36 @@ export default function DashboardPropertyCard({
             </div>
           </div>
           {showActions && (
-            <div className="relative rounded-lg shrink-0 w-6 h-6" data-name="Actions Button">
-              <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex items-center justify-center relative w-6 h-6">
-                <button className="block cursor-pointer relative shrink-0 w-4 h-4" data-name="Icon">
-                  <ThemeIcon src={propertyActionsIcon} alt="Actions" size="sm" variant="default" />
-                </button>
-              </div>
-            </div>
+            <MoreActionsButton
+              items={[
+                { 
+                  id: 'view-property',
+                  label: 'View Property', 
+                  onClick: () => onView?.(title),
+                  icon: '/assets/view-details-icon.svg'
+                },
+                { 
+                  id: 'edit-property',
+                  label: 'Edit Property', 
+                  onClick: () => onEdit?.(title),
+                  icon: '/assets/edit-icon.svg'
+                },
+                { 
+                  id: 'view-units',
+                  label: 'View Units', 
+                  onClick: () => console.log('View units for', title),
+                  icon: '/assets/units-icon.svg'
+                },
+                { 
+                  id: 'generate-report',
+                  label: 'Generate Report', 
+                  onClick: () => console.log('Generate report for', title),
+                  icon: '/assets/reports-icon.svg'
+                }
+              ]}
+              triggerIcon="/assets/more-options-icon.svg"
+              position="bottom-right"
+            />
           )}
         </div>
 

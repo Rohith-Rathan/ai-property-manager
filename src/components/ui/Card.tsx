@@ -9,9 +9,9 @@ interface CardProps {
 }
 
 const variantClasses = {
-  default: 'bg-surface-primary border border-border-primary',
-  elevated: 'bg-surface-primary shadow-card-large',
-  outlined: 'bg-surface-primary border border-border-secondary'
+  default: 'bg-overlays-black-inverse-95 border border-overlays-white-inverse-5',
+  elevated: 'bg-overlays-black-inverse-95 shadow-card-large',
+  outlined: 'bg-overlays-black-inverse-95 border border-overlays-white-inverse-5'
 };
 
 const paddingClasses = {

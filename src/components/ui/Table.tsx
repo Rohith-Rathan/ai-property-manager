@@ -188,7 +188,7 @@ export const Table: React.FC<TableProps> = ({
   };
 
   return (
-    <Card className={`bg-white-95 border border-overlays-white-inverse-5 rounded-xxxl shadow-card-large ${className}`}>
+    <Card className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 rounded-xxxl shadow-card-large ${className}`}>
       <div className="p-8">
         {/* Table Header */}
         {(title || subtitle) && (

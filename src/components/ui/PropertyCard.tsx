@@ -15,6 +15,8 @@ const viewDetailsIcon = getAssetPath('view-details-icon');
 const editIcon = getAssetPath('edit-icon');
 const reportsIcon = getAssetPath('reports-icon');
 const moreOptionsIcon = getAssetPath('more-options-icon');
+const deletePropertyIcon = getAssetPath('delete-property-icon');
+const duplicatePropertyIcon = getAssetPath('add-property-action-icon'); // Using add property as duplicate
 
 interface PropertyCardProps {
   property: {
@@ -89,28 +91,46 @@ export default function PropertyCard({
           <MoreActionsButton
             items={[
               { 
-                id: 'view-property',
-                label: 'View Property', 
+                id: 'view-details',
+                label: 'View Details', 
                 onClick: () => onView?.(property.id),
-                icon: viewDetailsIcon
+                icon: viewDetailsIcon,
+                variant: 'default'
               },
               { 
                 id: 'edit-property',
                 label: 'Edit Property', 
                 onClick: () => onEdit?.(property.id),
-                icon: editIcon
+                icon: editIcon,
+                variant: 'default'
               },
               { 
                 id: 'view-units',
                 label: 'View Units', 
                 onClick: () => console.log('View units for', property.id),
-                icon: unitsIcon
+                icon: unitsIcon,
+                variant: 'default'
+              },
+              { 
+                id: 'duplicate-property',
+                label: 'Duplicate Property', 
+                onClick: () => console.log('Duplicate property', property.id),
+                icon: duplicatePropertyIcon,
+                variant: 'default'
               },
               { 
                 id: 'generate-report',
                 label: 'Generate Report', 
                 onClick: () => console.log('Generate report for', property.id),
-                icon: reportsIcon
+                icon: reportsIcon,
+                variant: 'default'
+              },
+              { 
+                id: 'delete-property',
+                label: 'Delete Property', 
+                onClick: () => console.log('Delete property', property.id),
+                icon: deletePropertyIcon,
+                variant: 'danger'
               }
             ]}
             triggerIcon={moreOptionsIcon}

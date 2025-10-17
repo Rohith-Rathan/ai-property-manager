@@ -178,12 +178,12 @@ export default function PropertiesGrid() {
   return (
     <AppLayout 
       activePage="properties"
-      searchPlaceholder="Search properties, tenants, tickets..."
-      notificationCount={3}
-      showThemeToggle={true}
-      userName="Jhon Deo"
-      userInitials="JD"
-      userGradient="aqua-2"
+            searchPlaceholder="Search properties, tenants, tickets..."
+            notificationCount={3}
+            showThemeToggle={true}
+                userName="Jhon Deo"
+                userInitials="JD"
+                userGradient="aqua-2"
       onSearch={handleSearch}
       onNavigationClick={(itemId) => console.log(`PropertiesGrid navigation: ${itemId}`)}
     >
@@ -192,12 +192,6 @@ export default function PropertiesGrid() {
         title="Properties & Units"
         description="Manage your property portfolio with detailed unit tracking"
         actions={[
-          {
-            id: "edit-property",
-            label: "Edit Property",
-            icon: 'edit',
-            variant: 'secondary'
-          },
           {
             id: "add-property",
             label: "Add Property",

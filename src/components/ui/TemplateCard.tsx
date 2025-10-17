@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from './Card';
 import { Chip } from './Chip';
-import Button from './Button';
+import Button from '../forms/Button';
 import { KeyValuePair } from './KeyValuePair';
 import { ThemeIcon } from './ThemeIcon';
 import { MoreActionsButton } from './MoreActionsButton';

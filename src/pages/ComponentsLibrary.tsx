@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
-import PageHeader from '../components/ui/PageHeader';
+import PageHeader from '../components/layout/PageHeader';
 import StatCard from '../components/cards/StatCard';
 import PropertyCard from '../components/ui/PropertyCard';
 import DashboardPropertyCard from '../components/cards/DashboardPropertyCard';
@@ -243,17 +243,23 @@ export default function ComponentsLibrary() {
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader 
             title="Properties & Units"
-            subtitle="Manage your property portfolio with detailed unit tracking"
-            primaryAction={{
-              label: "Add Property",
-              onClick: () => console.log("Add Property clicked"),
-              icon: "/assets/add-property-button-icon.svg"
-            }}
-            secondaryAction={{
-              label: "Import",
-              onClick: () => console.log("Import clicked"),
-              icon: "/assets/edit-property-button-icon.svg"
-            }}
+            description="Manage your property portfolio with detailed unit tracking"
+            actions={[
+              {
+                id: "add-property",
+                label: "Add Property",
+                onClick: () => console.log("Add Property clicked"),
+                icon: "add",
+                variant: "primary"
+              },
+              {
+                id: "import",
+                label: "Import",
+                onClick: () => console.log("Import clicked"),
+                icon: "edit",
+                variant: "secondary"
+              }
+            ]}
           />
         </div>
       </div>
@@ -262,20 +268,24 @@ export default function ComponentsLibrary() {
         <h3 className="text-h4 font-bold text-primary mb-4">Property Page Header Variant</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader
-            variant="property"
             title="Sunset Apartments"
-            address="123 Sunset Blvd, Los Angeles, CA"
-            onBack={() => console.log("Back clicked")}
-            primaryAction={{
-              label: "Add Unit",
-              onClick: () => console.log("Add Unit clicked"),
-              icon: "/assets/add-unit-icon.svg"
-            }}
-            secondaryAction={{
-              label: "Edit Property",
-              onClick: () => console.log("Edit Property clicked"),
-              icon: "/assets/edit-property-button-icon.svg"
-            }}
+            description="123 Sunset Blvd, Los Angeles, CA"
+            actions={[
+              {
+                id: "add-unit",
+                label: "Add Unit",
+                onClick: () => console.log("Add Unit clicked"),
+                icon: "add",
+                variant: "primary"
+              },
+              {
+                id: "edit-property",
+                label: "Edit Property",
+                onClick: () => console.log("Edit Property clicked"),
+                icon: "edit",
+                variant: "secondary"
+              }
+            ]}
           />
         </div>
       </div>
@@ -284,20 +294,24 @@ export default function ComponentsLibrary() {
         <h3 className="text-h4 font-bold text-primary mb-4">Property Header - Different Property</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader
-            variant="property"
             title="Oak Villa Complex"
-            address="456 Oak Street, San Francisco, CA"
-            onBack={() => console.log("Back clicked")}
-            primaryAction={{
-              label: "Add Unit",
-              onClick: () => console.log("Add Unit clicked"),
-              icon: "/assets/add-unit-icon.svg"
-            }}
-            secondaryAction={{
-              label: "Edit Property",
-              onClick: () => console.log("Edit Property clicked"),
-              icon: "/assets/edit-property-button-icon.svg"
-            }}
+            description="456 Oak Street, San Francisco, CA"
+            actions={[
+              {
+                id: "add-unit-2",
+                label: "Add Unit",
+                onClick: () => console.log("Add Unit clicked"),
+                icon: "add",
+                variant: "primary"
+              },
+              {
+                id: "edit-property-2",
+                label: "Edit Property",
+                onClick: () => console.log("Edit Property clicked"),
+                icon: "edit",
+                variant: "secondary"
+              }
+            ]}
           />
         </div>
       </div>
@@ -306,18 +320,17 @@ export default function ComponentsLibrary() {
         <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Header - Ticket Details</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader
-            variant="maintenance"
             title="Maintenance Ticket"
-            ticketId="MNT-001"
-            priority="urgent"
-            createdDate="Oct 6, 2025"
-            lastUpdatedDate="Oct 6, 2025"
-            onBack={() => console.log("Back clicked")}
-            secondaryAction={{
-              label: "Mark as Resolved",
-              onClick: () => console.log("Mark as Resolved clicked"),
-              icon: "/assets/checkmark-icon.svg"
-            }}
+            description="MNT-001 - Priority: Urgent - Created: Oct 6, 2025 - Updated: Oct 6, 2025"
+            actions={[
+              {
+                id: "mark-resolved",
+                label: "Mark as Resolved",
+                onClick: () => console.log("Mark as Resolved clicked"),
+                icon: "checkmark",
+                variant: "primary"
+              }
+            ]}
           />
         </div>
       </div>
@@ -326,18 +339,17 @@ export default function ComponentsLibrary() {
         <h3 className="text-h4 font-bold text-primary mb-4">Maintenance Header - Different Priority</h3>
         <div className="border border-overlays-white-inverse-10 rounded-lg p-6">
           <PageHeader
-            variant="maintenance"
             title="Maintenance Ticket"
-            ticketId="MNT-002"
-            priority="medium"
-            createdDate="Oct 5, 2025"
-            lastUpdatedDate="Oct 6, 2025"
-            onBack={() => console.log("Back clicked")}
-            secondaryAction={{
-              label: "Update Status",
-              onClick: () => console.log("Update Status clicked"),
-              icon: "/assets/edit-property-icon.svg"
-            }}
+            description="MNT-002 - Priority: Medium - Created: Oct 5, 2025 - Updated: Oct 6, 2025"
+            actions={[
+              {
+                id: "update-status",
+                label: "Update Status",
+                onClick: () => console.log("Update Status clicked"),
+                icon: "edit",
+                variant: "secondary"
+              }
+            ]}
           />
         </div>
       </div>
@@ -515,7 +527,7 @@ export default function ComponentsLibrary() {
                 description: "22 of 24 units occupied"
               }
             }}
-            onEdit={(id) => alert(`Edit property ${id}`)}
+            onEdit={(id: string) => alert(`Edit property ${id}`)}
           />
           <PropertyCard
             property={{
@@ -534,7 +546,7 @@ export default function ComponentsLibrary() {
                 description: "16 of 20 units occupied"
               }
             }}
-            onEdit={(id) => alert(`Edit property ${id}`)}
+            onEdit={(id: string) => alert(`Edit property ${id}`)}
           />
           <PropertyCard
             property={{
@@ -553,7 +565,7 @@ export default function ComponentsLibrary() {
                 description: "18 of 24 units occupied"
               }
             }}
-            onEdit={(id) => alert(`Edit property ${id}`)}
+            onEdit={(id: string) => alert(`Edit property ${id}`)}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ import Button from '../forms/Button';
 interface ActionButton {
   id: string;
   label: string;
-  icon?: 'add' | 'edit' | 'calendar' | 'dropdown' | 'none';
+  icon?: 'add' | 'edit' | 'calendar' | 'dropdown' | 'google' | 'microsoft' | 'checkmark' | 'search' | 'none';
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   gradient?: 'brand-aurora' | 'aqua-2' | 'info-flow' | 'magenta-pop' | 'ai-violet-2' | 'emerald-glow';
   rightIcon?: 'dropdown' | 'arrow' | 'none';

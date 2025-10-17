@@ -4,7 +4,7 @@ import Header from '../components/layout/Header';
 import LeftNavigation from '../components/layout/LeftNavigation';
 import StatCard from '../components/cards/StatCard';
 import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
+import Button from '../components/forms/Button';
 import ProgressBar from '../components/ui/ProgressBar';
 import ThemeIcon from '../components/ui/ThemeIcon';
 import Chip from '../components/ui/Chip';
@@ -191,7 +191,7 @@ export default function Dashboard() {
                     <Button
                       variant="secondary"
                       size="sm"
-                      icon={calendarIcon}
+                      icon="calendar"
                       iconPosition="left"
                       onClick={() => console.log('Time filter clicked')}
                     >
@@ -200,7 +200,7 @@ export default function Dashboard() {
                     <Button
                       variant="primary"
                       size="sm"
-                      icon={addPropertyButtonIcon}
+                      icon="add"
                       iconPosition="left"
                       onClick={() => console.log('Add property clicked')}
                     >

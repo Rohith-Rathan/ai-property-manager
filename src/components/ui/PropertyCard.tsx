@@ -11,6 +11,10 @@ const unitsIcon = getAssetPath('units-icon');
 const dollarIcon = getAssetPath('dollar-icon');
 const calendarIcon = getAssetPath('calendar-icon');
 const userIcon = getAssetPath('user-icon');
+const viewDetailsIcon = getAssetPath('view-details-icon');
+const editIcon = getAssetPath('edit-icon');
+const reportsIcon = getAssetPath('reports-icon');
+const moreOptionsIcon = getAssetPath('more-options-icon');
 
 interface PropertyCardProps {
   property: {
@@ -86,28 +90,28 @@ export default function PropertyCard({
                 id: 'view-property',
                 label: 'View Property', 
                 onClick: () => onView?.(property.id),
-                icon: '/assets/view-details-icon.svg'
+                icon: viewDetailsIcon
               },
               { 
                 id: 'edit-property',
                 label: 'Edit Property', 
                 onClick: () => onEdit?.(property.id),
-                icon: '/assets/edit-icon.svg'
+                icon: editIcon
               },
               { 
                 id: 'view-units',
                 label: 'View Units', 
                 onClick: () => console.log('View units for', property.id),
-                icon: '/assets/units-icon.svg'
+                icon: unitsIcon
               },
               { 
                 id: 'generate-report',
                 label: 'Generate Report', 
                 onClick: () => console.log('Generate report for', property.id),
-                icon: '/assets/reports-icon.svg'
+                icon: reportsIcon
               }
             ]}
-            triggerIcon="/assets/more-options-icon.svg"
+            triggerIcon={moreOptionsIcon}
             position="bottom-right"
           />
         </div>

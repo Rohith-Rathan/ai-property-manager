@@ -13,10 +13,9 @@ const calendarIcon = getAssetPath('calendar-icon');
 const userIcon = getAssetPath('user-icon');
 const viewDetailsIcon = getAssetPath('view-details-icon');
 const editIcon = getAssetPath('edit-icon');
-const reportsIcon = getAssetPath('reports-icon');
+const addUnitIcon = getAssetPath('add-property-action-icon'); // Add Unit icon
 const moreOptionsIcon = getAssetPath('more-options-icon');
 const deletePropertyIcon = getAssetPath('delete-property-icon');
-const duplicatePropertyIcon = getAssetPath('add-property-action-icon'); // Using add property as duplicate
 
 interface PropertyCardProps {
   property: {
@@ -105,24 +104,10 @@ export default function PropertyCard({
                 variant: 'default'
               },
               { 
-                id: 'view-units',
-                label: 'View Units', 
-                onClick: () => console.log('View units for', property.id),
-                icon: unitsIcon,
-                variant: 'default'
-              },
-              { 
-                id: 'duplicate-property',
-                label: 'Duplicate Property', 
-                onClick: () => console.log('Duplicate property', property.id),
-                icon: duplicatePropertyIcon,
-                variant: 'default'
-              },
-              { 
-                id: 'generate-report',
-                label: 'Generate Report', 
-                onClick: () => console.log('Generate report for', property.id),
-                icon: reportsIcon,
+                id: 'add-unit',
+                label: 'Add Unit', 
+                onClick: () => console.log('Add unit to property', property.id),
+                icon: addUnitIcon,
                 variant: 'default'
               },
               { 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getAssetPath } from '../../utils/completeAssetMapping';
 import ThemeIcon from './ThemeIcon';
 
@@ -42,6 +42,21 @@ export default function PageSearch({
   const [currentView, setCurrentView] = useState<'grid' | 'list'>(
     variant === 'mobile' || variant === 'filters' ? 'grid' : variant
   );
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size and switch to mobile variant automatically
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 640); // md breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Determine effective variant - auto-switch to mobile on small screens
+  const effectiveVariant = isMobile ? 'mobile' : variant;
 
   const handleSearch = (query: string) => {
     setSearchValue(query);
@@ -59,7 +74,7 @@ export default function PageSearch({
   };
 
   // Filters variant - search with multiple filter buttons
-  if (variant === 'filters') {
+  if (effectiveVariant === 'filters') {
     return (
       <div className="bg-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-4 relative rounded-xxl size-full shadow-card-large" data-name="search">
         {/* Search Input */}
@@ -103,7 +118,7 @@ export default function PageSearch({
   }
 
   // Mobile variant - simplified search bar
-  if (variant === 'mobile') {
+  if (effectiveVariant === 'mobile') {
     return (
       <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-xl shrink-0 w-full shadow-card-large" data-name="Mobile Search Bar">
         {/* Search Input - Full Width */}

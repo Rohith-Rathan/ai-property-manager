@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import LeftNavigation from './LeftNavigation';
 
@@ -27,6 +28,7 @@ export default function AppLayout({
   onSearch,
   onNavigationClick
 }: AppLayoutProps) {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
   const [isNavigationExpanded, setIsNavigationExpanded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,6 +54,41 @@ export default function AppLayout({
 
   const handleNavigationClick = (itemId: string) => {
     console.log(`AppLayout navigation: ${itemId}`);
+    
+    // Handle navigation routing
+    switch (itemId) {
+      case 'dashboard':
+        navigate('/dashboard');
+        break;
+      case 'properties':
+        navigate('/properties-grid');
+        break;
+      case 'tenants':
+        navigate('/tenant-management-grid');
+        break;
+      case 'maintenance':
+        navigate('/view-unit-maintenance-tickets');
+        break;
+      case 'invoices':
+        navigate('/view-tenant-rent-history');
+        break;
+      case 'assets':
+        navigate('/view-unit-assets');
+        break;
+      case 'audit':
+        navigate('/components-library');
+        break;
+      case 'settings':
+        navigate('/property-menu');
+        break;
+      default:
+        console.log(`Navigation to ${itemId} not implemented yet`);
+    }
+    
+    // Close mobile menu if open
+    closeMobileMenu();
+    
+    // Call external handler if provided
     onNavigationClick?.(itemId);
   };
 

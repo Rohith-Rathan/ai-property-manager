@@ -50,9 +50,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const progressBarWidth = `${Math.max(0, Math.min(progressPercentage, 100))}%`;
 
   return (
-    <div className={`content-stretch flex flex-col gap-2 items-start relative size-full ${className}`}>
+    <div className={`flex flex-col gap-2 items-start relative size-full ${className}`}>
       {/* Header Section */}
-      <div className={`content-stretch flex items-center justify-between not-italic relative shrink-0 text-primary text-nowrap w-full whitespace-pre ${
+      <div className={`flex items-center justify-between not-italic relative shrink-0 text-primary text-nowrap w-full whitespace-pre ${
         variant === 'step' ? 'text-small' : 'text-label-small'
       }`}>
         <p className={`font-sans font-normal relative shrink-0 ${
@@ -68,7 +68,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       </div>
 
       {/* Progress Bar */}
-      <div className="bg-gradient-brand-aurora-20 box-border content-stretch flex flex-col h-2 items-start overflow-clip py-0 relative rounded-full shrink-0 w-full">
+      <div className="bg-gradient-brand-aurora-20 box-border flex flex-col h-2 items-start overflow-clip py-0 relative rounded-full shrink-0 w-full">
         <div 
           className="absolute bg-gradient-brand-aurora h-2 left-0 top-0 transition-all duration-300 ease-in-out rounded-full"
           style={{ width: progressBarWidth }}
@@ -77,7 +77,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
       {/* Subtitle Section (for occupancy variant) */}
       {variant === 'occupancy' && subtitle && (
-        <div className="content-stretch flex font-sans font-normal items-center justify-between not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre">
+        <div className="flex font-sans font-normal items-center justify-between not-italic relative shrink-0 text-primary text-label-small text-nowrap w-full whitespace-pre">
           <p className="leading-normal relative shrink-0">
             {subtitle}
           </p>

@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
 import { getAssetPath } from '../utils/completeAssetMapping';
-import Header from '../components/layout/Header';
-import LeftNavigation from '../components/layout/LeftNavigation';
+import AppLayout from '../components/layout/AppLayout';
 import StatCard from '../components/cards/StatCard';
 import Card from '../components/ui/Card';
 import Button from '../components/forms/Button';
 import ProgressBar from '../components/ui/ProgressBar';
 import ThemeIcon from '../components/ui/ThemeIcon';
 import Chip from '../components/ui/Chip';
-import { ActivityFeedItem, AlertItem } from '../components/ui';
+import { ActivityFeedItem, AlertItem, QuickActionsButton } from '../components/ui';
 import PageHeader from '../components/layout/PageHeader';
 import DashboardPropertyCard from '../components/cards/DashboardPropertyCard';
 
 // Asset constants
-const loginLogoIcon = getAssetPath('login-logo-icon');
-const searchIcon = getAssetPath('search-icon');
-const notificationIcon = getAssetPath('notification-icon');
-const settingsIcon = getAssetPath('settings-icon');
-const themeSwitchIcon = getAssetPath('theme-switch-icon');
-const dashboardNavIcon = getAssetPath('dashboard-nav-icon');
-const propertiesNavIcon = getAssetPath('properties-nav-icon');
-const tenantsNavIcon = getAssetPath('tenants-nav-icon');
-const maintenanceNavIcon = getAssetPath('maintenance-nav-icon');
-const reportsNavIcon = getAssetPath('reports-nav-icon');
-const helpNavIcon = getAssetPath('help-nav-icon');
-const analyticsNavIcon = getAssetPath('analytics-nav-icon');
 const addPropertyActionIcon = getAssetPath('add-property-action-icon');
 const addPropertyButtonIcon = getAssetPath('add-property-button-icon');
 const propertyActionsIcon = getAssetPath('property-actions-icon');
+const propertiesNavIcon = getAssetPath('properties-nav-icon');
 const calendarIcon = getAssetPath('calendar-icon');
 const starFilledIcon = getAssetPath('star-filled-icon');
 const dollarIcon = getAssetPath('dollar-icon');
@@ -47,78 +35,45 @@ const leasesCardIcon = getAssetPath('6d3c0204ac37f038cd091108592cad5b0022f2e9');
 const aiEfficiencyCardIcon = getAssetPath('financial-icon');
 
 export default function Dashboard() {
-  const [searchValue, setSearchValue] = useState('');
-  const [isNavigationExpanded, setIsNavigationExpanded] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const handleSearch = (query: string) => {
     console.log('Dashboard search:', query);
   };
 
-  const handleLogoClick = () => {
-    // On mobile: open mobile menu overlay
-    // On desktop: toggle navigation expansion
-    if (window.innerWidth < 640) {
-      setIsMobileMenuOpen(true);
-    } else {
-      setIsNavigationExpanded(!isNavigationExpanded);
-    }
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
-    <div className="bg-background-default min-h-screen w-full">
-      <div className="flex flex-col h-screen">
-          {/* Header */}
-        <Header 
-          variant="responsive"
-          searchPlaceholder="Search properties, tenants, tickets..."
-          notificationCount={3}
-          showThemeToggle={true}
-          logoGradient="brand-aurora"
-          searchValue={searchValue}
-          onSearchChange={setSearchValue}
-          onSearch={handleSearch}
-          onLogoClick={handleLogoClick}
-        />
+    <AppLayout 
+      activePage="dashboard"
+      searchPlaceholder="Search properties, tenants, tickets..."
+      notificationCount={3}
+      showThemeToggle={true}
+      userName="Jhon Deo"
+      userInitials="JD"
+      userGradient="aqua-2"
+      onSearch={handleSearch}
+      onNavigationClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
+    >
+      {/* Page Header */}
+      <div className="flex flex-wrap gap-4 items-start justify-between w-full" data-name="Page Header">
+        {/* Title Section */}
+        <div className="flex-1 min-w-0" data-name="Title Container">
+          <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3" data-name="Page Title">
+            Welcome back, John
+          </p>
+          <p className="font-sans font-normal leading-base relative shrink-0 text-secondary text-base" data-name="Page Description">
+            Welcome back, John. Here's what's happening with your properties today.
+          </p>
+        </div>
 
-          {/* Main Content */}
-        <div className="flex-1 flex overflow-hidden">
-              {/* Left Navigation - Hidden on mobile, visible on larger screens */}
-              <div className="mobile-hidden">
-                <LeftNavigation 
-                  activeItem="dashboard"
-                  expanded={isNavigationExpanded}
-                  userName="Jhon Deo"
-                  userInitials="JD"
-                  userGradient="aqua-2"
-                  onItemClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
-                />
-                    </div>
+        {/* Quick Actions Button */}
+        <div className="pageheader-buttons-mobile" data-name="Actions Container">
+          <QuickActionsButton 
+            triggerLabel="Quick Actions"
+            className="pageheader-button-mobile"
+          />
+        </div>
+      </div>
 
-
-              {/* Dashboard Content */}
-          <div className="flex-1 flex flex-col gap-6 md:gap-8 overflow-y-auto pb-18 pt-8 px-18">
-                {/* Page Header */}
-                <PageHeader
-                  title="Welcome back, John"
-                  description="Welcome back, John. Here's what's happening with your properties today."
-                  actions={[
-                    {
-                      id: "quick-action",
-                      label: "Quick Action",
-                      onClick: () => console.log('Quick action clicked'),
-                      icon: 'add',
-                      variant: 'primary'
-                    }
-                  ]}
-                />
-
-                {/* Stats Cards */}
-                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+      {/* Stats Cards */}
+      <div className="flex flex-wrap gap-4 md:gap-6 w-full">
                   <div className="w-full min-w-responsive-card flex-responsive-card">
                     <StatCard
                       title="3/10 Vacant Units"
@@ -555,32 +510,6 @@ export default function Dashboard() {
                     />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div 
-            className="absolute inset-0 bg-black bg-opacity-50"
-            onClick={closeMobileMenu}
-          />
-          <div className="absolute left-0 top-0 h-full w-64 bg-paper-paper-elevation-1 shadow-card-large">
-            <LeftNavigation 
-              activeItem="dashboard"
-              expanded={true}
-              userName="Jhon Deo"
-              userInitials="JD"
-              userGradient="aqua-2"
-              onItemClick={(itemId) => {
-                console.log(`Mobile navigation: ${itemId}`);
-                closeMobileMenu();
-              }}
-            />
-          </div>
-        </div>
-      )}
-    </div>
+    </AppLayout>
   );
 }

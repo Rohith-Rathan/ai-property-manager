@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import QuickActions from './pages/QuickActions';
 import PropertiesGrid from './pages/PropertiesGrid';
 import PropertyMenu from './pages/PropertyMenu';
 import PropertiesList from './pages/PropertiesList';
@@ -160,7 +159,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/quick-actions" element={<QuickActions />} />
               <Route path="/properties-grid" element={<PropertiesGrid />} />
               <Route path="/property-menu" element={<PropertyMenu />} />
               <Route path="/properties-list" element={<PropertiesList />} />

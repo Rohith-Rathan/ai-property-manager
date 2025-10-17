@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeIcon from '../components/ui/ThemeIcon';
+import { MoreActions, MoreActionItem } from '../components/ui/MoreActions';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
 // Asset constants with descriptive names - using complete asset mapping
@@ -8,49 +8,67 @@ const addTenantActionIcon = getAssetPath('add-tenant-action-icon');         // A
 const requestRentActionIcon = getAssetPath('request-rent-action-icon');     // Request rent action
 const scheduleMaintenanceActionIcon = getAssetPath('schedule-maintenance-action-icon'); // Schedule maintenance action
 
-export default function QuickActions() {
+interface QuickActionsProps {
+  isOpen: boolean;
+  onClose: () => void;
+  triggerRef?: React.RefObject<HTMLElement | null>;
+}
+
+export default function QuickActions({ isOpen, onClose, triggerRef }: QuickActionsProps) {
+  console.log('QuickActions rendered with isOpen:', isOpen);
+  
+  const quickActionItems: MoreActionItem[] = [
+    {
+      id: 'add-property',
+      label: 'Add Property',
+      icon: addPropertyActionIcon,
+      gradient: 'info-flow',
+      onClick: () => {
+        console.log('Add Property clicked');
+        onClose();
+      }
+    },
+    {
+      id: 'add-tenant',
+      label: 'Add Tenant',
+      icon: addTenantActionIcon,
+      gradient: 'magenta-pop',
+      onClick: () => {
+        console.log('Add Tenant clicked');
+        onClose();
+      }
+    },
+    {
+      id: 'schedule-maintenance',
+      label: 'Schedule Maintenance',
+      icon: scheduleMaintenanceActionIcon,
+      gradient: 'brand-aurora',
+      onClick: () => {
+        console.log('Schedule Maintenance clicked');
+        onClose();
+      }
+    },
+    {
+      id: 'request-rent',
+      label: 'Request Rent',
+      icon: requestRentActionIcon,
+      gradient: 'ai-violet-2',
+      onClick: () => {
+        console.log('Request Rent clicked');
+        onClose();
+      }
+    }
+  ];
+
   return (
-    <div className="bg-static-white border border-overlays-white-inverse-10 border-solid box-border content-stretch flex flex-col items-start p-px relative rounded-xxl shadow-card-small size-full" data-node-id="288:20055">
-      <div className="relative shrink-0 w-full" data-name="View Details" data-node-id="288:20056">
-        <button className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-4 py-3 relative w-full cursor-pointer" data-name="Button" data-node-id="288:20057">
-          <div className="bg-gradient-info-flow box-border content-stretch flex items-center justify-center relative rounded-full shadow-brand-blue-glow shrink-0 w-7 h-7" data-name="Container" data-node-id="288:20081">
-            <ThemeIcon src={addPropertyActionIcon} alt="Add property action" size="sm" variant="default" />
-          </div>
-          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-small text-nowrap whitespace-pre" data-node-id="288:20060">
-            Add Property
-          </p>
-        </button>
-      </div>
-      <div className="relative shrink-0 w-full" data-name="Edit Asset" data-node-id="288:20094">
-        <button className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-4 py-3 relative w-full cursor-pointer" data-name="Button" data-node-id="288:20095">
-          <div className="bg-gradient-magenta-pop content-stretch flex items-center justify-center relative rounded-full shadow-neon-pink-glow shrink-0 w-7 h-7" data-name="Container" data-node-id="288:20095">
-            <ThemeIcon src={addTenantActionIcon} alt="Add tenant action" size="sm" variant="default" />
-          </div>
-          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-small text-nowrap whitespace-pre" data-node-id="288:20102">
-            Add Tenant
-          </p>
-        </button>
-      </div>
-      <div className="relative shrink-0 w-full" data-name="Schedule Maintenance" data-node-id="288:20112">
-        <button className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-4 py-3 relative w-full cursor-pointer" data-name="Button" data-node-id="288:20113">
-          <div className="bg-gradient-brand-aurora box-border content-stretch flex items-center justify-center relative rounded-full shadow-brand-purple-glow shrink-0 w-7 h-7" data-name="Container" data-node-id="288:20113">
-            <ThemeIcon src={scheduleMaintenanceActionIcon} alt="Schedule maintenance action" size="sm" variant="default" />
-          </div>
-          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-small text-nowrap whitespace-pre" data-node-id="288:20120">
-            Schedule Maintenance
-          </p>
-        </button>
-      </div>
-      <div className="relative shrink-0 w-full" data-name="Remove Asset" data-node-id="288:20103">
-        <button className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-4 py-3 relative w-full cursor-pointer" data-name="Button" data-node-id="288:20104">
-          <div className="bg-gradient-ai-violet-2 box-border content-stretch flex items-center justify-center relative rounded-full shadow-brand-purple-glow shrink-0 w-7 h-7" data-name="Container" data-node-id="288:20104">
-            <ThemeIcon src={requestRentActionIcon} alt="Request rent action" size="sm" variant="default" />
-          </div>
-          <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-small text-nowrap whitespace-pre" data-node-id="288:20111">
-            Request Rent
-          </p>
-        </button>
-      </div>
-    </div>
+    <MoreActions
+      items={quickActionItems}
+      isOpen={isOpen}
+      onClose={onClose}
+      variant="gradient"
+      position="center"
+      triggerRef={triggerRef}
+      className="min-w-56"
+    />
   );
 }

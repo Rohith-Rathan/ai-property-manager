@@ -1,181 +1,191 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
+import { Card } from '../components/ui/Card';
+import Button from '../components/forms/Button';
+import FormField from '../components/forms/FormField';
+import Checkbox from '../components/forms/Checkbox';
 import ThemeIcon from '../components/ui/ThemeIcon';
+import { getAssetPath } from '../utils/completeAssetMapping';
 
-export default function Login() {
+// Asset constants
+const loginLogoIcon = getAssetPath('login-logo-icon');
+const googleIcon = getAssetPath('google-login-icon');
+const microsoftIcon = getAssetPath('microsoft-login-icon');
+const themeSwitchIcon = getAssetPath('theme-switch-icon');
+
+// Login configuration
+const LOGIN_CONFIG = {
+  title: "Welcome back",
+  subtitle: "Sign in to your account",
+  emailLabel: "Email",
+  passwordLabel: "Password",
+  rememberMe: "Remember me",
+  forgotPassword: "Forgot password?",
+  signInButton: "Sign in",
+  orDivider: "Or",
+  socialButtons: [
+    { provider: "google" as const, label: "Google", icon: googleIcon },
+    { provider: "microsoft" as const, label: "Microsoft", icon: microsoftIcon }
+  ]
+};
+
+const Login: React.FC = () => {
+  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const imgIcon = "/assets/login-logo-icon.svg";
-  const imgIcon1 = "/assets/email-input-icon.svg";
-  const imgIcon2 = "/assets/password-input-icon.svg";
-  const imgEye = "/assets/show-password-icon.svg";
-  const imgEyeOff = "/assets/hide-password-icon.svg";
-  const imgLoginScreen = "/assets/google-login-icon.svg";
-  const imgLoginScreen1 = "/assets/microsoft-login-icon.svg";
+  const handleLogin = () => {
+    console.log('Login attempt:', { email, password, rememberMe });
+    // Add your login logic here
+    // For now, just redirect to dashboard
+    navigate('/dashboard');
+  };
+
+  const handleSocialLogin = (provider: string) => {
+    console.log(`${provider} login clicked`);
+    // Add your social login logic here
+    // For now, just redirect to dashboard
+    navigate('/dashboard');
+  };
 
   return (
     <div className="bg-gradient-background-base min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
       {/* Theme Toggle Button */}
-      <button
+      <div className="absolute top-4 right-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          icon="none"
         onClick={toggleTheme}
-        className="fixed top-4 right-4 z-50 p-2 rounded-lg bg-surface-primary border border-overlays-white-inverse-10 shadow-card-small hover:shadow-card-large transition-all duration-200"
-        aria-label="Toggle theme"
-      >
-        <div className="w-icon-sm h-icon-sm text-text-primary">
-          {theme === 'light' ? '🌙' : '☀️'}
+          className="p-2"
+        >
+          <ThemeIcon 
+            src={themeSwitchIcon} 
+            alt="Theme toggle" 
+            size="sm" 
+            variant="default" 
+          />
+        </Button>
         </div>
-      </button>
-      
-      <div className="content-stretch flex items-center justify-center relative size-full max-w-7xl mx-auto" data-name="Login" data-node-id="189:9753">
-        <div className="bg-paper-paper-elevation-2 border border-overlays-white-inverse-10 border-solid w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl relative rounded-xxxl shadow-card-small" data-name="Card" data-node-id="189:9754">
-          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col gap-4 items-start min-w-inherit p-4 sm:p-6 lg:p-8 relative w-full">
-            <div className="content-stretch flex flex-col gap-6 items-center relative shrink-0 w-full" data-name="CardHeader" data-node-id="189:9755">
-              <div className="bg-gradient-brand-aurora content-stretch flex items-center justify-center relative rounded-xl shrink-0 w-16 h-16" data-name="LoginScreen" data-node-id="189:9756">
-                <ThemeIcon src={imgIcon} alt="Logo" size="lg" variant="default" />
-              </div>
-              <div className="content-stretch flex flex-col gap-1 items-center not-italic relative shrink-0 text-center text-nowrap w-full whitespace-pre" data-name="LoginScreen" data-node-id="189:9765">
-                <p className="font-['Inter:Medium',_sans-serif] font-medium leading-h4 relative shrink-0 text-text-primary text-h4" data-node-id="189:9766">
-                  AI Property Manager
-                </p>
-                <p className="font-['Inter:Regular',_sans-serif] font-normal leading-base relative shrink-0 text-text-secondary text-base tracking-normal" data-node-id="189:9767">
-                  Sign in to your account
-                </p>
+
+      {/* Gradient Icon Section */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-brand-aurora rounded-full opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-aqua-2 rounded-full opacity-10 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-info-flow rounded-full opacity-5 blur-2xl"></div>
+                </div>
+
+      {/* Login Card */}
+      <div className="w-full max-w-md">
+        <Card className="p-8 space-y-6 shadow-card-large">
+          {/* Logo and Title */}
+          <div className="text-center space-y-4">
+            <div className="flex justify-center">
+              <div className="relative">
+                {/* Gradient Background for Logo */}
+                <div className="absolute inset-0 bg-gradient-brand-aurora rounded-full opacity-20 blur-xl"></div>
+                <div className="relative bg-gradient-brand-aurora p-4 rounded-full">
+                  <ThemeIcon 
+                    src={loginLogoIcon} 
+                    alt="Logo" 
+                    size="lg" 
+                    variant="white" 
+                  />
+                </div>
               </div>
             </div>
-            <div className="content-stretch flex flex-col gap-6 items-center relative shrink-0 w-full" data-name="CardContent" data-node-id="189:9768">
-              <div className="content-stretch flex flex-col gap-4 items-start relative shrink-0 w-full" data-name="LoginScreen" data-node-id="189:9769">
-                <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full" data-name="Container" data-node-id="189:9770">
-                  <div className="content-stretch flex gap-2 h-4 items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="189:9771">
-                    <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-nowrap tracking-normal whitespace-pre" data-node-id="189:9772">
-                      Email
+            <div className="space-y-2">
+              <h1 className="text-h2 font-bold text-primary">
+                {LOGIN_CONFIG.title}
+              </h1>
+              <p className="text-base text-secondary">
+                {LOGIN_CONFIG.subtitle}
                     </p>
                   </div>
-                  <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center p-3 relative rounded-lg shrink-0 w-full" data-name="Container" data-node-id="189:9773">
-                    <div className="content-stretch flex gap-2 items-center relative shrink-0" data-node-id="240:5751">
-                      <ThemeIcon src={imgIcon1} alt="Email" size="sm" variant="secondary" />
-                      <input
+                      </div>
+
+          {/* Login Form */}
+          <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+            {/* Email Field */}
+            <FormField
+              label={LOGIN_CONFIG.emailLabel}
                         type="email"
                         placeholder="Enter your email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="font-['Inter:Regular',_sans-serif] font-normal leading-normal not-italic relative shrink-0 text-text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0 w-full" data-name="Container" data-node-id="189:9778">
-                  <div className="content-stretch flex gap-2 h-4 items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="189:9779">
-                    <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-nowrap tracking-normal whitespace-pre" data-node-id="189:9780">
-                      Password
-                    </p>
-                  </div>
-                  <div className="border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-lg shrink-0 w-full" data-name="Container" data-node-id="189:9781">
-                    <div className="content-stretch flex gap-2 items-center relative shrink-0" data-node-id="189:9782">
-                      <ThemeIcon src={imgIcon2} alt="Password" size="sm" variant="secondary" />
-                      <input
-                        type={showPassword ? "text" : "password"}
+              onChange={setEmail}
+              icon="email"
+              required
+            />
+
+            {/* Password Field */}
+            <FormField
+              label={LOGIN_CONFIG.passwordLabel}
+              type="password"
                         placeholder="Enter your password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="font-['Inter:Regular',_sans-serif] font-normal leading-normal not-italic relative shrink-0 text-text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="content-stretch flex h-4 items-start relative shrink-0 cursor-pointer"
-                      data-name="Button" 
-                      data-node-id="189:9787"
-                    >
-                      <ThemeIcon src={showPassword ? imgEyeOff : imgEye} alt="Toggle Password" size="sm" variant="secondary" />
-                    </button>
-                  </div>
-                </div>
-                <div className="content-stretch flex h-5 items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="189:9791">
-                  <div className="h-5 relative shrink-0 w-auto" data-name="Container" data-node-id="189:9792">
-                    <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 h-5 items-center relative w-auto">
-                      <input
-                        type="checkbox"
+              onChange={setPassword}
+              icon="password"
+              showPasswordToggle={true}
+              required
+            />
+
+            {/* Remember Me and Forgot Password */}
+            <div className="flex items-center justify-between">
+              <Checkbox
                         checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                        className="border border-overlays-white-inverse-10 border-solid relative rounded-md shrink-0 w-4 h-4 cursor-pointer"
-                        data-name="Primitive.button" 
-                        data-node-id="189:9793"
-                      />
-                      <div className="basis-0 grow h-5 min-h-px min-w-px relative shrink-0" data-name="Primitive.label" data-node-id="189:9794">
-                        <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 h-5 items-center relative w-full">
-                          <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-nowrap tracking-normal whitespace-pre" data-node-id="189:9795">
-                            Remember me
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                onChange={(checked) => setRememberMe(checked)}
+                label={LOGIN_CONFIG.rememberMe}
+              />
+              <Button
+                variant="ghost"
+                size="sm"
+                label={LOGIN_CONFIG.forgotPassword}
+                onClick={() => console.log('Forgot password clicked')}
+                className="text-sm p-0 h-auto text-brand-primary hover:text-accent-purple"
+              />
                   </div>
-                  <div className="h-5 relative rounded-[10px] shrink-0 w-auto" data-name="Button" data-node-id="189:9796">
-                    <button
-                      type="button"
-                      onClick={() => alert('Forgot password clicked')}
-                      className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 h-5 items-center justify-center relative w-auto cursor-pointer"
-                    >
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-primary-500 text-small text-nowrap tracking-normal whitespace-pre" data-node-id="189:9797">
-                        Forgot password?
-                      </p>
-                    </button>
-                  </div>
+
+            {/* Sign In Button */}
+            <Button
+              type="submit"
+              variant="primary"
+              gradient="brand-aurora"
+              fullWidth
+              label={LOGIN_CONFIG.signInButton}
+              onClick={handleLogin}
+            />
+          </form>
+
+          {/* Divider */}
+          <div className="flex items-center gap-4">
+            <div className="flex-1 h-px bg-overlays-white-inverse-10"></div>
+            <span className="text-sm text-tertiary px-2">
+              {LOGIN_CONFIG.orDivider}
+            </span>
+            <div className="flex-1 h-px bg-overlays-white-inverse-10"></div>
                 </div>
-                <button 
-                  className="bg-gradient-brand-aurora box-border content-stretch cursor-pointer flex gap-2 items-center justify-center overflow-visible px-4 py-3 relative rounded-lg shrink-0 w-full" 
-                  data-name="Button" 
-                  data-node-id="766:9004"
-                  onClick={() => alert(`Logging in with Email: ${email}, Password: ${password}, Remember Me: ${rememberMe}`)}
-                >
-                  <p className="font-['Inter:Regular',_sans-serif] font-normal leading-small not-italic relative shrink-0 text-small text-nowrap text-static-white whitespace-pre" data-node-id="766:9008">
-                    Sign In
-                  </p>
-                </button>
-              </div>
-              <div className="content-stretch flex flex-col gap-3 items-start relative shrink-0 w-full" data-name="LoginScreen" data-node-id="189:9800">
-                <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Container" data-node-id="189:9801">
-                  <div className="absolute border-[1px_0px_0px] border-overlays-white-inverse-10 border-solid h-px left-0 top-2 w-full max-w-sm" data-name="Container" data-node-id="189:9802" />
-                  <div className="bg-paper-paper-elevation-2 box-border content-stretch flex gap-2 items-center justify-center px-2 py-0 relative shrink-0" data-name="Text" data-node-id="189:9803">
-                    <p className="font-['Inter:Regular',_sans-serif] font-normal leading-small not-italic relative shrink-0 text-text-tertiary text-label-small text-nowrap uppercase whitespace-pre" data-node-id="189:9804">
-                      Or continue with
-                    </p>
-                  </div>
-                </div>
-                <div className="content-start flex flex-col sm:flex-row gap-4 items-start relative shrink-0 w-full" data-name="Container" data-node-id="189:9805">
-                  <button 
-                    className="w-full sm:flex-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-3 relative rounded-lg cursor-pointer" 
-                    data-name="Button" 
-                    data-node-id="766:9012"
-                    onClick={() => alert('Google login clicked')}
-                  >
-                    <ThemeIcon src={imgLoginScreen} alt="Google Login" size="sm" variant="default" />
-                    <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-center text-nowrap whitespace-pre" data-node-id="766:9016">
-                      Google
-                    </p>
-                  </button>
-                  <button 
-                    className="w-full sm:flex-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-3 relative rounded-lg cursor-pointer" 
-                    data-name="Button" 
-                    data-node-id="766:9024"
-                    onClick={() => alert('Microsoft login clicked')}
-                  >
-                    <ThemeIcon src={imgLoginScreen1} alt="Microsoft Login" size="sm" variant="default" />
-                    <p className="font-['Inter:Medium',_sans-serif] font-medium leading-normal not-italic relative shrink-0 text-text-primary text-small text-center text-nowrap whitespace-pre" data-node-id="766:9030">
-                      Microsoft
-                    </p>
-                  </button>
-                </div>
-              </div>
-            </div>
+
+          {/* Social Login Buttons */}
+          <div className="flex flex-row gap-3">
+            {LOGIN_CONFIG.socialButtons.map((social) => (
+              <Button
+                key={social.provider}
+                variant="secondary"
+                label={social.label}
+                icon={social.provider}
+                onClick={() => handleSocialLogin(social.provider)}
+                className="flex-1"
+              />
+            ))}
           </div>
-        </div>
+
+        </Card>
       </div>
     </div>
   );
-}
+};
+
+export default Login;

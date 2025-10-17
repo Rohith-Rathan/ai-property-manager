@@ -3,21 +3,15 @@ import { getAssetPath } from '../utils/completeAssetMapping';
 import AppLayout from '../components/layout/AppLayout';
 import PageHeader from '../components/layout/PageHeader';
 import PageSearch from '../components/ui/PageSearch';
-import Button from '../components/forms/Button';
+import { Table, TableColumn, TableRow } from '../components/ui/Table';
 import { MoreActionsButton } from '../components/ui/MoreActionsButton';
-import ThemeIcon from '../components/ui/ThemeIcon';
-import ProgressBar from '../components/ui/ProgressBar';
 
-// Asset constants
-const locationIcon = getAssetPath('location-icon');
-const unitsIcon = getAssetPath('units-icon');
-const dollarIcon = getAssetPath('dollar-icon');
-const calendarIcon = getAssetPath('calendar-icon');
-const moreOptionsIcon = getAssetPath('more-options-icon');
+// Asset constants for actions
 const viewDetailsIcon = getAssetPath('view-details-icon');
-const editIcon = getAssetPath('edit-property-icon');
+const editPropertyIcon = getAssetPath('edit-property-icon');
 const addUnitIcon = getAssetPath('add-unit-icon');
 const deletePropertyIcon = getAssetPath('delete-property-icon');
+const moreOptionsIcon = getAssetPath('more-options-icon');
 
 export default function PropertiesList() {
   const handleSearch = (query: string) => {
@@ -25,7 +19,19 @@ export default function PropertiesList() {
     // Implement search functionality here
   };
 
-  // Property data - same as PropertiesGrid but adapted for list view
+  const handleEdit = (id: string) => console.log('Edit property:', id);
+  const handleView = (id: string) => console.log('View property:', id);
+
+  // Table columns definition
+  const columns: TableColumn[] = [
+    { key: 'property', label: 'Property', width: '30%' },
+    { key: 'units', label: 'Units', width: '15%', align: 'center' },
+    { key: 'revenue', label: 'Monthly Revenue', width: '20%', align: 'right' },
+    { key: 'occupancy', label: 'Occupancy', width: '20%', align: 'center' },
+    { key: 'actions', label: 'Actions', width: '15%', align: 'center' }
+  ];
+
+  // Property data - same as PropertiesGrid but adapted for table view
   const properties = [
     {
       id: 'sunset-apartments',
@@ -77,6 +83,67 @@ export default function PropertiesList() {
     }
   ];
 
+  // Convert properties to table rows
+  const tableRows: TableRow[] = properties.map((property) => ({
+    id: property.id,
+    onClick: () => handleView(property.id),
+    cells: {
+      property: {
+        type: 'avatar',
+        value: property.name,
+        initials: property.name.charAt(0)
+      },
+      units: {
+        type: 'number',
+        value: property.units
+      },
+      revenue: {
+        type: 'currency',
+        value: property.monthlyRevenue.replace('$', '').replace(',', '')
+      },
+      occupancy: {
+        type: 'badge',
+        value: `${property.occupancy.percentage}%`,
+        variant: property.occupancy.percentage >= 90 ? 'success' : 
+                 property.occupancy.percentage >= 80 ? 'warning' : 'error'
+      },
+      actions: {
+        type: 'moreActions',
+        moreActionsItems: [
+          {
+            id: 'view-details',
+            label: 'View Details',
+            icon: viewDetailsIcon,
+            onClick: () => handleView(property.id),
+            variant: 'default'
+          },
+          {
+            id: 'edit-property',
+            label: 'Edit Property',
+            icon: editPropertyIcon,
+            onClick: () => handleEdit(property.id),
+            variant: 'default'
+          },
+          {
+            id: 'add-unit',
+            label: 'Add Unit',
+            icon: addUnitIcon,
+            onClick: () => console.log('Add unit to property', property.id),
+            variant: 'default'
+          },
+          {
+            id: 'delete-property',
+            label: 'Delete Property',
+            icon: deletePropertyIcon,
+            onClick: () => console.log('Delete property', property.id),
+            variant: 'danger'
+          }
+        ],
+        triggerIcon: moreOptionsIcon
+      }
+    }
+  }));
+
   return (
     <AppLayout
       activePage="properties"
@@ -89,7 +156,7 @@ export default function PropertiesList() {
       onSearch={handleSearch}
       onNavigationClick={(itemId) => console.log(`PropertiesList navigation: ${itemId}`)}
     >
-      {/* Page Header */}
+                {/* Page Header */}
       <PageHeader
         title="Properties & Units"
         description="Manage your property portfolio with detailed unit tracking"
@@ -104,7 +171,7 @@ export default function PropertiesList() {
         ]}
       />
 
-      {/* Search Bar */}
+                {/* Search Bar */}
       <PageSearch
         variant="list"
         title="Properties & Units"
@@ -118,151 +185,14 @@ export default function PropertiesList() {
         ]}
       />
 
-      {/* Properties List */}
-      <div className="flex flex-col gap-4 w-full">
-        {properties.map((property) => (
-          <PropertyListRow
-            key={property.id}
-            property={property}
-            onEdit={(id) => console.log('Edit property:', id)}
-            onView={(id) => console.log('View property:', id)}
-          />
-        ))}
-      </div>
-    </AppLayout>
-  );
-}
-
-// PropertyListRow Component - Reusable list row component
-interface PropertyListRowProps {
-  property: {
-    id: string;
-    name: string;
-    address: string;
-    image: string;
-    badge?: string;
-    badgeColor?: 'success' | 'warning' | 'error';
-    units: number;
-    monthlyRevenue: string;
-    date: string;
-    manager: string;
-    occupancy: {
-      percentage: number;
-      description: string;
-    };
-  };
-  onEdit?: (id: string) => void;
-  onView?: (id: string) => void;
-}
-
-function PropertyListRow({ property, onEdit, onView }: PropertyListRowProps) {
-  const getBadgeColorClass = (color?: string) => {
-    switch (color) {
-      case 'error': return 'bg-error-500';
-      case 'warning': return 'bg-warning-500';
-      default: return 'bg-success-500';
-    }
-  };
-
-  return (
-    <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border flex gap-4 items-center p-6 relative rounded-xxl w-full h-[120px]">
-      {/* Property Image & Badge */}
-      <div className="flex flex-col gap-4 items-start relative shrink-0">
-        <img 
-          alt={property.name} 
-          className="size-[72px] object-cover rounded-lg" 
-          src={property.image} 
-        />
-        {property.badge && (
-          <div className={`${getBadgeColorClass(property.badgeColor)} box-border flex gap-1 items-center justify-center overflow-clip px-2 py-1 relative rounded-full shrink-0`}>
-            <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-label-small text-nowrap text-white whitespace-pre">
-              {property.badge}
-            </p>
-          </div>
-        )}
-      </div>
-
-      {/* Property Info */}
-      <div className="flex flex-col gap-2 items-start relative shrink-0">
-        <p className="font-sans font-semibold leading-h6 not-italic relative shrink-0 text-primary text-h6">
-          {property.name}
-        </p>
-        <div className="flex gap-2 items-center relative shrink-0 w-full">
-          <ThemeIcon src={locationIcon} alt="Location" size="xs" variant="default" />
-          <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-label-small">
-            {property.address}
-          </p>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="flex gap-4 items-center relative shrink-0">
-        <div className="flex gap-2 items-center relative shrink-0">
-          <ThemeIcon src={unitsIcon} alt="Units" size="sm" variant="default" />
-          <p className="font-sans font-medium leading-normal not-italic relative shrink-0 text-primary text-label-small">
-            {property.units} units
-          </p>
-        </div>
-        <div className="flex gap-2 items-center relative shrink-0">
-          <ThemeIcon src={dollarIcon} alt="Revenue" size="sm" variant="default" />
-          <p className="font-sans font-medium leading-normal not-italic relative shrink-0 text-primary text-label-small">
-            {property.monthlyRevenue}
-          </p>
-        </div>
-        <div className="flex gap-2 items-center relative shrink-0">
-          <ThemeIcon src={calendarIcon} alt="Date" size="sm" variant="default" />
-          <p className="font-sans font-medium leading-normal not-italic relative shrink-0 text-primary text-label-small text-nowrap whitespace-pre">
-            {property.date}
-          </p>
-        </div>
-      </div>
-
-      {/* Occupancy */}
-      <div className="flex flex-col gap-2 items-start relative shrink-0">
-        <ProgressBar
-          variant="occupancy"
-          percentage={property.occupancy.percentage}
-          label="Occupancy"
-          value={`${property.occupancy.percentage}%`}
-          subtitle={property.occupancy.description}
-        />
-      </div>
-
-      {/* More Actions */}
-      <MoreActionsButton
-        items={[
-          { 
-            id: 'view-details',
-            label: 'View Details', 
-            onClick: () => onView?.(property.id),
-            icon: viewDetailsIcon,
-            variant: 'default'
-          },
-          { 
-            id: 'edit-property',
-            label: 'Edit Property', 
-            onClick: () => onEdit?.(property.id),
-            icon: editIcon,
-            variant: 'default'
-          },
-          { 
-            id: 'add-unit',
-            label: 'Add Unit', 
-            onClick: () => console.log('Add unit to property', property.id),
-            icon: addUnitIcon,
-            variant: 'default'
-          },
-          { 
-            id: 'delete-property',
-            label: 'Delete Property', 
-            onClick: () => console.log('Delete property', property.id),
-            icon: deletePropertyIcon,
-            variant: 'danger'
-          }
-        ]}
-        triggerIcon={moreOptionsIcon}
-        position="bottom-right"
+      {/* Properties Table */}
+      <Table
+        columns={columns}
+        rows={tableRows}
+        title="Properties & Units"
+        subtitle="Manage your property portfolio with detailed unit tracking"
+        selectable={false}
       />
-    </div>
+    </AppLayout>
   );
 }

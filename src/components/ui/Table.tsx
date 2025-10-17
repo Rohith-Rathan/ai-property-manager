@@ -13,8 +13,8 @@ export interface TableColumn {
 }
 
 export interface TableCell {
-  type: 'text' | 'badge' | 'avatar' | 'number' | 'date' | 'currency' | 'actions' | 'checkbox';
-  value: any;
+  type: 'text' | 'badge' | 'avatar' | 'number' | 'date' | 'currency' | 'actions' | 'moreActions' | 'checkbox';
+  value?: any;
   // Badge specific
   variant?: 'success' | 'warning' | 'error' | 'info' | 'primary' | 'secondary' | 'tertiary' | 'gray' | 'neutral';
   // Avatar specific
@@ -26,6 +26,15 @@ export interface TableCell {
     icon: string;
     onClick: () => void;
   }>;
+  // MoreActions specific
+  moreActionsItems?: Array<{
+    id: string;
+    label: string;
+    icon: string;
+    onClick: () => void;
+    variant?: 'default' | 'danger';
+  }>;
+  triggerIcon?: string;
   // Checkbox specific
   checked?: boolean;
   onCheck?: (checked: boolean) => void;
@@ -96,14 +105,14 @@ export const Table: React.FC<TableProps> = ({
       case 'text':
         return (
           <span className="text-sm text-tertiary">
-            {cell.value}
+            {cell.value || ''}
           </span>
         );
 
       case 'badge':
         return (
           <Chip
-            label={cell.value}
+            label={cell.value || ''}
             variant={cell.variant || 'neutral'}
             type="low-hue-border"
             size="sm"
@@ -115,11 +124,11 @@ export const Table: React.FC<TableProps> = ({
           <div className="flex gap-2 items-center">
             <div className="bg-gradient-aqua-2 flex items-center justify-center rounded-full w-8 h-8">
               <span className="text-sm font-medium text-white">
-                {cell.initials || cell.value.charAt(0).toUpperCase()}
+                {cell.initials || (cell.value || '').charAt(0).toUpperCase()}
               </span>
             </div>
             <span className="text-sm text-tertiary">
-              {cell.value}
+              {cell.value || ''}
             </span>
           </div>
         );
@@ -127,21 +136,21 @@ export const Table: React.FC<TableProps> = ({
       case 'number':
         return (
           <span className="text-sm font-medium text-tertiary">
-            {cell.value}
+            {cell.value || 0}
           </span>
         );
 
       case 'currency':
         return (
           <span className="text-sm font-medium text-tertiary">
-            ${cell.value}
+            ${cell.value || 0}
           </span>
         );
 
       case 'date':
         return (
           <span className="text-sm text-tertiary">
-            {new Date(cell.value).toLocaleDateString()}
+            {cell.value ? new Date(cell.value).toLocaleDateString() : ''}
           </span>
         );
 
@@ -178,10 +187,21 @@ export const Table: React.FC<TableProps> = ({
           </div>
         );
 
+      case 'moreActions':
+        return (
+          <div className="flex justify-center">
+            <MoreActionsButton
+              items={cell.moreActionsItems || []}
+              triggerIcon={cell.triggerIcon || '/assets/more-options-icon.svg'}
+              position="bottom-right"
+            />
+          </div>
+        );
+
       default:
         return (
           <span className="text-sm text-tertiary">
-            {cell.value}
+            {cell.value || ''}
           </span>
         );
     }

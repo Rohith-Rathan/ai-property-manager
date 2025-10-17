@@ -12,8 +12,8 @@ const dollarIcon = getAssetPath('dollar-icon');
 const calendarIcon = getAssetPath('calendar-icon');
 const userIcon = getAssetPath('user-icon');
 const viewDetailsIcon = getAssetPath('view-details-icon');
-const editIcon = getAssetPath('edit-icon');
-const addUnitIcon = getAssetPath('add-property-action-icon'); // Add Unit icon
+const editIcon = getAssetPath('edit-pencil-icon'); // Fixed: proper edit icon
+const addUnitIcon = getAssetPath('add-unit-icon'); // Fixed: proper add unit icon
 const moreOptionsIcon = getAssetPath('more-options-icon');
 const deletePropertyIcon = getAssetPath('delete-property-icon');
 

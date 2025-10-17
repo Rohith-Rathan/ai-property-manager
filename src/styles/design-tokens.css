@@ -523,7 +523,7 @@
   --spacing-15-laptop: 60px;
   --spacing-16-laptop: 64px;
   --spacing-17-laptop: 68px;
-  --spacing-18-laptop: 72px;
+  --spacing-18-laptop: 48px;
   --spacing-19-laptop: 76px;
   --spacing-20-laptop: 80px;
 
@@ -546,7 +546,7 @@
   --spacing-15-tablet: 60px;
   --spacing-16-tablet: 64px;
   --spacing-17-tablet: 68px;
-  --spacing-18-tablet: 72px;
+  --spacing-18-tablet: 24px;
   --spacing-19-tablet: 76px;
   --spacing-20-tablet: 80px;
 
@@ -569,7 +569,7 @@
   --spacing-15-mobile: 60px;
   --spacing-16-mobile: 64px;
   --spacing-17-mobile: 68px;
-  --spacing-18-mobile: 72px;
+  --spacing-18-mobile: 16px;
   --spacing-19-mobile: 76px;
   --spacing-20-mobile: 80px;
 

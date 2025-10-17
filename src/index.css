@@ -13,6 +13,59 @@
 
 /* All design system variables are now imported from design-tokens.css */
 
+/* Custom responsive utility classes */
+.mobile-hidden {
+  display: none;
+}
+@media (min-width: 640px) {
+  .mobile-hidden {
+    display: block;
+  }
+}
+
+/* Responsive header classes */
+.header-mobile-only {
+  display: flex;
+}
+@media (min-width: 768px) {
+  .header-mobile-only {
+    display: none;
+  }
+}
+.header-desktop-only {
+  display: none;
+}
+@media (min-width: 768px) {
+  .header-desktop-only {
+    display: flex;
+  }
+}
+
+/* PageHeader responsive button classes */
+.pageheader-buttons-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .pageheader-buttons-mobile {
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    width: auto;
+  }
+}
+.pageheader-button-mobile {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .pageheader-button-mobile {
+    width: auto;
+  }
+}
+
 html, body {
   margin: 0;
   padding: 0;

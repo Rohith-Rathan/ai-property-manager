@@ -27,9 +27,9 @@ export default function PageHeader({
 }: PageHeaderProps) {
 
   return (
-    <div className="content-center flex flex-wrap gap-4 items-center justify-between relative shrink-0 w-full" data-name="Page Header">
+    <div className="flex flex-wrap gap-4 items-start justify-between w-full" data-name="Page Header">
       {/* Title Section */}
-      <div className="content-stretch flex flex-col gap-1 items-start relative shrink-0" data-name="Title Container">
+      <div className="flex-1 min-w-0" data-name="Title Container">
         <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3" data-name="Page Title">
           {title}
         </p>
@@ -42,7 +42,7 @@ export default function PageHeader({
 
       {/* Actions Section */}
       {showActions && actions.length > 0 && (
-        <div className="content-stretch flex gap-2 items-center relative shrink-0" data-name="Actions Container">
+        <div className="pageheader-buttons-mobile" data-name="Actions Container">
           {actions.map((action) => (
             <Button
               key={action.id}
@@ -53,6 +53,7 @@ export default function PageHeader({
               rightIcon={action.rightIcon || 'none'}
               onClick={action.onClick}
               size="sm"
+              className="pageheader-button-mobile"
             />
           ))}
         </div>

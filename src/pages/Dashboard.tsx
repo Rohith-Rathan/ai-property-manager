@@ -8,7 +8,8 @@ import Button from '../components/ui/Button';
 import ProgressBar from '../components/ui/ProgressBar';
 import ThemeIcon from '../components/ui/ThemeIcon';
 import Chip from '../components/ui/Chip';
-import { ActivityFeedItem, AlertItem, PageHeader } from '../components/ui';
+import { ActivityFeedItem, AlertItem } from '../components/ui';
+import PageHeader from '../components/layout/PageHeader';
 import DashboardPropertyCard from '../components/cards/DashboardPropertyCard';
 
 // Asset constants
@@ -48,13 +49,24 @@ const aiEfficiencyCardIcon = getAssetPath('financial-icon');
 export default function Dashboard() {
   const [searchValue, setSearchValue] = useState('');
   const [isNavigationExpanded, setIsNavigationExpanded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSearch = (query: string) => {
     console.log('Dashboard search:', query);
   };
 
   const handleLogoClick = () => {
-    setIsNavigationExpanded(!isNavigationExpanded);
+    // On mobile: open mobile menu overlay
+    // On desktop: toggle navigation expansion
+    if (window.innerWidth < 640) {
+      setIsMobileMenuOpen(true);
+    } else {
+      setIsNavigationExpanded(!isNavigationExpanded);
+    }
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -62,6 +74,7 @@ export default function Dashboard() {
       <div className="flex flex-col h-screen">
           {/* Header */}
         <Header 
+          variant="responsive"
           searchPlaceholder="Search properties, tenants, tickets..."
           notificationCount={3}
           showThemeToggle={true}
@@ -74,8 +87,8 @@ export default function Dashboard() {
 
           {/* Main Content */}
         <div className="flex-1 flex overflow-hidden">
-              {/* Left Navigation - Visible on all viewports */}
-              <div className="block">
+              {/* Left Navigation - Hidden on mobile, visible on larger screens */}
+              <div className="mobile-hidden">
                 <LeftNavigation 
                   activeItem="dashboard"
                   expanded={isNavigationExpanded}
@@ -91,14 +104,17 @@ export default function Dashboard() {
           <div className="flex-1 flex flex-col gap-6 md:gap-8 overflow-y-auto pb-18 pt-8 px-18">
                 {/* Page Header */}
                 <PageHeader
-                  variant="default"
                   title="Welcome back, John"
-                  subtitle="Welcome back, John. Here's what's happening with your properties today."
-                  primaryAction={{
-                    label: "Quick Action",
-                    onClick: () => console.log('Quick action clicked'),
-                    icon: addPropertyActionIcon
-                  }}
+                  description="Welcome back, John. Here's what's happening with your properties today."
+                  actions={[
+                    {
+                      id: "quick-action",
+                      label: "Quick Action",
+                      onClick: () => console.log('Quick action clicked'),
+                      icon: 'add',
+                      variant: 'primary'
+                    }
+                  ]}
                 />
 
                 {/* Stats Cards */}
@@ -161,7 +177,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Top Performing Properties Section */}
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
+                <div className="flex flex-wrap gap-4 items-start justify-between w-full">
                   {/* Left side - Properties icon and title */}
                   <div className="flex items-center gap-2">
                     <ThemeIcon src={propertiesNavIcon} alt="Properties" size="sm" variant="default" />
@@ -171,7 +187,7 @@ export default function Dashboard() {
                   </div>
                   
                   {/* Right side - Action buttons */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                  <div className="flex flex-row gap-2 sm:gap-3 items-center">
                     <Button
                       variant="secondary"
                       size="sm"
@@ -542,6 +558,29 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div 
+            className="absolute inset-0 bg-black bg-opacity-50"
+            onClick={closeMobileMenu}
+          />
+          <div className="absolute left-0 top-0 h-full w-64 bg-paper-paper-elevation-1 shadow-card-large">
+            <LeftNavigation 
+              activeItem="dashboard"
+              expanded={true}
+              userName="Jhon Deo"
+              userInitials="JD"
+              userGradient="aqua-2"
+              onItemClick={(itemId) => {
+                console.log(`Mobile navigation: ${itemId}`);
+                closeMobileMenu();
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -136,8 +136,9 @@ export default function PageSearch({
           </div>
         </div>
 
-        {/* Filter Button - Compact */}
-        <div className="relative shrink-0 ml-2" data-name="Filter Container">
+        {/* Filter and View Controls */}
+        <div className="relative shrink-0 ml-2 flex gap-2" data-name="Controls Container">
+          {/* Filter Button - Compact */}
           <button 
             className="bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-1 h-9 items-center pl-2 pr-2 py-0 relative rounded-lg shrink-0 cursor-pointer hover:bg-paper-paper-elevation-2 transition-colors duration-200" 
             onClick={() => handleFilterChange('All Properties')} 
@@ -146,6 +147,24 @@ export default function PageSearch({
             <ThemeIcon src={filterIcon} alt="Filter" size="sm" variant="default" />
             <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="sm" variant="default" />
           </button>
+          
+          {/* View Toggle Buttons */}
+          <div className="content-stretch flex gap-1 items-start relative shrink-0" data-name="View Toggle">
+            <button 
+              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'grid' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              data-name="Grid View Button"
+              onClick={() => handleViewChange('grid')}
+            >
+              <ThemeIcon src={gridViewIcon} alt="Grid View" size="sm" variant={currentView === 'grid' ? 'white' : 'default'} />
+            </button>
+            <button 
+              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'list' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              data-name="List View Button"
+              onClick={() => handleViewChange('list')}
+            >
+              <ThemeIcon src={listViewIcon} alt="List View" size="sm" variant={currentView === 'list' ? 'white' : 'default'} />
+            </button>
+          </div>
         </div>
       </div>
     );

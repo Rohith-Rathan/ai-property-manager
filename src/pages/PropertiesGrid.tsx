@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAssetPath } from '../utils/completeAssetMapping';
 import AppLayout from '../components/layout/AppLayout';
 import PageHeader from '../components/layout/PageHeader';
@@ -22,9 +23,18 @@ const gridViewIcon = getAssetPath('grid-view-icon');                    // Grid 
 const listViewIcon = getAssetPath('list-view-icon');                    // List view
 
 export default function PropertiesGrid() {
+  const navigate = useNavigate();
+
   const handleSearch = (query: string) => {
     console.log('PropertiesGrid search:', query);
     // Implement search functionality here
+  };
+
+  const handleViewChange = (view: 'grid' | 'list') => {
+    if (view === 'list') {
+      navigate('/properties-list');
+    }
+    // If view is 'grid', we're already on the grid page, so no navigation needed
   };
 
   // Property data - exact replica of original content plus additional properties
@@ -210,7 +220,7 @@ export default function PropertiesGrid() {
         placeholder="Search properties..."
         onSearch={handleSearch}
         onFilter={(filter) => console.log('Filter changed:', filter)}
-        onViewChange={(view) => console.log('View changed:', view)}
+        onViewChange={handleViewChange}
         filters={[
           { label: 'All Properties', value: 'all' }
         ]}

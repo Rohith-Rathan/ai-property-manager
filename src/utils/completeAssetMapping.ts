@@ -224,6 +224,14 @@ export const COMPLETE_ASSET_MAP = {
   '9699f89e2634301c749350e57739d76aca9fa04d': 'envelope-email-icon',
   '498e262ab2dbc300a43b7fda916b58f88d6eead5': 'phone-icon',
   'fdfdceca98cfd520a588137d6a2887f6da7734d1': 'three-dots-more-options-icon',
+  
+  // Add New Tenant Step 2 specific icons
+  '2cd0983148b49644e195ad24d11ae510bc2aacc9': 'generate-agreement-icon', // Generate agreement button
+  '9f0e1cd50be19a63d11306040340aa4f7a005ffe': 'cancel-icon',
+  'ee43271f59044acc8c541e7e68453e1820bc8000': 'next-arrow-icon',
+  
+  // Add Property Step 1 specific icons (downloaded from Figma)
+  // Note: All icons were already mapped as 'removed-duplicate', so no new mappings needed
 } as const;
 
 // Helper function to get descriptive name from hash
@@ -252,7 +260,7 @@ export const ASSET_STATS = {
   totalAssets: 210,
   mappedAssets: 210,
   unmappedAssets: 0,
-  lastUpdated: new Date().toISOString(),
+  // Asset usage statistics
   analysisMethod: 'Manual analysis (COMPLETED)',
   knownIcons: 175,
   manualCorrections: 143,

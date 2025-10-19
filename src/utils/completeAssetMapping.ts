@@ -33,14 +33,14 @@ export const COMPLETE_ASSET_MAP = {
   '3fa9b13ab8ace0e15e059c64cfe847f6ab65db15': 'envelope-email-icon',
   '40f87912a0a40334f59a288db663b420fa2371b8': 'removed-duplicate',
   '427b6999285a8baf78a416747f93c849977edb28': 'dollar-paid-icon',
-  '4502e73890324176be04135b18d2bc70559596f2': 'removed-duplicate',
+  '4502e73890324176be04135b18d2bc70559596f2': 'id-proofs-section-icon',              // ID proofs section
   '47a7ba9ca1de371a563e5830e9fefe55220595d8': 'removed-duplicate',
   '484446b5a7748a3ac90d27dce4fbe8b71685d17c': 'removed-duplicate',
   '48db3b7a9d28e42760fccfd7451581253b66412c': 'calendar-clock-icon',
   '50e5902de5a5ab12118d3fd7e895e9a5533b2825': 'removed-duplicate',
   '513329f994b670d300f53199b8dbd7b6cbf20725': 'removed-duplicate',
   '51c27893cb973205053616aaf50fa89da50ae2a3': 'removed-duplicate',
-  '52319417a31bbfed779edb880cba1406e3cb2a88': 'edit-pencil-icon',
+  '52319417a31bbfed779edb880cba1406e3cb2a88': 'edit-document-icon',
   '54c7b8211a203137315d2431d93e367da5008886': 'search-magnifying-glass-icon',
   '570562bdab185d048f5ac2c0767b4b5fb79062af': 'dropdown-arrow-up-icon',
   'bdfb842fd34b514bce485e4a545244e6ae290405': 'trending-up-streamline-tabler-icon',
@@ -57,12 +57,12 @@ export const COMPLETE_ASSET_MAP = {
   '640d8d87417e96021bc2a813285204d79d2e5a52': 'removed-duplicate',
   '67d86ebebbc1bdfa80c2798969b5d9cb9f898526': 'document-file-icon',
   '6d3c0204ac37f038cd091108592cad5b0022f2e9': 'leases-document-icon',
-  '7001f64b0a974c8440c2f6da9af802d5329923df': 'download-icon',
+  '7001f64b0a974c8440c2f6da9af802d5329923df': 'download-document-icon',
   '7048031b3fabb140cea9563d447d80ec10c414d1': 'removed-duplicate',
   '7125bccb8bad594a6a01faebb58d547f527b4920': 'removed-duplicate',
   '7270a34653955b75ee76c3c2eaf878d9319dad44': 'removed-duplicate',
   '72d1bcaa804d8e445e8df890cad034d00735fbc7': 'removed-duplicate',
-  '73084855d8c161a9911f10b1712f5a4e5563369e': 'eye-view-icon',
+  '73084855d8c161a9911f10b1712f5a4e5563369e': 'delete-document-icon',
   '759d69ca6cedbbacf8aa682b2d41d60b38f18b74': 'removed-duplicate',
   '769e6a5d396370463faedaef1b0d0ca8e2925f11': 'removed-duplicate',
   '7c036e6b5bdec2963ada8ce359e6c1359e73513c': 'removed-duplicate',
@@ -77,7 +77,7 @@ export const COMPLETE_ASSET_MAP = {
   '8c23599e1d7e92e55418a1e1ffbdd778ec937473': 'removed-duplicate',
   '8cfd46bf59d529e6e44fb9ad3c9767b4f65473ac': 'removed-duplicate',
   '8d0956d262164339b550eadca78b246c8aca00bf': 'alert-warning-icon',
-  '8e9f7f806084d3de113365a0759470c812c2864e': 'x-close-icon',
+  '8e9f7f806084d3de113365a0759470c812c2864e': 'close-invoice-icon',
   '8f8e005454b9b46963f5efd7a358be9e494c7c42': 'filter-funnel-icon',
   '93eee61b1cc5711cc9e7f65ddffa4d2717488f10': 'removed-duplicate',
   '9546aa5bd26ab7f8ec7514c04ea486025349b04': 'removed-duplicate',
@@ -107,7 +107,6 @@ export const COMPLETE_ASSET_MAP = {
   'b2d67f85fb907015f4ab9ee4b411d10f7461a7a4': 'removed-duplicate',
   'b567f2190e9f78f6cb6b711dfe6fc87447d934e6': 'removed-duplicate',
   'bd7230e7a66d09f8f2922c1dbe464bf845edafdb': 'maintenance-icon',
-  'bd7230e7a66d09f8f2922dbe464bf845edafdb': 'removed-duplicate',
   'c220baab89768666b4122a112a33f29db04a4fe2': 'removed-duplicate',
   'c508e0e9e06502acafd54f2124771cfa94ecbcc6': 'dollar-rent-icon',
   'c5897153a63e051430d72b0e62512742a6db262d': 'moon-theme-icon',
@@ -225,10 +224,40 @@ export const COMPLETE_ASSET_MAP = {
   '498e262ab2dbc300a43b7fda916b58f88d6eead5': 'phone-icon',
   'fdfdceca98cfd520a588137d6a2887f6da7734d1': 'three-dots-more-options-icon',
   
-  // Add New Tenant Step 2 specific icons
-  '2cd0983148b49644e195ad24d11ae510bc2aacc9': 'generate-agreement-icon', // Generate agreement button
-  '9f0e1cd50be19a63d11306040340aa4f7a005ffe': 'cancel-icon',
-  'ee43271f59044acc8c541e7e68453e1820bc8000': 'next-arrow-icon',
+  // View AI-Powered Maintenance Ticket specific icons
+  'd50b423170f2849dd13f886fde19d2e63ba00b16': 'back-arrow-icon',              // Back arrow icon
+  '0781e70d7230cfd6481e1a8fdabe1f97e6401778': 'calendar-date-icon',          // Calendar date icon
+  '16c88a7e6eace408c8b240c280f6da19058d8396': 'checkmark-resolved-icon',    // Checkmark resolved icon
+  '05cf50a31ebf9756146535e32314da4a1e6bd1ec': 'assign-vendor-icon',          // Assign vendor icon
+  '9024479b491fdd9ac67ee8bfce062d6b99c2eefd': 'unit-apartment-icon',        // Unit apartment icon
+  'cc71b62647a41a48ffecba3e559daba15422e911': 'tenant-user-icon',           // Tenant user icon
+  '6b2cbda961600cada265986fdc53a272d4aa0ac8': 'category-tag-icon',          // Category tag icon
+  '59d93cb48b80525fe5189e5e2d454c05d1401d70': 'ai-generated-icon',          // AI generated icon
+  'd63cd04345ec31bf0fa6d8d1b88be738b85a8321': 'alert-priority-icon',        // Alert priority icon
+  '73664c7c1ec773c4c9074595ce72d0a4ee512875': 'asset-details-icon',         // Asset details icon
+  '93ce8fc14b8c8833d71707925ef6532fa74714fa': 'warranty-check-icon',       // Warranty check icon
+  '0316a68b3b3ec194f813b761df4b6375edb06ac9': 'vendor-user-icon',          // Vendor user icon
+  '47518bee0cfa5697d15976b43aa0be8a69bf2e62': 'ai-conversation-icon',      // AI conversation icon
+  // Assets & Warranties specific icons
+  'aa4937ea6c2e1ce088dd2990d8d5525f050ca35c': 'refrigerator-asset-icon',      // Refrigerator asset icon
+  '5f071a43c5c7af60183fa4935d0b35e7b8ae6d20': 'refrigerator-kitchen-icon',   // Refrigerator kitchen icon
+  '1bcb5029c476906a01bbfefeb369affa477e8fe5': 'download-manual-icon',        // Download manual icon
+  'ed25fbbf0052a7ce1d5b262200ce8de4ecbe1c88': 'create-maintenance-ticket-icon', // Create maintenance ticket icon
+
+  // Communications Hub specific icons
+  '85bc9e3c36a1b7ec6abf4531df22ed17f8262f41': 'email-channel-icon',           // Email channel icon
+  '72be2cf3d8233e32f8e83dea97978affc58577ba': 'sms-channel-icon',              // SMS channel icon
+  '26dd3e3721b8f84923cd1c2b85f753f281a8e856': 'whatsapp-channel-icon',        // WhatsApp channel icon
+  'b3900385e5bb72e1b0031204448a74b4e0520756': 'sms-channel-alt-icon',         // SMS channel alt icon
+  'cba00448e7e90ae134c571b82127e277ce8bca58': 'whatsapp-channel-alt-icon',    // WhatsApp channel alt icon
+
+  // Create New Communication Campaign specific icons
+  'fe0bdbe5653cd573023ef418efa2b985281fc1ad': 'email-channel-selected-icon',  // Email channel selected icon
+  '98128748aa5b8aab78433b61afbc398002bc7ca8': 'sms-channel-unselected-icon',  // SMS channel unselected icon
+
+  // Communications Hub Templates specific icons
+  'a88626ab53d530db3dbb916b95fb3e290ce7da53': 'email-template-icon',          // Email template icon
+  '8930f6b067f363b38204b064a844de250cb1ac25': 'sms-template-icon',             // SMS template icon
   
   // Add Property Step 1 specific icons (downloaded from Figma)
   // Note: All icons were already mapped as 'removed-duplicate', so no new mappings needed

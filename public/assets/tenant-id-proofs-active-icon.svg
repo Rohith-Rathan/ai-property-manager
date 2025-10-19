@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Id--Streamline-Tabler">
+<path id="Vector" d="M1.74049 4.36364C1.74049 3.78498 1.96036 3.23003 2.35174 2.82086C2.74312 2.41169 3.27395 2.18182 3.82745 2.18182H12.1753C12.7288 2.18182 13.2596 2.41169 13.651 2.82086C14.0424 3.23003 14.2622 3.78498 14.2622 4.36364V11.6364C14.2622 12.215 14.0424 12.77 13.651 13.1791C13.2596 13.5883 12.7288 13.8182 12.1753 13.8182H3.82745C3.27395 13.8182 2.74312 13.5883 2.35174 13.1791C1.96036 12.77 1.74049 12.215 1.74049 11.6364V4.36364Z" stroke="var(--stroke-0, white)" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M4.5231 6.54545C4.5231 6.93122 4.66968 7.30119 4.9306 7.57397C5.19152 7.84675 5.54541 8 5.9144 8C6.2834 8 6.63728 7.84675 6.8982 7.57397C7.15912 7.30119 7.30571 6.93122 7.30571 6.54545C7.30571 6.15969 7.15912 5.78972 6.8982 5.51694C6.63728 5.24416 6.2834 5.09091 5.9144 5.09091C5.54541 5.09091 5.19152 5.24416 4.9306 5.51694C4.66968 5.78972 4.5231 6.15969 4.5231 6.54545Z" stroke="var(--stroke-0, white)" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M10.0883 5.09091H11.4796" stroke="var(--stroke-0, white)" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M10.0883 8H11.4796" stroke="var(--stroke-0, white)" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M4.5231 10.9091H11.4796" stroke="var(--stroke-0, white)" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

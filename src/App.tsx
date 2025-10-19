@@ -31,6 +31,11 @@ import CoTenantOptions from './pages/CoTenantOptions';
 import ViewTenantCommunicationHistory from './pages/ViewTenantCommunicationHistory';
 import AddNewTenantStep1 from './pages/AddNewTenantStep1';
 import AddNewTenantStep2 from './pages/AddNewTenantStep2';
+import AddNewTenantStep3 from './pages/AddNewTenantStep3';
+import RentInvoicesPayments from './pages/RentInvoicesPayments';
+import RecordPayment from './pages/RecordPayment';
+import AIPoweredMaintenanceManagement from './pages/AIPoweredMaintenanceManagement';
+import CommunicationsHubTemplates from './pages/CommunicationsHubTemplates';
 import ComponentsLibrary from './pages/ComponentsLibrary';
 import './App.css';
 import './styles/styles.css';
@@ -147,21 +152,45 @@ function Home() {
           </Link>
           <Link to="/add-new-tenant-step-1" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
             30. Add New Tenant Step 1
-          </Link>
+              </Link>
           <Link to="/add-new-tenant-step-2" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
             31. Add New Tenant Step 2
+              </Link>
+          <Link to="/add-new-tenant-step-3" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+            32. Add New Tenant Step 3
+              </Link>
+          <Link to="/rent-invoices-payments" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+            33. Rent Invoices & Payments
+              </Link>
+          <Link to="/view-invoice" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+            34. View Invoice
           </Link>
+          <Link to="/record-payment" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+            35. Record Payment
+          </Link>
+          <Link to="/ai-powered-maintenance-management" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+            36. AI-Powered Maintenance Management
+          </Link>
+        <Link to="/communications-hub-campaigns" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          45. Communications Hub Campaigns
+        </Link>
+        <Link to="/create-new-communication-campaign" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          46. Create New Communication Campaign
+        </Link>
+        <Link to="/communications-hub-templates" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          47. Communications Hub Templates
+        </Link>
         </div>
         
         {/* Status Message */}
         <div className="mt-8 sm:mt-12 p-4 sm:p-6 bg-white border border-gray-200 rounded-lg max-w-2xl mx-auto">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-                Framework Status: 32 Pages Built
+                Framework Status: 47 Pages Built
               </h2>
               <p className="text-sm sm:text-base text-gray-600">
                 ✅ React app running<br/>
                 ✅ Routing functional<br/>
-                ✅ 32 pages with real Figma code<br/>
+                ✅ 47 pages with real Figma code<br/>
                 ✅ All assets downloaded locally<br/>
                 ✅ Pixel-perfect implementation
               </p>
@@ -207,7 +236,12 @@ function App() {
                   <Route path="/view-tenant-communication-history" element={<ViewTenantCommunicationHistory />} />
                   <Route path="/add-new-tenant-step-1" element={<AddNewTenantStep1 />} />
                   <Route path="/add-new-tenant-step-2" element={<AddNewTenantStep2 />} />
-                  <Route path="/co-tenant-options" element={<CoTenantOptions />} />
+                  <Route path="/add-new-tenant-step-3" element={<AddNewTenantStep3 />} />
+                  <Route path="/rent-invoices-payments" element={<RentInvoicesPayments />} />
+                  <Route path="/record-payment" element={<RecordPayment />} />
+                  <Route path="/ai-powered-maintenance-management" element={<AIPoweredMaintenanceManagement />} />
+                  <Route path="/add-asset" element={<AddAsset />} />
+                  <Route path="/communications-hub-templates" element={<CommunicationsHubTemplates />} />
                   <Route path="/components-library" element={<ComponentsLibrary />} />
             </Routes>
       </Router>

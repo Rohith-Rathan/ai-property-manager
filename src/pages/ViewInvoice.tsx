@@ -8,9 +8,9 @@ import Chip from '../components/ui/Chip';
 import ThemeIcon from '../components/ui/ThemeIcon';
 
 // Asset constants - using complete asset mapping
-const invoiceIcon = getAssetPath('427b6999285a8baf78a416747f93c849977edb28');
-const closeIcon = getAssetPath('8e9f7f806084d3de113365a0759470c812c2864e');
-const downloadIcon = getAssetPath('d8245ea9cc6146fc7dac4714aa6650e790b48410');
+const invoiceIcon = getAssetPath('dollar-paid-icon');
+const closeIcon = getAssetPath('close-invoice-icon');
+const downloadIcon = getAssetPath('download-pdf-icon');
 
 export default function ViewInvoice() {
   const navigate = useNavigate();

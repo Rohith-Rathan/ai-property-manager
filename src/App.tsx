@@ -36,6 +36,12 @@ import RentInvoicesPayments from './pages/RentInvoicesPayments';
 import RecordPayment from './pages/RecordPayment';
 import AIPoweredMaintenanceManagement from './pages/AIPoweredMaintenanceManagement';
 import CommunicationsHubTemplates from './pages/CommunicationsHubTemplates';
+import CommunicationsHubCampaigns from './pages/CommunicationsHubCampaigns';
+import CreateNewCommunicationCampaign from './pages/CreateNewCommunicationCampaign';
+import CommunicationsHubRecipients from './pages/CommunicationsHubRecipients';
+import ViewAIPoweredMaintenanceTicket from './pages/ViewAIPoweredMaintenanceTicket';
+import ViewAssetsWarranties from './pages/ViewAssetsWarranties';
+import AssetsWarranties from './pages/AssetsWarranties';
 import ComponentsLibrary from './pages/ComponentsLibrary';
 import './App.css';
 import './styles/styles.css';
@@ -180,17 +186,29 @@ function Home() {
         <Link to="/communications-hub-templates" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
           47. Communications Hub Templates
         </Link>
+        <Link to="/communications-hub-recipients" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          48. Communications Hub Recipients
+        </Link>
+        <Link to="/view-ai-powered-maintenance-ticket" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          49. View AI-Powered Maintenance Ticket
+        </Link>
+        <Link to="/view-assets-warranties" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          50. View Assets & Warranties
+        </Link>
+        <Link to="/assets-warranties" className="bg-purple-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity inline-block">
+          51. Assets & Warranties
+        </Link>
         </div>
         
         {/* Status Message */}
         <div className="mt-8 sm:mt-12 p-4 sm:p-6 bg-white border border-gray-200 rounded-lg max-w-2xl mx-auto">
               <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-                Framework Status: 47 Pages Built
+                Framework Status: 51 Pages Built
               </h2>
               <p className="text-sm sm:text-base text-gray-600">
                 ✅ React app running<br/>
                 ✅ Routing functional<br/>
-                ✅ 47 pages with real Figma code<br/>
+                ✅ 51 pages with real Figma code<br/>
                 ✅ All assets downloaded locally<br/>
                 ✅ Pixel-perfect implementation
               </p>
@@ -242,6 +260,12 @@ function App() {
                   <Route path="/ai-powered-maintenance-management" element={<AIPoweredMaintenanceManagement />} />
                   <Route path="/add-asset" element={<AddAsset />} />
                   <Route path="/communications-hub-templates" element={<CommunicationsHubTemplates />} />
+                  <Route path="/communications-hub-campaigns" element={<CommunicationsHubCampaigns />} />
+                  <Route path="/create-new-communication-campaign" element={<CreateNewCommunicationCampaign />} />
+                  <Route path="/communications-hub-recipients" element={<CommunicationsHubRecipients />} />
+                  <Route path="/view-ai-powered-maintenance-ticket" element={<ViewAIPoweredMaintenanceTicket />} />
+                  <Route path="/view-assets-warranties" element={<ViewAssetsWarranties />} />
+                  <Route path="/assets-warranties" element={<AssetsWarranties />} />
                   <Route path="/components-library" element={<ComponentsLibrary />} />
             </Routes>
       </Router>

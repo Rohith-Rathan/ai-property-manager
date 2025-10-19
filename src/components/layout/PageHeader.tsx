@@ -17,13 +17,15 @@ interface PageHeaderProps {
   description?: string;
   actions?: ActionButton[];
   showActions?: boolean;
+  onActionClick?: (actionId: string) => void;
 }
 
 export default function PageHeader({ 
   title,
   description,
   actions = [],
-  showActions = true
+  showActions = true,
+  onActionClick
 }: PageHeaderProps) {
 
   return (
@@ -51,7 +53,14 @@ export default function PageHeader({
               gradient={action.gradient || 'brand-aurora'}
               icon={action.icon || 'none'}
               rightIcon={action.rightIcon || 'none'}
-              onClick={action.onClick}
+              onClick={() => {
+                if (action.onClick) {
+                  action.onClick();
+                }
+                if (onActionClick) {
+                  onActionClick(action.id);
+                }
+              }}
               size="sm"
               className="pageheader-button-mobile"
             />

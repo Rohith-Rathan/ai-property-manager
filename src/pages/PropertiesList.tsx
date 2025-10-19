@@ -32,6 +32,10 @@ export default function PropertiesList() {
     // If view is 'list', we're already on the list page, so no navigation needed
   };
 
+  const handleAddProperty = () => {
+    navigate('/add-property-1');
+  };
+
   // Table columns definition
   const columns: TableColumn[] = [
     { key: 'property', label: 'Property', width: '300px', align: 'left' },
@@ -277,6 +281,7 @@ export default function PropertiesList() {
             gradient: 'aqua-2'
           }
         ]}
+        onActionClick={handleAddProperty}
       />
 
                 {/* Search Bar */}

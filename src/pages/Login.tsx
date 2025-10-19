@@ -52,7 +52,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="bg-gradient-background-base min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="bg-gradient-background-base min-h-screen flex items-center justify-center responsive-flex col gap-6 p-6">
       {/* Theme Toggle Button */}
       <div className="absolute top-4 right-4">
         <Button
@@ -169,7 +169,7 @@ const Login: React.FC = () => {
                 </div>
 
           {/* Social Login Buttons */}
-          <div className="flex flex-row gap-3">
+          <div className="responsive-flex row gap-3">
             {LOGIN_CONFIG.socialButtons.map((social) => (
               <Button
                 key={social.provider}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAssetPath } from '../utils/completeAssetMapping';
 import AppLayout from '../components/layout/AppLayout';
 import StatCard from '../components/cards/StatCard';
@@ -35,6 +36,8 @@ const leasesCardIcon = getAssetPath('6d3c0204ac37f038cd091108592cad5b0022f2e9');
 const aiEfficiencyCardIcon = getAssetPath('financial-icon');
 
 export default function Dashboard() {
+  const navigate = useNavigate();
+  
   const handleSearch = (query: string) => {
     console.log('Dashboard search:', query);
   };
@@ -42,17 +45,17 @@ export default function Dashboard() {
   return (
     <AppLayout 
       activePage="dashboard"
-      searchPlaceholder="Search properties, tenants, tickets..."
-      notificationCount={3}
-      showThemeToggle={true}
-      userName="Jhon Deo"
-      userInitials="JD"
-      userGradient="aqua-2"
+          searchPlaceholder="Search properties, tenants, tickets..."
+          notificationCount={3}
+          showThemeToggle={true}
+                  userName="Jhon Deo"
+                  userInitials="JD"
+                  userGradient="aqua-2"
       onSearch={handleSearch}
       onNavigationClick={(itemId) => console.log(`Dashboard navigation: ${itemId}`)}
     >
       {/* Page Header */}
-      <div className="flex flex-wrap gap-4 items-start justify-between w-full" data-name="Page Header">
+      <div className="responsive-flex row gap-4 items-start justify-between w-full" data-name="Page Header">
         {/* Title Section */}
         <div className="flex-1 min-w-0" data-name="Title Container">
           <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3" data-name="Page Title">
@@ -61,7 +64,7 @@ export default function Dashboard() {
           <p className="font-sans font-normal leading-base relative shrink-0 text-secondary text-base" data-name="Page Description">
             Welcome back, John. Here's what's happening with your properties today.
           </p>
-        </div>
+                    </div>
 
         {/* Quick Actions Button */}
         <div className="pageheader-buttons-mobile" data-name="Actions Container">
@@ -72,9 +75,9 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="flex flex-wrap gap-4 md:gap-6 w-full">
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                {/* Stats Cards */}
+      <div className="responsive-grid cols-auto gap-6 w-full">
+                  <div className="w-full">
                     <StatCard
                       title="3/10 Vacant Units"
                       subtitle="Vacancy"
@@ -85,7 +88,7 @@ export default function Dashboard() {
                       variant="default"
                     />
                   </div>
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="$7,050 / $14,000"
                       subtitle="Rent Collection"
@@ -96,7 +99,7 @@ export default function Dashboard() {
                       variant="default"
                     />
                   </div>
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="2/5 Open Tickets"
                       subtitle="Maintenance"
@@ -107,7 +110,7 @@ export default function Dashboard() {
                       variant="default"
                     />
                   </div>
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="In next 2 months"
                       subtitle="Leases"
@@ -118,7 +121,7 @@ export default function Dashboard() {
                       variant="default"
                     />
                   </div>
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="500 hours saved month"
                       subtitle="AI Efficiency"
@@ -132,7 +135,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Top Performing Properties Section */}
-                <div className="flex flex-wrap gap-4 items-start justify-between w-full">
+                <div className="responsive-flex row gap-4 items-start justify-between w-full">
                   {/* Left side - Properties icon and title */}
                   <div className="flex items-center gap-2">
                     <ThemeIcon src={propertiesNavIcon} alt="Properties" size="sm" variant="default" />
@@ -142,7 +145,7 @@ export default function Dashboard() {
                   </div>
                   
                   {/* Right side - Action buttons */}
-                  <div className="flex flex-row gap-2 sm:gap-3 items-center">
+                  <div className="responsive-flex row gap-3 items-center">
                     <Button
                       variant="secondary"
                       size="sm"
@@ -157,7 +160,7 @@ export default function Dashboard() {
                       size="sm"
                       icon="add"
                       iconPosition="left"
-                      onClick={() => console.log('Add property clicked')}
+                      onClick={() => navigate('/add-property-1')}
                     >
                         Add Property
                     </Button>
@@ -165,9 +168,9 @@ export default function Dashboard() {
                 </div>
 
                 {/* Property Cards Grid */}
-                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                <div className="responsive-grid cols-auto gap-6 w-full">
                   {/* Property Card 1 - Sunset Apartments */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <DashboardPropertyCard
                       rank={1}
                       title="Sunset Apartments"
@@ -185,7 +188,7 @@ export default function Dashboard() {
                       </div>
 
                   {/* Property Card 2 - Oak Villa Complex */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <DashboardPropertyCard
                       rank={2}
                       title="Oak Villa Complex"
@@ -203,7 +206,7 @@ export default function Dashboard() {
                         </div>
 
                   {/* Property Card 3 - Pine Heights */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <DashboardPropertyCard
                       rank={3}
                       title="Pine Heights"
@@ -222,9 +225,9 @@ export default function Dashboard() {
                     </div>
 
                 {/* Two Column Layout - Alerts and Financial/AI Actions */}
-                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                <div className="responsive-grid cols-auto gap-6 w-full">
                   {/* Left Column - Urgent Alerts */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card lg:w-1/2">
+                  <div className="w-full">
                     <Card className="shadow-card-small flex flex-col gap-4 p-6 h-[676.83px]">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex gap-2 items-center">
@@ -325,7 +328,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Right Column - Financial Snapshot and Recent AI Actions */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card lg:w-1/2 flex flex-col gap-6 h-full">
+                  <div className="w-full flex flex-col gap-6 h-full">
                     {/* Financial Snapshot */}
                     <Card className="shadow-card-small flex flex-col gap-4 p-6">
                       <div className="flex items-center justify-between w-full">
@@ -443,9 +446,9 @@ export default function Dashboard() {
                 </Card>
 
                 {/* Bottom Quick Stats - 4 Cards */}
-                <div className="flex flex-wrap gap-4 md:gap-6 w-full">
+                <div className="responsive-grid cols-auto gap-6 w-full">
                   {/* Rent Collected vs Expected */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="Rent Collected vs Expected"
                       value="$7,050 / $14,000"
@@ -461,7 +464,7 @@ export default function Dashboard() {
                       </div>
 
                   {/* Expenses */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="Expenses"
                       value="$2,500"
@@ -477,7 +480,7 @@ export default function Dashboard() {
                       </div>
 
                   {/* Net Cash Flow */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="Net Cash Flow"
                       value="+$4,550"
@@ -494,7 +497,7 @@ export default function Dashboard() {
                     </div>
 
                   {/* ROI / Cap Rate Trend */}
-                  <div className="w-full min-w-responsive-card flex-responsive-card">
+                  <div className="w-full">
                     <StatCard
                       title="ROI / Cap Rate Trend"
                       value="8.4%"

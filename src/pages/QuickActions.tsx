@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MoreActions, MoreActionItem } from '../components/ui/MoreActions';
 import { getAssetPath } from '../utils/completeAssetMapping';
 
@@ -16,6 +17,7 @@ interface QuickActionsProps {
 
 export default function QuickActions({ isOpen, onClose, triggerRef }: QuickActionsProps) {
   console.log('QuickActions rendered with isOpen:', isOpen);
+  const navigate = useNavigate();
   
   const quickActionItems: MoreActionItem[] = [
     {
@@ -25,6 +27,7 @@ export default function QuickActions({ isOpen, onClose, triggerRef }: QuickActio
       gradient: 'info-flow',
       onClick: () => {
         console.log('Add Property clicked');
+        navigate('/add-property-1');
         onClose();
       }
     },

@@ -1,325 +1,380 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAssetPath } from '../utils/completeAssetMapping';
+import AppLayout from '../components/layout/AppLayout';
+import StepWizard from '../components/ui/StepWizard';
+import Button from '../components/forms/Button';
+import { Card } from '../components/ui/Card';
+import ThemeIcon from '../components/ui/ThemeIcon';
 
-// Asset constants with descriptive names - using complete asset mapping
-const loginLogoIcon = getAssetPath('login-logo-icon');           // Header logo
-const searchIcon = getAssetPath('search-icon');                  // Search icon
-const notificationIcon = getAssetPath('notification-icon');      // Notification bell
-const settingsIcon = getAssetPath('settings-icon');              // Settings gear
-const themeSwitchIcon = getAssetPath('theme-switch-icon');       // Theme toggle
-const dashboardNavIcon = getAssetPath('dashboard-nav-icon');     // Dashboard navigation
-const propertiesNavIcon = getAssetPath('properties-nav-icon');   // Properties navigation
-const tenantsNavIcon = getAssetPath('tenants-nav-icon');         // Tenants navigation
-const maintenanceNavIcon = getAssetPath('maintenance-nav-icon'); // Maintenance navigation
-const reportsNavIcon = getAssetPath('reports-nav-icon');         // Reports navigation
-const helpNavIcon = getAssetPath('help-nav-icon');               // Help navigation
-const analyticsNavIcon = getAssetPath('analytics-nav-icon');     // Analytics navigation
-const settingsNavIcon = getAssetPath('settings-nav-icon');       // Settings navigation
-const addAssetsStepIcon = getAssetPath('add-assets-step-icon');  // Add assets step
-const addManagerStepIcon = getAssetPath('add-manager-step-icon'); // Add manager step
-const addUnitsStepIcon = getAssetPath('add-units-step-icon');    // Add units step
-const calendarIcon = getAssetPath('calendar-icon');              // Calendar icon
-const cancelButtonIcon = getAssetPath('cancel-button-icon');     // Cancel button
-const dollarIcon = getAssetPath('dollar-icon');                  // Dollar icon
-const dropdownArrowDownIcon = getAssetPath('dropdown-arrow-down-icon'); // Dropdown arrow down
-const nextArrowIcon = getAssetPath('next-arrow-icon');           // Next arrow
-const previousArrowIcon = getAssetPath('previous-arrow-icon');   // Previous arrow
-const propertyBasicDetailsIcon = getAssetPath('property-basic-details-icon'); // Property basic details
-const propertyDetailsStepIcon = getAssetPath('property-details-step-icon'); // Property details step
-const uploadIcon = getAssetPath('upload-icon');                  // Upload icon
+// Asset constants for form icons
+const propertyBasicDetailsIcon = getAssetPath('property-basic-details-icon');
+const calendarIcon = getAssetPath('calendar-icon');
+const dollarIcon = getAssetPath('dollar-icon');
+const uploadIcon = getAssetPath('upload-icon');
+const propertyDetailsStepIcon = getAssetPath('property-details-step-icon');
+const addUnitsStepIcon = getAssetPath('add-units-step-icon');
+const addAssetsStepIcon = getAssetPath('add-assets-step-icon');
+const addManagerStepIcon = getAssetPath('add-manager-step-icon');
 
 export default function AddPropertyStep1() {
+  const navigate = useNavigate();
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    propertyName: '',
+    propertyType: 'Residential',
+    totalUnits: '2',
+    address: '',
+    cityState: 'New York, NY',
+    zipCode: '',
+    yearBuilt: '',
+    totalSqFt: '',
+    description: '',
+    amenities: [] as string[],
+    propertyImages: [] as File[]
+  });
+
+  // Step wizard configuration
+  const steps = [
+    {
+      id: 'property-details',
+      title: 'Property Details',
+      icon: propertyDetailsStepIcon,
+      iconAlt: 'Property Details'
+    },
+    {
+      id: 'add-units',
+      title: 'Add Units',
+      icon: addUnitsStepIcon,
+      iconAlt: 'Add Units'
+    },
+    {
+      id: 'add-assets',
+      title: 'Add Assets',
+      icon: addAssetsStepIcon,
+      iconAlt: 'Add Assets'
+    },
+    {
+      id: 'add-manager',
+      title: 'Add Manager',
+      icon: addManagerStepIcon,
+      iconAlt: 'Add Manager'
+    }
+  ];
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleCancel = () => {
+    navigate('/properties-grid');
+  };
+
+  const handlePrevious = () => {
+    // This is step 1, so previous would go back to properties grid
+    navigate('/properties-grid');
+  };
+
+  const handleNext = () => {
+    // Navigate to step 2
+    navigate('/add-property-2');
+  };
+
+  const handleSearch = (query: string) => {
+    console.log('AddPropertyStep1 search:', query);
+  };
+
   return (
-    <div className="bg-white content-stretch flex items-center justify-center relative h-screen w-screen" data-name="Add Property" data-node-id="242:9607">
-      <div className="basis-0 grow h-full min-h-px min-w-px relative shrink-0" data-name="Container" data-node-id="242:9608">
-        <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex flex-col items-start relative size-full">
-          {/* Header */}
-          <div className="bg-[rgba(255,255,255,0.8)] border-[0px_0px_1px] border-[rgba(10,18,32,0.1)] border-solid h-[72px] relative shrink-0 w-full" data-name="Header" data-node-id="242:9609">
-            <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex h-[72px] items-center relative w-full">
-              <div className="border-[0px_1px_0px_0px] border-[rgba(0,0,0,0.2)] border-solid box-border content-stretch flex flex-col h-[72px] items-center justify-center pl-[16px] pr-[19px] py-[16px] relative shrink-0 w-[64px]" data-name="Container" data-node-id="I242:9609;189:15783">
-                <div className="bg-gradient-to-b content-stretch flex from-[#7c86ff] items-center justify-center relative rounded-[12px] shrink-0 size-[32px] to-[#2b7fff]" data-name="Container" data-node-id="I242:9609;189:15784">
-                  <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9609;189:15785">
-                    <img alt="" className="block max-w-none size-full" src={loginLogoIcon} />
-                  </div>
-                </div>
+    <AppLayout
+      activePage="properties"
+      searchPlaceholder="Search properties, tenants, tickets..."
+      notificationCount={3}
+      showThemeToggle={true}
+      userName="Jhon Deo"
+      userInitials="JD"
+      userGradient="aqua-2"
+      onSearch={handleSearch}
+      onNavigationClick={(itemId) => console.log(`AddPropertyStep1 navigation: ${itemId}`)}
+    >
+      <div className="flex flex-col gap-4 items-start w-full">
+        {/* Step Wizard */}
+        <StepWizard
+          title="Add New Property"
+          subtitle="Follow these steps to add a new property to your portfolio"
+          steps={steps}
+          currentStep={1}
+          onCancel={handleCancel}
+        />
+
+        {/* Form Card */}
+      <Card className="rounded-xxxl shadow-card-large p-8" padding="none" variant="outlined">
+        {/* Form Header */}
+        <div className="flex flex-col gap-2 items-start">
+            <div className="flex items-center justify-between w-full">
+              <div className="flex gap-2 items-center">
+                <ThemeIcon src={propertyBasicDetailsIcon} alt="Property Details" size="md" variant="default" />
+                <h3 className="font-sans font-semibold leading-base not-italic text-primary text-base">
+                  Property Basic Details
+                </h3>
               </div>
-              <div className="basis-0 box-border content-stretch flex grow h-full items-center justify-between min-h-px min-w-px px-[24px] py-[8px] relative shrink-0" data-name="Container" data-node-id="I242:9609;189:15793">
-                <div className="box-border content-stretch flex gap-[8px] h-[36px] items-center px-[12px] py-[10px] relative shrink-0 w-[320px]" data-name="Container" data-node-id="I242:9609;189:15794">
-                  <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9609;189:15795">
-                    <img alt="" className="block max-w-none size-full" src={searchIcon} />
-                  </div>
-                  <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#4a5565] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="I242:9609;189:15798">
-                    Search properties, tenants, tickets...
-                  </p>
-                </div>
-                <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-name="Container" data-node-id="I242:9609;189:15799">
-                  <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[32px]" data-name="Button" data-node-id="I242:9609;189:15800">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9609;189:15801">
-                      <img alt="" className="block max-w-none size-full" src={notificationIcon} />
-                    </div>
-                    <div className="absolute bg-[#fb2c36] left-[17px] rounded-[10px] size-[20px] top-[-4px]" data-name="Badge" data-node-id="I242:9609;189:15804">
-                      <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex gap-[4px] items-center justify-center overflow-clip relative rounded-[inherit] size-[20px]">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[16px] not-italic relative shrink-0 text-[12px] text-nowrap text-white whitespace-pre" data-node-id="I242:9609;189:15805">
-                          3
+              <div className="border border-overlays-white-inverse-5 border-solid box-border content-stretch flex gap-2 items-center justify-center opacity-0 px-4 py-2 relative rounded-lg shrink-0">
+                <p className="font-sans font-normal leading-normal not-italic relative shrink-0 text-primary text-label-small text-center text-nowrap whitespace-pre">
+                  View All
                         </p>
                       </div>
                     </div>
+            <p className="font-sans font-normal leading-normal not-italic text-tertiary text-label-small">
+              Enter the essential information about your property
+            </p>
                   </div>
-                  <div className="content-stretch flex items-center justify-center relative rounded-[10px] shrink-0 size-[32px]" data-name="Button" data-node-id="I242:9609;189:15806">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9609;189:15807">
-                      <img alt="" className="block max-w-none size-full" src={settingsIcon} />
+
+          <div className="flex flex-col gap-6 mt-6 w-full">
+            {/* Property Name - Full Width */}
+            <div className="flex gap-6 items-center w-full">
+              <div className="basis-0 flex flex-col gap-2 grow items-start min-h-px min-w-px">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Property Name *
+                  </label>
+                    </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-center p-3 relative rounded-lg w-full">
+                  <input
+                    type="text"
+                    placeholder="Enter property name"
+                    value={formData.propertyName}
+                    onChange={(e) => handleInputChange('propertyName', e.target.value)}
+                    className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
+                  />
+              </div>
+            </div>
+          </div>
+
+            {/* Property Type and Total Units - Two Column */}
+            <div className="form-field-group">
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Property Type *
+                  </label>
+                    </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex items-center justify-between p-3 relative rounded-lg w-full cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                  <div className="flex gap-2 items-center">
+                    <span className="font-sans font-medium leading-small not-italic text-primary text-small">
+                      {formData.propertyType}
+                    </span>
+                  </div>
+                  <ThemeIcon src="/assets/dropdown-arrow-down-icon.svg" alt="Dropdown" size="sm" variant="default" />
                     </div>
                   </div>
-                  <button className="box-border content-stretch cursor-pointer flex items-center justify-center overflow-visible p-0 relative rounded-[10px] shrink-0 size-[32px]" data-name="Theme Switch Mode" data-node-id="I242:9609;256:4134">
-                    <div className="relative shrink-0 size-[16px]" data-name="Moon--Streamline-Tabler" data-node-id="I242:9609;256:4134;255:6041">
-                      <img alt="" className="block max-w-none size-full" src={themeSwitchIcon} />
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Total Units *
+                  </label>
                     </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex items-center justify-between p-3 relative rounded-lg w-full cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                  <div className="flex gap-2 items-center">
+                    <span className="font-sans font-medium leading-small not-italic text-primary text-small">
+                      {formData.totalUnits}
+                    </span>
+                  </div>
+                  <ThemeIcon src="/assets/dropdown-arrow-down-icon.svg" alt="Dropdown" size="sm" variant="default" />
+                    </div>
+                  </div>
+                    </div>
+
+            {/* Address - Full Width */}
+            <div className="form-field-container">
+              <div className="form-field-single">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Address *
+                  </label>
+                </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-center p-3 relative rounded-lg w-full">
+                  <input
+                    type="text"
+                    placeholder="Enter full address"
+                    value={formData.address}
+                    onChange={(e) => handleInputChange('address', e.target.value)}
+                    className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
+                  />
+                        </div>
+                      </div>
+                    </div>
+
+            {/* City, State and Zip Code - Two Column */}
+            <div className="form-field-group">
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    City, State *
+                  </label>
+                </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex items-center justify-between p-3 relative rounded-lg w-full cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                  <div className="flex gap-2 items-center">
+                    <span className="font-sans font-medium leading-small not-italic text-primary text-small">
+                      {formData.cityState}
+                    </span>
+                  </div>
+                  <ThemeIcon src="/assets/dropdown-arrow-down-icon.svg" alt="Dropdown" size="sm" variant="default" />
+                </div>
+              </div>
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Zip Code *
+                  </label>
+                  </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex items-center justify-between p-3 relative rounded-lg w-full cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                  <div className="flex gap-2 items-center">
+                    <input
+                      type="text"
+                      placeholder="Enter"
+                      value={formData.zipCode}
+                      onChange={(e) => handleInputChange('zipCode', e.target.value)}
+                      className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
+                    />
+                  </div>
+                  <ThemeIcon src="/assets/dropdown-arrow-down-icon.svg" alt="Dropdown" size="sm" variant="default" />
+                </div>
+                    </div>
+                  </div>
+
+            {/* Year Built and Total Sq Ft - Two Column */}
+            <div className="form-field-group">
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Year Built
+                  </label>
+                    </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex items-center justify-between p-3 relative rounded-lg w-full cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                  <div className="flex gap-2 items-center">
+                    <span className="font-sans font-normal leading-normal not-italic text-tertiary text-small">
+                      Select
+                    </span>
+                  </div>
+                  <ThemeIcon src="/assets/dropdown-arrow-down-icon.svg" alt="Dropdown" size="sm" variant="default" />
+                    </div>
+                  </div>
+              <div className="form-field-item">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Total Sq Ft
+                  </label>
+                </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-center p-3 relative rounded-lg w-full">
+                        <input
+                          type="text"
+                    placeholder="e.g., 5000"
+                    value={formData.totalSqFt}
+                    onChange={(e) => handleInputChange('totalSqFt', e.target.value)}
+                    className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent"
+                        />
+                      </div>
+                    </div>
+                      </div>
+
+            {/* Description - Full Width */}
+            <div className="form-field-container">
+              <div className="form-field-single">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Description
+                  </label>
+                        </div>
+                <div className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-start p-3 relative rounded-lg w-full h-20">
+                  <textarea
+                    placeholder="Property description, amenities, etc."
+                    value={formData.description}
+                    onChange={(e) => handleInputChange('description', e.target.value)}
+                    className="font-sans font-normal leading-normal not-italic relative shrink-0 text-tertiary text-small text-nowrap tracking-normal whitespace-pre flex-1 outline-none bg-transparent resize-none"
+                    rows={3}
+                        />
+                      </div>
+                    </div>
+                      </div>
+
+            {/* Property Amenities */}
+            <div className="flex flex-col gap-2">
+              <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                Property Amenities
+              </label>
+              <div className="flex flex-wrap gap-2 items-center w-full">
+                {['Swimming Pool', 'Gym', 'Parking', 'Laundry', 'Security', 'Garden', 'Balcony', 'Air Conditioning', 'Heating', 'Internet', 'Pet Friendly', 'Elevator', 'Concierge'].map((amenity) => (
+                  <button
+                    key={amenity}
+                    className={`border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 cursor-pointer transition-colors ${
+                      formData.amenities.includes(amenity) 
+                        ? 'bg-gradient-brand-aurora text-white border-transparent' 
+                        : 'hover:border-overlays-white-inverse-20'
+                    }`}
+                    onClick={() => {
+                      setFormData(prev => ({
+                        ...prev,
+                        amenities: prev.amenities.includes(amenity)
+                          ? prev.amenities.filter(a => a !== amenity)
+                          : [...prev.amenities, amenity]
+                      }));
+                    }}
+                  >
+                    <span className={`font-sans font-medium leading-small not-italic text-small text-center text-nowrap whitespace-pre ${
+                      formData.amenities.includes(amenity) ? 'text-white' : 'text-tertiary'
+                    }`}>
+                      {amenity}
+                    </span>
                   </button>
+                ))}
+                        </div>
+                      </div>
+
+            {/* Property Images */}
+            <div className="form-field-container">
+              <div className="form-field-single">
+                <div className="flex gap-2 h-4 items-center w-full">
+                  <label className="font-sans font-medium leading-small not-italic text-primary text-small">
+                    Property Images
+                  </label>
+                    </div>
+                <div className="flex gap-2 items-center w-full">
+                  <button className="border border-overlays-white-inverse-10 border-solid box-border flex gap-2 items-center justify-center px-4 py-2 relative rounded-lg shrink-0 w-32 cursor-pointer hover:border-overlays-white-inverse-20 transition-colors">
+                    <ThemeIcon src={uploadIcon} alt="Upload" size="sm" variant="default" />
+                    <span className="font-sans font-medium leading-small not-italic text-primary text-small text-center text-nowrap whitespace-pre">
+                      Upload
+                    </span>
+                    </button>
                 </div>
               </div>
             </div>
           </div>
+      </Card>
 
-          {/* Main Content */}
-          <div className="basis-0 grow min-h-px min-w-px relative shrink-0 w-full" data-name="Main Content" data-node-id="242:9610">
-            <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex items-start relative size-full">
-              {/* Left Navigation */}
-              <div className="bg-[rgba(255,255,255,0.8)] border-[0px_1px_0px_0px] border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex flex-col h-full items-start relative shrink-0 w-[64px]" data-name="Left Navigation" data-node-id="242:9611">
-                <div className="basis-0 box-border content-stretch flex flex-col gap-[8px] grow items-center min-h-px min-w-px pb-0 pt-[16px] px-[16px] relative shrink-0 w-[63px]" data-name="Navigation" data-node-id="I242:9611;189:15625">
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15626">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15627">
-                      <img alt="" className="block max-w-none size-full" src={dashboardNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0.2)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0.2)] w-full" data-name="Button" data-node-id="I242:9611;189:15632">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15633">
-                      <img alt="" className="block max-w-none size-full" src={propertiesNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15641">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15642">
-                      <img alt="" className="block max-w-none size-full" src={tenantsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15647">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15648">
-                      <img alt="" className="block max-w-none size-full" src={maintenanceNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15651">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15652">
-                      <img alt="" className="block max-w-none size-full" src={reportsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15654">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15655">
-                      <img alt="" className="block max-w-none size-full" src={analyticsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15673">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15674">
-                      <img alt="" className="block max-w-none size-full" src={settingsNavIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-b box-border content-stretch flex from-[rgba(124,134,255,0)] gap-[8px] h-[32px] items-center justify-center px-[12px] py-0 relative rounded-[12px] shrink-0 to-[rgba(43,127,255,0)] w-full" data-name="Button" data-node-id="I242:9611;189:15669">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="I242:9611;189:15670">
-                      <img alt="" className="block max-w-none size-full" src={helpNavIcon} />
-                    </div>
-                  </div>
-                </div>
-                <div className="box-border content-stretch flex flex-col h-[61px] items-center pb-px pl-[16px] pr-[19px] pt-[16px] relative shrink-0 w-[63px]" data-name="Container" data-node-id="I242:9611;189:15677">
-                  <div className="content-stretch flex gap-[8px] items-center relative rounded-[1.67772e+07px] shrink-0" data-name="Button" data-node-id="I242:9611;189:15678">
-                    <div className="content-stretch flex items-start overflow-clip relative rounded-[1.67772e+07px] shrink-0 size-[32px]" data-name="Primitive.span" data-node-id="I242:9611;189:15679">
-                      <div className="basis-0 bg-gradient-to-b from-[#00d3f2] grow h-[32px] min-h-px min-w-px relative rounded-[1.67772e+07px] shrink-0 to-[#2b7fff]" data-name="Text" data-node-id="I242:9611;189:15680">
-                        <div className="bg-clip-padding border-0 border-[transparent] border-solid box-border content-stretch flex h-[32px] items-center justify-center relative w-full">
-                          <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[20px] not-italic relative shrink-0 text-[14px] text-nowrap text-white tracking-[-0.1504px] whitespace-pre" data-node-id="I242:9611;189:15681">
-                            JD
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Main Content Area */}
-              <div className="basis-0 box-border content-stretch flex flex-col gap-[32px] grow h-full items-start min-h-px min-w-px overflow-x-clip overflow-y-auto pb-[72px] pt-[32px] px-[72px] relative shrink-0" data-name="NewDashboardScreen" data-node-id="242:9612">
-                {/* Page Header */}
-                <div className="content-center flex flex-wrap gap-[16px] items-center justify-between relative shrink-0 w-full" data-name="Container" data-node-id="242:9613">
-                  <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0" data-name="Container" data-node-id="242:9614">
-                    <p className="font-['Inter:Bold',_sans-serif] font-bold leading-[36px] relative shrink-0 text-[#101828] text-[30px]" data-node-id="242:9615">
-                      Add Property
-                    </p>
-                    <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[24px] relative shrink-0 text-[#4a5565] text-[16px]" data-node-id="242:9616">
-                      Step 1 of 4: Property Details
-                    </p>
-                  </div>
-                  <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-name="Button Container" data-node-id="242:9617">
-                    <button className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center justify-center px-[16px] py-[8px] relative rounded-[8px] shrink-0 cursor-pointer" data-name="Button" data-node-id="242:9618">
-                      <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9619">
-                        <img alt="" className="block max-w-none size-full" src={cancelButtonIcon} />
-                      </div>
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[22px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap whitespace-pre" data-node-id="242:9622">
-                        Cancel
-                      </p>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Progress Steps */}
-                <div className="content-stretch flex gap-[16px] items-center relative shrink-0 w-full" data-name="Container" data-node-id="242:9623">
-                  <div className="bg-gradient-to-b content-stretch flex from-[#7c86ff] items-center justify-center relative rounded-[12px] shrink-0 size-[40px] to-[#2b7fff]" data-name="Container" data-node-id="242:9624">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9625">
-                      <img alt="" className="block max-w-none size-full" src={propertyDetailsStepIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-[#00c950] content-stretch flex items-center justify-center relative rounded-[12px] shrink-0 size-[40px]" data-name="Container" data-node-id="242:9626">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9627">
-                      <img alt="" className="block max-w-none size-full" src={addUnitsStepIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-[#6a7282] content-stretch flex items-center justify-center relative rounded-[12px] shrink-0 size-[40px]" data-name="Container" data-node-id="242:9628">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9629">
-                      <img alt="" className="block max-w-none size-full" src={addAssetsStepIcon} />
-                    </div>
-                  </div>
-                  <div className="bg-[#6a7282] content-stretch flex items-center justify-center relative rounded-[12px] shrink-0 size-[40px]" data-name="Container" data-node-id="242:9630">
-                    <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9631">
-                      <img alt="" className="block max-w-none size-full" src={addManagerStepIcon} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Form */}
-                <div className="bg-white border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex flex-col gap-[24px] items-start p-[32px] relative rounded-[16px] shrink-0 w-full" data-name="Card" data-node-id="242:9632">
-                  <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9633">
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9634">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9635">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9636">
-                          Property Name
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center p-[12px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9637">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9638">
-                          <img alt="" className="block max-w-none size-full" src={propertyBasicDetailsIcon} />
-                        </div>
-                        <input
-                          type="text"
-                          placeholder="Enter property name"
-                          className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre flex-1 outline-none bg-transparent"
-                        />
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9639">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9640">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9641">
-                          Property Type
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center p-[12px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9642">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9643">
-                          <img alt="" className="block max-w-none size-full" src={propertyBasicDetailsIcon} />
-                        </div>
-                        <div className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre flex-1">
-                          Select property type
-                        </div>
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9644">
-                          <img alt="" className="block max-w-none size-full" src={dropdownArrowDownIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9645">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9646">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9647">
-                          Address
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center p-[12px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9648">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9649">
-                          <img alt="" className="block max-w-none size-full" src={propertyBasicDetailsIcon} />
-                        </div>
-                        <input
-                          type="text"
-                          placeholder="Enter property address"
-                          className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre flex-1 outline-none bg-transparent"
-                        />
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9650">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9651">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9652">
-                          Purchase Date
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center p-[12px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9653">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9654">
-                          <img alt="" className="block max-w-none size-full" src={calendarIcon} />
-                        </div>
-                        <div className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre flex-1">
-                          Select purchase date
-                        </div>
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9655">
-                          <img alt="" className="block max-w-none size-full" src={dropdownArrowDownIcon} />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9656">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9657">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9658">
-                          Purchase Price
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center p-[12px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9659">
-                        <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9660">
-                          <img alt="" className="block max-w-none size-full" src={dollarIcon} />
-                        </div>
-                        <input
-                          type="text"
-                          placeholder="Enter purchase price"
-                          className="font-['Inter:Regular',_sans-serif] font-normal leading-[normal] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre flex-1 outline-none bg-transparent"
-                        />
-                      </div>
-                    </div>
-                    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Container" data-node-id="242:9661">
-                      <div className="content-stretch flex gap-[8px] h-[14px] items-center relative shrink-0 w-full" data-name="Primitive.label" data-node-id="242:9662">
-                        <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[14px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap tracking-[-0.1504px] whitespace-pre" data-node-id="242:9663">
-                          Property Image
-                        </p>
-                      </div>
-                      <div className="border border-[rgba(10,18,32,0.1)] border-dashed box-border content-stretch flex flex-col gap-[8px] items-center justify-center p-[24px] relative rounded-[8px] shrink-0 w-full" data-name="Container" data-node-id="242:9664">
-                        <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="242:9665">
-                          <img alt="" className="block max-w-none size-full" src={uploadIcon} />
-                        </div>
-                        <p className="font-['Inter:Regular',_sans-serif] font-normal leading-[16px] not-italic relative shrink-0 text-[#6a7282] text-[14px] text-center text-nowrap whitespace-pre" data-node-id="242:9666">
-                          Click to upload or drag and drop
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="content-stretch flex gap-[16px] items-center justify-end relative shrink-0 w-full" data-name="Container" data-node-id="242:9667">
-                    <button className="border border-[rgba(10,18,32,0.1)] border-solid box-border content-stretch flex gap-[8px] items-center justify-center px-[16px] py-[8px] relative rounded-[8px] shrink-0 cursor-pointer" data-name="Button" data-node-id="242:9668">
-                      <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9669">
-                        <img alt="" className="block max-w-none size-full" src={previousArrowIcon} />
-                      </div>
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[22px] not-italic relative shrink-0 text-[#101828] text-[14px] text-nowrap whitespace-pre" data-node-id="242:9672">
-                        Previous
-                      </p>
-                    </button>
-                    <button className="bg-gradient-to-b box-border content-stretch flex from-[#7c86ff] gap-[8px] items-center justify-center px-[16px] py-[8px] relative rounded-[8px] shrink-0 to-[#2b7fff] cursor-pointer" data-name="Button" data-node-id="242:9673">
-                      <p className="font-['Inter:Medium',_sans-serif] font-medium leading-[22px] not-italic relative shrink-0 text-[14px] text-nowrap text-white whitespace-pre" data-node-id="242:9674">
-                        Next
-                      </p>
-                      <div className="relative shrink-0 size-[16px]" data-name="Icon" data-node-id="242:9675">
-                        <img alt="" className="block max-w-none size-full" src={nextArrowIcon} />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Action Buttons Card */}
+      <Card className="rounded-xxxl shadow-card-large p-8" padding="none" variant="outlined">
+        <div className="responsive-flex row gap-6 justify-between w-full">
+            <Button
+              label="Cancel"
+              variant="outline"
+              size="md"
+              onClick={handleCancel}
+              icon="none"
+              className="flex-1"
+            />
+            <Button
+              label="Next"
+              variant="primary"
+              size="md"
+              gradient="brand-aurora"
+              onClick={handleNext}
+              icon="none"
+              rightIcon="arrow"
+              className="flex-1"
+            />
         </div>
+      </Card>
       </div>
-    </div>
+    </AppLayout>
   );
 }

@@ -32,7 +32,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div 
       className={`
-        relative rounded-xxl w-full
+        relative w-full rounded-xxxl
         ${variantClasses[variant]}
         ${paddingClasses[padding]}
         ${className}

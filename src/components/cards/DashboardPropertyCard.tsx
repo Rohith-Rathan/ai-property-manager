@@ -9,6 +9,11 @@ const starFilledIcon = getAssetPath('star-filled-icon');
 const dollarIcon = getAssetPath('dollar-icon');
 const propertyActionsIcon = getAssetPath('property-actions-icon');
 const locationIcon = getAssetPath('location-icon');
+const viewDetailsIcon = getAssetPath('view-details-icon');
+const editPropertyIcon = getAssetPath('edit-property-icon');
+const addUnitIcon = getAssetPath('add-unit-icon');
+const deletePropertyIcon = getAssetPath('delete-property-icon');
+const moreOptionsIcon = getAssetPath('more-options-icon');
 
 interface DashboardPropertyCardProps {
   rank: number;
@@ -75,31 +80,32 @@ export default function DashboardPropertyCard({
             <MoreActionsButton
               items={[
                 { 
-                  id: 'view-property',
-                  label: 'View Property', 
+                  id: 'view-details',
+                  label: 'View Details', 
                   onClick: () => onView?.(title),
-                  icon: '/assets/view-details-icon.svg'
+                  icon: viewDetailsIcon
                 },
                 { 
                   id: 'edit-property',
                   label: 'Edit Property', 
                   onClick: () => onEdit?.(title),
-                  icon: '/assets/edit-icon.svg'
+                  icon: editPropertyIcon
                 },
                 { 
-                  id: 'view-units',
-                  label: 'View Units', 
-                  onClick: () => console.log('View units for', title),
-                  icon: '/assets/units-icon.svg'
+                  id: 'add-unit',
+                  label: 'Add Unit', 
+                  onClick: () => console.log('Add unit for', title),
+                  icon: addUnitIcon
                 },
                 { 
-                  id: 'generate-report',
-                  label: 'Generate Report', 
-                  onClick: () => console.log('Generate report for', title),
-                  icon: '/assets/reports-icon.svg'
+                  id: 'delete-property',
+                  label: 'Delete Property', 
+                  onClick: () => console.log('Delete property', title),
+                  icon: deletePropertyIcon,
+                  variant: 'danger'
                 }
               ]}
-              triggerIcon="/assets/more-options-icon.svg"
+              triggerIcon={moreOptionsIcon}
               position="bottom-right"
             />
           )}

@@ -4,7 +4,6 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PropertiesGrid from './pages/PropertiesGrid';
-import PropertyMenu from './pages/PropertyMenu';
 import PropertiesList from './pages/PropertiesList';
 import AddPropertyStep1 from './pages/AddPropertyStep1';
 import AddPropertyStep2 from './pages/AddPropertyStep2';
@@ -55,9 +54,6 @@ function Home() {
           <Link to="/dashboard" className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
             Dashboard
           </Link>
-          <Link to="/quick-actions" className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
-            Quick Actions
-          </Link>
           
           {/* Properties & Units */}
           <Link to="/properties-grid" className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
@@ -65,9 +61,6 @@ function Home() {
           </Link>
           <Link to="/properties-list" className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
             Properties List
-          </Link>
-          <Link to="/property-menu" className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
-            Property Menu
           </Link>
           <Link to="/property-units-grid" className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-opacity text-center">
             Property Units Grid
@@ -160,7 +153,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/properties-grid" element={<PropertiesGrid />} />
-              <Route path="/property-menu" element={<PropertyMenu />} />
               <Route path="/properties-list" element={<PropertiesList />} />
               <Route path="/add-property-1" element={<AddPropertyStep1 />} />
               <Route path="/add-property-2" element={<AddPropertyStep2 />} />

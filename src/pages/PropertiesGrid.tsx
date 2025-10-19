@@ -37,6 +37,10 @@ export default function PropertiesGrid() {
     // If view is 'grid', we're already on the grid page, so no navigation needed
   };
 
+  const handleAddProperty = () => {
+    navigate('/add-property-1');
+  };
+
   // Property data - exact replica of original content plus additional properties
   const properties = [
     {
@@ -210,6 +214,7 @@ export default function PropertiesGrid() {
             gradient: 'aqua-2'
           }
         ]}
+        onActionClick={handleAddProperty}
       />
 
                 {/* Search Bar */}
@@ -227,7 +232,7 @@ export default function PropertiesGrid() {
       />
 
                 {/* Properties Grid */}
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 md:gap-6 w-full" data-name="Container" data-node-id="189:7587">
+      <div className="responsive-grid cols-auto gap-6 w-full" data-name="Container" data-node-id="189:7587">
         {properties.map((property) => (
           <PropertyCard
             key={property.id}

@@ -37,13 +37,18 @@ interface PropertyCardProps {
   onEdit?: (id: string) => void;
   onView?: (id: string) => void;
   className?: string;
+  // Responsive layout props
+  responsive?: boolean;
+  layout?: 'grid' | 'list' | 'compact';
 }
 
 export default function PropertyCard({
   property,
   onEdit,
   onView,
-  className = ''
+  className = '',
+  responsive = true,
+  layout = 'grid'
 }: PropertyCardProps) {
   
   const getBadgeColorClass = (color?: string) => {
@@ -54,8 +59,29 @@ export default function PropertyCard({
     }
   };
 
+  // Responsive layout logic
+  const getResponsiveClasses = () => {
+    if (!responsive) return '';
+    
+    switch (layout) {
+      case 'list':
+        return 'responsive-flex row gap-4';
+      case 'compact':
+        return 'responsive-flex col gap-2';
+      case 'grid':
+      default:
+        return 'responsive-grid cols-1';
+    }
+  };
+
+  const getCardClasses = () => {
+    const baseClasses = 'bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border flex flex-col items-start relative rounded-xxl shrink-0 shadow-card-small';
+    const responsiveClasses = getResponsiveClasses();
+    return `${baseClasses} ${responsiveClasses} ${className}`;
+  };
+
   return (
-    <div className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border flex flex-col items-start relative rounded-xxl shrink-0 shadow-card-small ${className}`} data-name="Property Card">
+    <div className={getCardClasses()} data-name="Property Card">
       {/* Image Section with Badge */}
       <div className="flex flex-col gap-4 items-center overflow-clip relative rounded-tl-xxl rounded-tr-xxl shrink-0 w-full" data-name="Card">
         <div className="h-48 relative shrink-0 w-full" data-name="ImageWithFallback">

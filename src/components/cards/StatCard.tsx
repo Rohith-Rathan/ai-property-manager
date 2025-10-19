@@ -24,6 +24,10 @@ interface StatCardProps {
     onClick: () => void;
   };
   valueColor?: 'primary' | 'success' | 'error' | 'warning' | 'info';
+  // Responsive layout props
+  responsive?: boolean;
+  layout?: 'grid' | 'list' | 'compact';
+  className?: string;
 }
 
 export default function StatCard({ 
@@ -36,7 +40,10 @@ export default function StatCard({
   showActions = true,
   variant = 'default',
   actionButton,
-  valueColor = 'primary'
+  valueColor = 'primary',
+  responsive = true,
+  layout = 'grid',
+  className = ''
 }: StatCardProps) {
   const getGradientClass = (gradient: string) => {
     switch (gradient) {
@@ -47,6 +54,27 @@ export default function StatCard({
       case 'emerald-glow': return 'bg-gradient-emerald-glow';
       default: return 'bg-gradient-aqua-2';
     }
+  };
+
+  // Responsive layout logic
+  const getResponsiveClasses = () => {
+    if (!responsive) return '';
+    
+    switch (layout) {
+      case 'list':
+        return 'responsive-flex row gap-4';
+      case 'compact':
+        return 'responsive-flex col gap-2';
+      case 'grid':
+      default:
+        return 'responsive-grid cols-1';
+    }
+  };
+
+  const getCardClasses = () => {
+    const baseClasses = 'bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col items-start relative rounded-xxl w-full shadow-card-small p-4 sm:p-6';
+    const responsiveClasses = getResponsiveClasses();
+    return `${baseClasses} ${responsiveClasses} ${className}`;
   };
 
   const getBadgeColorClass = (color: string) => {
@@ -103,7 +131,7 @@ export default function StatCard({
   // Render different variants
   if (variant === 'simple') {
     return (
-      <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border flex gap-4 items-center p-4 sm:p-6 relative rounded-xxl flex-1 min-w-0 h-auto shadow-card-small" data-name="Simple Stat Card">
+      <div className={getCardClasses()} data-name="Simple Stat Card">
         {icon && (
           <div className={`${getIconBackgroundClass(gradient)} content-stretch flex items-center justify-center relative rounded-xxl shrink-0 size-10`} data-name="Icon Container">
             <div className="relative shrink-0 size-5" data-name="Icon">
@@ -134,7 +162,7 @@ export default function StatCard({
 
   if (variant === 'complex') {
     return (
-      <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border flex flex-col gap-4 items-start p-4 sm:p-6 relative rounded-xxl h-auto shadow-card-small" data-name="Complex Stat Card">
+      <div className={getCardClasses()} data-name="Complex Stat Card">
         <div className="flex flex-col gap-4 items-start relative w-full" data-name="Content Container">
           <div className="flex items-start justify-between relative w-full" data-name="Header">
             <p className="font-medium leading-5 not-italic relative flex-1 min-w-0 text-primary text-sm tracking-[-0.15px] pr-2" data-name="Title">
@@ -183,7 +211,7 @@ export default function StatCard({
 
   if (variant === 'minimal') {
     return (
-      <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border flex gap-4 items-center p-4 sm:p-6 relative rounded-xxl h-auto shadow-card-small" data-name="Minimal Stat Card">
+      <div className={getCardClasses()} data-name="Minimal Stat Card">
         <div className="flex flex-col items-start not-italic relative flex-1 min-w-0" data-name="Summary Card Content">
           <p className="font-normal leading-4 relative shrink-0 text-tertiary text-sm w-full" data-name="Title">
             {title}
@@ -198,7 +226,7 @@ export default function StatCard({
 
   // Default variant (original design)
   return (
-    <div className="bg-overlays-black-inverse-95 border border-overlays-white-inverse-10 border-solid box-border flex flex-col gap-4 items-start p-4 sm:p-6 relative rounded-xxl h-auto shadow-card-small min-w-0" data-name="Stat Card">
+    <div className={getCardClasses()} data-name="Stat Card">
       {/* Header with Icon and Actions */}
       <div className="flex items-center justify-between relative w-full" data-name="Card Header">
         {icon && (
@@ -236,7 +264,8 @@ export default function StatCard({
 
       {/* Badge */}
       {badge && (
-        <div className={`${getBadgeColorClass(badge.color)} box-border content-stretch flex gap-1 items-center px-2 py-1 relative rounded-full shrink-0`} data-name="Badge">
+        <div className="flex justify-start w-full" data-name="Badge Container">
+          <div className={`${getBadgeColorClass(badge.color)} box-border inline-flex gap-1 items-center px-2 py-1 relative rounded-full shrink-0`} data-name="Badge">
           {badge.trend && (
             <div className="flex items-center justify-center relative shrink-0">
               <div className={`flex-none ${badge.trend === 'down' ? 'rotate-180' : ''}`}>
@@ -254,6 +283,7 @@ export default function StatCard({
           <p className={`font-sans font-normal leading-normal not-italic relative shrink-0 text-label-small text-nowrap whitespace-pre ${getBadgeTextColorClass(badge.color)}`} data-name="Badge Text">
             {badge.text}
           </p>
+        </div>
         </div>
       )}
     </div>

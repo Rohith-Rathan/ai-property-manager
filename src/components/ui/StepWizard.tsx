@@ -1,6 +1,7 @@
 import React from 'react';
 import ThemeIcon from './ThemeIcon';
 import ProgressBar from './ProgressBar';
+import Button from '../forms/Button';
 
 export interface Step {
   id: string;
@@ -46,15 +47,15 @@ const StepWizard: React.FC<StepWizardProps> = ({
   };
 
   return (
-    <div className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-2 items-start p-8 relative rounded-xxxl size-full ${className}`}>
+        <div className={`bg-overlays-black-inverse-95 border border-overlays-white-inverse-5 border-solid box-border content-stretch flex flex-col gap-2 items-start relative rounded-xxxl shadow-card-large size-full p-8 ${className}`}>
       {/* Header Section */}
-      <div className="content-center flex flex-wrap gap-4 items-center justify-between relative shrink-0 w-full">
-        <div className="relative shrink-0">
+      <div className="stepwizard-header">
+        <div className="stepwizard-header-content">
           <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex flex-col items-start not-italic relative">
-            <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3 w-full max-w-md">
+            <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3 w-full">
               {title}
             </p>
-            <p className="font-sans font-normal leading-base relative shrink-0 text-tertiary text-base text-nowrap whitespace-pre">
+            <p className="font-sans font-normal leading-base relative shrink-0 text-tertiary text-base w-full">
               {subtitle}
             </p>
           </div>
@@ -62,24 +63,14 @@ const StepWizard: React.FC<StepWizardProps> = ({
         
         {/* Cancel Button */}
         {onCancel && (
-          <button
-            onClick={onCancel}
-            className="border border-overlays-white-inverse-10 border-solid relative rounded-md shrink-0 bg-transparent hover:bg-gray-50 transition-colors duration-200"
-          >
-            <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center justify-center px-4 py-2 relative">
-              <div className="relative shrink-0 w-4 h-4">
-                <ThemeIcon 
-                  src="/assets/ac9732330b75b9384b8055726c64f106eeb45b64.svg" 
-                  alt="Cancel" 
-                  size="sm" 
-                  color="tertiary" 
-                />
-              </div>
-              <p className="font-sans font-medium leading-small not-italic relative shrink-0 text-primary text-small text-center text-nowrap whitespace-pre">
-                Cancel
-              </p>
-            </div>
-          </button>
+          <div className="stepwizard-header-button">
+            <Button
+              label="Cancel"
+              onClick={onCancel}
+              variant="outline"
+              size="sm"
+            />
+          </div>
         )}
       </div>
 
@@ -90,7 +81,7 @@ const StepWizard: React.FC<StepWizardProps> = ({
         total={totalSteps}
       />
 
-      {/* Steps Section */}
+      {/* Steps Section - Responsive Design */}
       <div className="content-stretch flex items-start justify-between relative shrink-0 w-full">
         {steps.map((step, index) => {
           const state = getStepState(index);
@@ -98,11 +89,11 @@ const StepWizard: React.FC<StepWizardProps> = ({
           return (
             <div 
               key={step.id}
-              className="basis-0 box-border content-stretch flex flex-col gap-4 grow items-center min-h-px min-w-px p-4 relative shrink-0"
+              className="basis-0 box-border content-stretch flex flex-col gap-2 sm:gap-4 grow items-center min-h-px min-w-px p-2 sm:p-4 relative shrink-0"
             >
               {/* Step Circle */}
-              <div className={`box-border content-stretch flex items-center justify-center relative rounded-full shadow-card-small shrink-0 w-10 h-10 ${getStepBackground(state)}`}>
-                <div className="relative shrink-0 w-4 h-4">
+              <div className={`box-border content-stretch flex items-center justify-center relative rounded-full shadow-card-small shrink-0 w-8 h-8 sm:w-10 sm:h-10 ${getStepBackground(state)}`}>
+                <div className="relative shrink-0 w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center">
                   <ThemeIcon 
                     src={step.icon} 
                     alt={step.iconAlt || step.title} 
@@ -114,7 +105,7 @@ const StepWizard: React.FC<StepWizardProps> = ({
               
               {/* Step Label */}
               <div className="content-stretch flex flex-col gap-1 items-center relative shrink-0 w-full">
-                <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-small text-center w-full">
+                <p className="font-sans font-normal leading-small not-italic relative shrink-0 text-primary text-xs sm:text-small text-center w-full">
                   {step.title}
                 </p>
               </div>

@@ -120,49 +120,49 @@ export default function PageSearch({
   // Mobile variant - simplified search bar
   if (effectiveVariant === 'mobile') {
     return (
-      <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-3 relative rounded-xl shrink-0 w-full shadow-card-large" data-name="Mobile Search Bar">
+      <div className="bg-paper-paper-elevation-1 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex items-center justify-between p-2 relative rounded-xl shrink-0 w-full shadow-card-large" data-name="Mobile Search Bar">
         {/* Search Input - Full Width */}
-        <div className="flex-1 relative" data-name="Search Container">
-          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-2 items-center px-3 py-2 relative">
+        <div className="flex-1 relative min-w-0" data-name="Search Container">
+          <div className="bg-clip-padding border-0 border-transparent border-solid box-border content-stretch flex gap-1 items-center px-2 py-1.5 relative">
             <ThemeIcon src={searchIcon} alt="Search" size="sm" variant="default" />
             <input
               type="text"
               placeholder={placeholder}
               value={searchValue}
               onChange={(e) => handleSearch(e.target.value)}
-              className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-small text-nowrap whitespace-pre bg-transparent border-none outline-none flex-1"
+              className="font-sans font-normal leading-small not-italic relative shrink-0 text-tertiary text-small text-nowrap whitespace-pre bg-transparent border-none outline-none flex-1 min-w-0"
               data-name="Search Input"
             />
           </div>
         </div>
 
-        {/* Filter and View Controls */}
-        <div className="relative shrink-0 ml-2 flex gap-2" data-name="Controls Container">
-          {/* Filter Button - Compact */}
+        {/* Filter and View Controls - Compact for 320px */}
+        <div className="relative shrink-0 ml-1 flex gap-1" data-name="Controls Container">
+          {/* Filter Button - Ultra Compact */}
           <button 
-            className="bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-1 h-9 items-center pl-2 pr-2 py-0 relative rounded-lg shrink-0 cursor-pointer hover:bg-paper-paper-elevation-2 transition-colors duration-200" 
+            className="bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid box-border content-stretch flex gap-0.5 h-7 items-center pl-1.5 pr-1.5 py-0 relative rounded-md shrink-0 cursor-pointer hover:bg-paper-paper-elevation-2 transition-colors duration-200" 
             onClick={() => handleFilterChange('All Properties')} 
             data-name="Filter Button"
           >
-            <ThemeIcon src={filterIcon} alt="Filter" size="sm" variant="default" />
-            <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="sm" variant="default" />
+            <ThemeIcon src={filterIcon} alt="Filter" size="xs" variant="default" />
+            <ThemeIcon src={dropdownArrowIcon} alt="Dropdown" size="xs" variant="default" />
           </button>
           
-          {/* View Toggle Buttons */}
-          <div className="content-stretch flex gap-1 items-start relative shrink-0" data-name="View Toggle">
+          {/* View Toggle Buttons - Smaller for 320px */}
+          <div className="content-stretch flex gap-0.5 items-start relative shrink-0" data-name="View Toggle">
             <button 
-              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'grid' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              className={`relative rounded-md shrink-0 w-7 h-7 flex items-center justify-center transition-all duration-200 ${currentView === 'grid' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
               data-name="Grid View Button"
               onClick={() => handleViewChange('grid')}
             >
-              <ThemeIcon src={gridViewIcon} alt="Grid View" size="sm" variant={currentView === 'grid' ? 'white' : 'default'} />
+              <ThemeIcon src={gridViewIcon} alt="Grid View" size="xs" variant={currentView === 'grid' ? 'white' : 'default'} />
             </button>
             <button 
-              className={`relative rounded-lg shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-200 ${currentView === 'list' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
+              className={`relative rounded-md shrink-0 w-7 h-7 flex items-center justify-center transition-all duration-200 ${currentView === 'list' ? 'bg-gradient-brand-aurora' : 'bg-paper-paper-elevation-0 border border-overlays-white-inverse-10 border-solid hover:bg-paper-paper-elevation-2'}`}
               data-name="List View Button"
               onClick={() => handleViewChange('list')}
             >
-              <ThemeIcon src={listViewIcon} alt="List View" size="sm" variant={currentView === 'list' ? 'white' : 'default'} />
+              <ThemeIcon src={listViewIcon} alt="List View" size="xs" variant={currentView === 'list' ? 'white' : 'default'} />
             </button>
           </div>
         </div>

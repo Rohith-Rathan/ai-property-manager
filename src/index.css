@@ -87,3 +87,308 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* ===== UNIVERSAL RESPONSIVE GRID SYSTEM ===== */
+/* One pattern for all responsive layouts - Mobile First Approach */
+
+/* Base Grid Pattern */
+.responsive-grid {
+  display: grid;
+  gap: 24px;
+}
+
+/* Column Variations */
+.responsive-grid.cols-1 { grid-template-columns: 1fr; }
+.responsive-grid.cols-2 { grid-template-columns: 1fr; }
+.responsive-grid.cols-3 { grid-template-columns: 1fr; }
+.responsive-grid.cols-4 { grid-template-columns: 1fr; }
+.responsive-grid.cols-auto { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+  .responsive-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .responsive-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+  .responsive-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .responsive-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+}
+
+/* Gap Variations */
+.responsive-grid.gap-4 { gap: 16px; }
+.responsive-grid.gap-6 { gap: 24px; }
+.responsive-grid.gap-8 { gap: 32px; }
+
+/* ===== UNIVERSAL RESPONSIVE FLEXBOX SYSTEM ===== */
+.responsive-flex {
+  display: flex;
+  gap: 24px;
+}
+
+.responsive-flex.col { flex-direction: column; }
+.responsive-flex.row { flex-direction: row; }
+
+@media (min-width: 768px) {
+  .responsive-flex.col { flex-direction: row; }
+}
+
+@media (max-width: 767px) {
+  .responsive-flex.row { flex-direction: column; }
+}
+
+/* Gap Variations for Flex */
+.responsive-flex.gap-4 { gap: 16px; }
+.responsive-flex.gap-6 { gap: 24px; }
+.responsive-flex.gap-8 { gap: 32px; }
+
+/* ===== LEGACY CLASSES (for backward compatibility) ===== */
+.form-responsive-grid { 
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .form-responsive-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-responsive-2 { 
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-responsive-3 { 
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.grid-responsive-4 { 
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-responsive-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.grid-responsive-auto { 
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-gap-4 { gap: 16px; }
+.grid-gap-6 { gap: 24px; }
+.grid-gap-8 { gap: 32px; }
+
+.flex-responsive-col { 
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .flex-responsive-col {
+    flex-direction: row;
+  }
+}
+
+.flex-responsive-row { 
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  .flex-responsive-row {
+    flex-direction: column;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN TOKENS ===== */
+/* Override design system tokens to be responsive */
+
+/* Mobile-first spacing tokens */
+:root {
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 24px;  /* Smaller on mobile */
+  --spacing-10: 32px;
+  --spacing-12: 40px;
+  --spacing-16: 56px;
+  --spacing-20: 72px;
+  --spacing-24: 88px;
+}
+
+/* Tablet and Desktop: Increase spacing for better visual hierarchy */
+@media (min-width: 768px) {
+  :root {
+    --spacing-2: 8px;   /* Keep small spacing same */
+    --spacing-4: 16px;  /* Keep small spacing same */
+    --spacing-6: 24px;  /* Keep medium spacing same */
+    --spacing-8: 32px;  /* Increase large spacing for tablet+ */
+    --spacing-10: 40px; /* Increase extra large spacing */
+    --spacing-12: 48px; /* Increase for desktop */
+    --spacing-16: 64px; /* Increase for desktop */
+    --spacing-20: 80px; /* Increase for desktop */
+    --spacing-24: 96px; /* Increase for desktop */
+  }
+}
+
+/* Large Desktop: Further increase spacing for better proportions */
+@media (min-width: 1440px) {
+  :root {
+    --spacing-8: 40px;  /* Increase large spacing */
+    --spacing-10: 48px; /* Increase extra large spacing */
+    --spacing-12: 56px; /* Increase for large desktop */
+    --spacing-16: 72px; /* Increase for large desktop */
+    --spacing-20: 88px; /* Increase for large desktop */
+    --spacing-24: 104px; /* Increase for large desktop */
+  }
+}
+
+/* ===== ESSENTIAL RESPONSIVE LAYOUT CLASSES ===== */
+/* These classes handle layout behavior that can't be achieved with responsive tokens alone */
+
+/* StepWizard Header - Complex responsive layout */
+.stepwizard-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stepwizard-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepwizard-header-button {
+  flex-shrink: 0;
+}
+
+/* Mobile: Stack vertically */
+@media (max-width: 767px) {
+  .stepwizard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .stepwizard-header-button {
+    width: 100%;
+  }
+}
+
+/* Tablet and Desktop: Horizontal layout */
+@media (min-width: 768px) {
+  .stepwizard-header {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .stepwizard-header-button {
+    width: auto;
+  }
+}
+
+/* Form Field Layout - Complex responsive behavior */
+.form-field-container {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+  width: 100%;
+}
+
+.form-field-single {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  align-items: flex-start;
+}
+
+.form-field-group {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: center;
+  width: 100%;
+}
+
+.form-field-item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  align-items: flex-start;
+}
+
+/* Mobile: Stack all fields vertically */
+@media (max-width: 767px) {
+  .form-field-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+  
+  .form-field-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-6);
+  }
+  
+  .form-field-single,
+  .form-field-item {
+    width: 100%;
+  }
+}
+
+/* Tablet and Desktop: Side-by-side layout */
+@media (min-width: 768px) {
+  .form-field-container {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .form-field-group {
+    flex-direction: row;
+    align-items: center;
+  }
+}

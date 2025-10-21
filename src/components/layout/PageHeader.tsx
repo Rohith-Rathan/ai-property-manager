@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../forms/Button';
-
+import ThemeIcon from '../ui/ThemeIcon';
+import { getAssetPath } from '../../utils/completeAssetMapping';
 
 interface ActionButton {
   id: string;
@@ -18,6 +19,10 @@ interface PageHeaderProps {
   actions?: ActionButton[];
   showActions?: boolean;
   onActionClick?: (actionId: string) => void;
+  // Back button functionality
+  showBackButton?: boolean;
+  onBack?: () => void;
+  backButtonLabel?: string;
 }
 
 export default function PageHeader({ 
@@ -25,21 +30,44 @@ export default function PageHeader({
   description,
   actions = [],
   showActions = true,
-  onActionClick
+  onActionClick,
+  showBackButton = false,
+  onBack,
+  backButtonLabel = "Back"
 }: PageHeaderProps) {
 
   return (
     <div className="flex flex-wrap gap-4 items-start justify-between w-full" data-name="Page Header">
-      {/* Title Section */}
-      <div className="flex-1 min-w-0" data-name="Title Container">
-        <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3" data-name="Page Title">
-          {title}
-        </p>
-        {description && (
-          <p className="font-sans font-normal leading-base relative shrink-0 text-secondary text-base" data-name="Page Description">
-            {description}
-          </p>
+      {/* Left Section - Back Button + Title */}
+      <div className="flex items-center gap-3 flex-1 min-w-0" data-name="Left Container">
+        {/* Back Button */}
+        {showBackButton && (
+          <button
+            onClick={onBack}
+            className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 transition-colors text-primary"
+            data-name="Back Button"
+            title={backButtonLabel}
+          >
+            <ThemeIcon
+              src={getAssetPath('back-arrow-icon')}
+              alt="Back"
+              size="md"
+              variant="default"
+            />
+          </button>
         )}
+        
+        {/* Title Section */}
+        <div className="flex-1 min-w-0" data-name="Title Container">
+          <p className="font-sans font-bold leading-h3 relative shrink-0 text-primary text-h3" data-name="Page Title">
+            {title}
+          </p>
+          {description && (
+            <p className="font-sans font-normal leading-base relative shrink-0 text-secondary text-base" data-name="Page Description">
+              {description}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* Actions Section */}
